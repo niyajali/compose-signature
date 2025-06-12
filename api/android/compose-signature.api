@@ -1,0 +1,347 @@
+public final class com/niyajali/compose/sign/ComposableSingletons$ComposeSignKt {
+	public static final field INSTANCE Lcom/niyajali/compose/sign/ComposableSingletons$ComposeSignKt;
+	public fun <init> ()V
+	public final fun getLambda$-1514607103$compose_signature_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1884084264$compose_signature_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1907606048$compose_signature_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-342637030$compose_signature_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/niyajali/compose/sign/ComposeSignKt {
+	public static final fun ComposeSign (Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Lcom/niyajali/compose/sign/SignatureConfig;Lcom/niyajali/compose/sign/SignatureState;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun ComposeSign (Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Lcom/niyajali/compose/sign/SignatureState;Landroidx/compose/runtime/Composer;II)V
+	public static final fun ComposeSign-cWpAVu8 (Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;JFJZLcom/niyajali/compose/sign/SignatureState;Landroidx/compose/runtime/Composer;II)V
+	public static final fun ComposeSignFullscreen (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/niyajali/compose/sign/SignatureConfig;Lcom/niyajali/compose/sign/SignatureState;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/DefaultSignatureActionHandler : com/niyajali/compose/sign/SignatureActionHandler {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun canExecuteAction (Lcom/niyajali/compose/sign/SignatureAction;Lcom/niyajali/compose/sign/SignatureState;)Z
+	public fun executeAction (Lcom/niyajali/compose/sign/SignatureAction;Lcom/niyajali/compose/sign/SignatureState;)Lcom/niyajali/compose/sign/SignatureActionResult;
+}
+
+public abstract interface class com/niyajali/compose/sign/ISignatureState {
+	public abstract fun addPath (Lcom/niyajali/compose/sign/SignaturePath;)V
+	public abstract fun clear ()V
+	public abstract fun getCanRedo ()Z
+	public abstract fun getCanUndo ()Z
+	public abstract fun getInputState ()Lcom/niyajali/compose/sign/SignatureInputState;
+	public abstract fun getPaths ()Ljava/util/List;
+	public abstract fun getSignature ()Landroidx/compose/ui/graphics/ImageBitmap;
+	public abstract fun redo ()V
+	public abstract fun undo ()V
+	public abstract fun updateSignature (Landroidx/compose/ui/graphics/ImageBitmap;)V
+}
+
+public final class com/niyajali/compose/sign/SignatureAction : java/lang/Enum {
+	public static final field CLEAR Lcom/niyajali/compose/sign/SignatureAction;
+	public static final field REDO Lcom/niyajali/compose/sign/SignatureAction;
+	public static final field SAVE Lcom/niyajali/compose/sign/SignatureAction;
+	public static final field UNDO Lcom/niyajali/compose/sign/SignatureAction;
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getDisplayName ()Ljava/lang/String;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun isDestructive ()Z
+	public final fun requiresConfirmation ()Z
+	public static fun valueOf (Ljava/lang/String;)Lcom/niyajali/compose/sign/SignatureAction;
+	public static fun values ()[Lcom/niyajali/compose/sign/SignatureAction;
+}
+
+public final class com/niyajali/compose/sign/SignatureActionConfig {
+	public static final field $stable I
+	public static final field Companion Lcom/niyajali/compose/sign/SignatureActionConfig$Companion;
+	public fun <init> ()V
+	public fun <init> (ZZZZZLjava/util/Map;)V
+	public synthetic fun <init> (ZZZZZLjava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Z
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun component4 ()Z
+	public final fun component5 ()Z
+	public final fun component6 ()Ljava/util/Map;
+	public final fun copy (ZZZZZLjava/util/Map;)Lcom/niyajali/compose/sign/SignatureActionConfig;
+	public static synthetic fun copy$default (Lcom/niyajali/compose/sign/SignatureActionConfig;ZZZZZLjava/util/Map;ILjava/lang/Object;)Lcom/niyajali/compose/sign/SignatureActionConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getConfirmDestructive ()Z
+	public final fun getCustomLabels ()Ljava/util/Map;
+	public final fun getLabelForAction (Lcom/niyajali/compose/sign/SignatureAction;)Ljava/lang/String;
+	public final fun getShowClear ()Z
+	public final fun getShowRedo ()Z
+	public final fun getShowSave ()Z
+	public final fun getShowUndo ()Z
+	public final fun getVisibleActions ()Ljava/util/List;
+	public fun hashCode ()I
+	public final fun shouldShowAction (Lcom/niyajali/compose/sign/SignatureAction;)Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/niyajali/compose/sign/SignatureActionConfig$Companion {
+	public final fun getComplete ()Lcom/niyajali/compose/sign/SignatureActionConfig;
+	public final fun getEditOnly ()Lcom/niyajali/compose/sign/SignatureActionConfig;
+	public final fun getEssential ()Lcom/niyajali/compose/sign/SignatureActionConfig;
+	public final fun getReadOnly ()Lcom/niyajali/compose/sign/SignatureActionConfig;
+}
+
+public abstract interface class com/niyajali/compose/sign/SignatureActionHandler {
+	public abstract fun canExecuteAction (Lcom/niyajali/compose/sign/SignatureAction;Lcom/niyajali/compose/sign/SignatureState;)Z
+	public abstract fun executeAction (Lcom/niyajali/compose/sign/SignatureAction;Lcom/niyajali/compose/sign/SignatureState;)Lcom/niyajali/compose/sign/SignatureActionResult;
+}
+
+public final class com/niyajali/compose/sign/SignatureActionResult {
+	public static final field $stable I
+	public static final field Companion Lcom/niyajali/compose/sign/SignatureActionResult$Companion;
+	public fun <init> (ZLjava/lang/String;Lcom/niyajali/compose/sign/SignatureAction;)V
+	public synthetic fun <init> (ZLjava/lang/String;Lcom/niyajali/compose/sign/SignatureAction;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Z
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/niyajali/compose/sign/SignatureAction;
+	public final fun copy (ZLjava/lang/String;Lcom/niyajali/compose/sign/SignatureAction;)Lcom/niyajali/compose/sign/SignatureActionResult;
+	public static synthetic fun copy$default (Lcom/niyajali/compose/sign/SignatureActionResult;ZLjava/lang/String;Lcom/niyajali/compose/sign/SignatureAction;ILjava/lang/Object;)Lcom/niyajali/compose/sign/SignatureActionResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAction ()Lcom/niyajali/compose/sign/SignatureAction;
+	public final fun getMessage ()Ljava/lang/String;
+	public final fun getSuccess ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/niyajali/compose/sign/SignatureActionResult$Companion {
+	public final fun failure (Lcom/niyajali/compose/sign/SignatureAction;Ljava/lang/String;)Lcom/niyajali/compose/sign/SignatureActionResult;
+	public final fun success (Lcom/niyajali/compose/sign/SignatureAction;Ljava/lang/String;)Lcom/niyajali/compose/sign/SignatureActionResult;
+	public static synthetic fun success$default (Lcom/niyajali/compose/sign/SignatureActionResult$Companion;Lcom/niyajali/compose/sign/SignatureAction;Ljava/lang/String;ILjava/lang/Object;)Lcom/niyajali/compose/sign/SignatureActionResult;
+}
+
+public final class com/niyajali/compose/sign/SignatureBounds {
+	public static final field $stable I
+	public fun <init> (FFFF)V
+	public final fun area ()F
+	public final fun component1 ()F
+	public final fun component2 ()F
+	public final fun component3 ()F
+	public final fun component4 ()F
+	public final fun contains-k-4lQ0M (J)Z
+	public final fun copy (FFFF)Lcom/niyajali/compose/sign/SignatureBounds;
+	public static synthetic fun copy$default (Lcom/niyajali/compose/sign/SignatureBounds;FFFFILjava/lang/Object;)Lcom/niyajali/compose/sign/SignatureBounds;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBottom ()F
+	public final fun getBottomRight-F1C5BW0 ()J
+	public final fun getCenter-F1C5BW0 ()J
+	public final fun getHeight ()F
+	public final fun getLeft ()F
+	public final fun getRight ()F
+	public final fun getTop ()F
+	public final fun getTopLeft-F1C5BW0 ()J
+	public final fun getWidth ()F
+	public fun hashCode ()I
+	public final fun isValid ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/niyajali/compose/sign/SignatureConfig {
+	public static final field $stable I
+	public static final field Companion Lcom/niyajali/compose/sign/SignatureConfig$Companion;
+	public synthetic fun <init> (JFJLandroidx/compose/foundation/BorderStroke;Landroidx/compose/foundation/shape/CornerBasedShape;ZJFZFFZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (JFJLandroidx/compose/foundation/BorderStroke;Landroidx/compose/foundation/shape/CornerBasedShape;ZJFZFFZZLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun asFullScreen (Z)Lcom/niyajali/compose/sign/SignatureConfig;
+	public static synthetic fun asFullScreen$default (Lcom/niyajali/compose/sign/SignatureConfig;ZILjava/lang/Object;)Lcom/niyajali/compose/sign/SignatureConfig;
+	public final fun component1-0d7_KjU ()J
+	public final fun component10-D9Ej5fM ()F
+	public final fun component11-D9Ej5fM ()F
+	public final fun component12 ()Z
+	public final fun component13 ()Z
+	public final fun component2-D9Ej5fM ()F
+	public final fun component3-0d7_KjU ()J
+	public final fun component4 ()Landroidx/compose/foundation/BorderStroke;
+	public final fun component5 ()Landroidx/compose/foundation/shape/CornerBasedShape;
+	public final fun component6 ()Z
+	public final fun component7-0d7_KjU ()J
+	public final fun component8-D9Ej5fM ()F
+	public final fun component9 ()Z
+	public final fun copy-o8Ky3OI (JFJLandroidx/compose/foundation/BorderStroke;Landroidx/compose/foundation/shape/CornerBasedShape;ZJFZFFZZ)Lcom/niyajali/compose/sign/SignatureConfig;
+	public static synthetic fun copy-o8Ky3OI$default (Lcom/niyajali/compose/sign/SignatureConfig;JFJLandroidx/compose/foundation/BorderStroke;Landroidx/compose/foundation/shape/CornerBasedShape;ZJFZFFZZILjava/lang/Object;)Lcom/niyajali/compose/sign/SignatureConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBackgroundColor-0d7_KjU ()J
+	public final fun getBorderStroke ()Landroidx/compose/foundation/BorderStroke;
+	public final fun getCornerShape ()Landroidx/compose/foundation/shape/CornerBasedShape;
+	public final fun getEnableSmoothDrawing ()Z
+	public final fun getGridColor-0d7_KjU ()J
+	public final fun getGridSpacing-D9Ej5fM ()F
+	public final fun getMaxHeight-D9Ej5fM ()F
+	public final fun getMinHeight-D9Ej5fM ()F
+	public final fun getShowActions ()Z
+	public final fun getShowGrid ()Z
+	public final fun getStrokeColor-0d7_KjU ()J
+	public final fun getStrokeWidth-D9Ej5fM ()F
+	public fun hashCode ()I
+	public final fun isFullScreen ()Z
+	public fun toString ()Ljava/lang/String;
+	public final fun withAppearance-ek8zF_U (JLandroidx/compose/foundation/BorderStroke;Landroidx/compose/foundation/shape/CornerBasedShape;)Lcom/niyajali/compose/sign/SignatureConfig;
+	public static synthetic fun withAppearance-ek8zF_U$default (Lcom/niyajali/compose/sign/SignatureConfig;JLandroidx/compose/foundation/BorderStroke;Landroidx/compose/foundation/shape/CornerBasedShape;ILjava/lang/Object;)Lcom/niyajali/compose/sign/SignatureConfig;
+	public final fun withGrid-Hht5A8o (ZJF)Lcom/niyajali/compose/sign/SignatureConfig;
+	public static synthetic fun withGrid-Hht5A8o$default (Lcom/niyajali/compose/sign/SignatureConfig;ZJFILjava/lang/Object;)Lcom/niyajali/compose/sign/SignatureConfig;
+	public final fun withStroke-l07J4OM (JF)Lcom/niyajali/compose/sign/SignatureConfig;
+	public static synthetic fun withStroke-l07J4OM$default (Lcom/niyajali/compose/sign/SignatureConfig;JFILjava/lang/Object;)Lcom/niyajali/compose/sign/SignatureConfig;
+}
+
+public final class com/niyajali/compose/sign/SignatureConfig$Companion {
+	public final fun getCreative ()Lcom/niyajali/compose/sign/SignatureConfig;
+	public final fun getDefault ()Lcom/niyajali/compose/sign/SignatureConfig;
+	public final fun getFormIntegration ()Lcom/niyajali/compose/sign/SignatureConfig;
+	public final fun getFullscreen ()Lcom/niyajali/compose/sign/SignatureConfig;
+	public final fun getProfessional ()Lcom/niyajali/compose/sign/SignatureConfig;
+	public final fun getThickStroke ()Lcom/niyajali/compose/sign/SignatureConfig;
+	public final fun getWithGrid ()Lcom/niyajali/compose/sign/SignatureConfig;
+}
+
+public final class com/niyajali/compose/sign/SignatureExportConfig {
+	public static final field $stable I
+	public synthetic fun <init> (Lcom/niyajali/compose/sign/SignatureExportFormat;IIJIZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Lcom/niyajali/compose/sign/SignatureExportFormat;IIJIZZLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/niyajali/compose/sign/SignatureExportFormat;
+	public final fun component2 ()I
+	public final fun component3 ()I
+	public final fun component4-0d7_KjU ()J
+	public final fun component5 ()I
+	public final fun component6 ()Z
+	public final fun component7 ()Z
+	public final fun copy-ww6aTOc (Lcom/niyajali/compose/sign/SignatureExportFormat;IIJIZZ)Lcom/niyajali/compose/sign/SignatureExportConfig;
+	public static synthetic fun copy-ww6aTOc$default (Lcom/niyajali/compose/sign/SignatureExportConfig;Lcom/niyajali/compose/sign/SignatureExportFormat;IIJIZZILjava/lang/Object;)Lcom/niyajali/compose/sign/SignatureExportConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBackgroundColor-0d7_KjU ()J
+	public final fun getCropToBounds ()Z
+	public final fun getFormat ()Lcom/niyajali/compose/sign/SignatureExportFormat;
+	public final fun getHeight ()I
+	public final fun getIncludeBorder ()Z
+	public final fun getQuality ()I
+	public final fun getWidth ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/niyajali/compose/sign/SignatureExportFormat : java/lang/Enum {
+	public static final field JPEG Lcom/niyajali/compose/sign/SignatureExportFormat;
+	public static final field PDF Lcom/niyajali/compose/sign/SignatureExportFormat;
+	public static final field PNG Lcom/niyajali/compose/sign/SignatureExportFormat;
+	public static final field SVG Lcom/niyajali/compose/sign/SignatureExportFormat;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/niyajali/compose/sign/SignatureExportFormat;
+	public static fun values ()[Lcom/niyajali/compose/sign/SignatureExportFormat;
+}
+
+public final class com/niyajali/compose/sign/SignatureExtensionsKt {
+	public static final fun asAccessible (Lcom/niyajali/compose/sign/SignatureConfig;Z)Lcom/niyajali/compose/sign/SignatureConfig;
+	public static synthetic fun asAccessible$default (Lcom/niyajali/compose/sign/SignatureConfig;ZILjava/lang/Object;)Lcom/niyajali/compose/sign/SignatureConfig;
+	public static final fun asDarkTheme (Lcom/niyajali/compose/sign/SignatureConfig;)Lcom/niyajali/compose/sign/SignatureConfig;
+	public static final fun asLightTheme (Lcom/niyajali/compose/sign/SignatureConfig;)Lcom/niyajali/compose/sign/SignatureConfig;
+	public static final fun exportScaledSignature-xwkQ0AY (Lcom/niyajali/compose/sign/SignatureState;IIZJ)Landroidx/compose/ui/graphics/ImageBitmap;
+	public static synthetic fun exportScaledSignature-xwkQ0AY$default (Lcom/niyajali/compose/sign/SignatureState;IIZJILjava/lang/Object;)Landroidx/compose/ui/graphics/ImageBitmap;
+	public static final fun exportSignature-g2O1Hgs (Lcom/niyajali/compose/sign/SignatureState;IIJ)Landroidx/compose/ui/graphics/ImageBitmap;
+	public static synthetic fun exportSignature-g2O1Hgs$default (Lcom/niyajali/compose/sign/SignatureState;IIJILjava/lang/Object;)Landroidx/compose/ui/graphics/ImageBitmap;
+	public static final fun filterByColor-4WTKRHQ (Ljava/util/List;J)Ljava/util/List;
+	public static final fun filterByStrokeWidth (Ljava/util/List;FF)Ljava/util/List;
+	public static final fun getAngle (Lcom/niyajali/compose/sign/SignaturePath;)F
+	public static final fun getAspectRatio (Landroidx/compose/ui/graphics/ImageBitmap;)F
+	public static final fun getAspectRatio (Lcom/niyajali/compose/sign/SignatureBounds;)F
+	public static final fun getAverageStrokeWidth (Ljava/util/List;)F
+	public static final fun getComplexityScore (Lcom/niyajali/compose/sign/SignatureState;)I
+	public static final fun getDescription (Lcom/niyajali/compose/sign/SignatureState;)Ljava/lang/String;
+	public static final fun getDimensionDescription (Landroidx/compose/ui/graphics/ImageBitmap;)Ljava/lang/String;
+	public static final fun getMetadata (Lcom/niyajali/compose/sign/SignatureState;)Lcom/niyajali/compose/sign/SignatureMetadata;
+	public static final fun getSignatureBounds (Lcom/niyajali/compose/sign/SignatureState;)Lcom/niyajali/compose/sign/SignatureBounds;
+	public static final fun getTotalLength (Lcom/niyajali/compose/sign/SignatureState;)F
+	public static final fun getUniqueColors (Ljava/util/List;)Ljava/util/Set;
+	public static final fun isEmpty (Lcom/niyajali/compose/sign/SignatureState;)Z
+	public static final fun isHorizontal (Lcom/niyajali/compose/sign/SignaturePath;F)Z
+	public static synthetic fun isHorizontal$default (Lcom/niyajali/compose/sign/SignaturePath;FILjava/lang/Object;)Z
+	public static final fun isLandscape (Landroidx/compose/ui/graphics/ImageBitmap;)Z
+	public static final fun isLandscape (Lcom/niyajali/compose/sign/SignatureBounds;)Z
+	public static final fun isNotEmpty (Lcom/niyajali/compose/sign/SignatureState;)Z
+	public static final fun isPortrait (Landroidx/compose/ui/graphics/ImageBitmap;)Z
+	public static final fun isPortrait (Lcom/niyajali/compose/sign/SignatureBounds;)Z
+	public static final fun isSquare (Lcom/niyajali/compose/sign/SignatureBounds;F)Z
+	public static synthetic fun isSquare$default (Lcom/niyajali/compose/sign/SignatureBounds;FILjava/lang/Object;)Z
+	public static final fun isValid (Lcom/niyajali/compose/sign/SignatureState;IFI)Z
+	public static synthetic fun isValid$default (Lcom/niyajali/compose/sign/SignatureState;IFIILjava/lang/Object;)Z
+	public static final fun isVertical (Lcom/niyajali/compose/sign/SignaturePath;F)Z
+	public static synthetic fun isVertical$default (Lcom/niyajali/compose/sign/SignaturePath;FILjava/lang/Object;)Z
+}
+
+public final class com/niyajali/compose/sign/SignatureInputState : java/lang/Enum {
+	public static final field COMPLETED Lcom/niyajali/compose/sign/SignatureInputState;
+	public static final field DRAWING Lcom/niyajali/compose/sign/SignatureInputState;
+	public static final field IDLE Lcom/niyajali/compose/sign/SignatureInputState;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/niyajali/compose/sign/SignatureInputState;
+	public static fun values ()[Lcom/niyajali/compose/sign/SignatureInputState;
+}
+
+public final class com/niyajali/compose/sign/SignatureMetadata {
+	public static final field $stable I
+	public fun <init> (IFLcom/niyajali/compose/sign/SignatureBounds;IJ)V
+	public synthetic fun <init> (IFLcom/niyajali/compose/sign/SignatureBounds;IJILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun complexityDescription ()Ljava/lang/String;
+	public final fun component1 ()I
+	public final fun component2 ()F
+	public final fun component3 ()Lcom/niyajali/compose/sign/SignatureBounds;
+	public final fun component4 ()I
+	public final fun component5 ()J
+	public final fun copy (IFLcom/niyajali/compose/sign/SignatureBounds;IJ)Lcom/niyajali/compose/sign/SignatureMetadata;
+	public static synthetic fun copy$default (Lcom/niyajali/compose/sign/SignatureMetadata;IFLcom/niyajali/compose/sign/SignatureBounds;IJILjava/lang/Object;)Lcom/niyajali/compose/sign/SignatureMetadata;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBounds ()Lcom/niyajali/compose/sign/SignatureBounds;
+	public final fun getComplexity ()I
+	public final fun getPathCount ()I
+	public final fun getTimestamp ()J
+	public final fun getTotalLength ()F
+	public fun hashCode ()I
+	public final fun isComplex ()Z
+	public final fun isSimple ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/niyajali/compose/sign/SignaturePath {
+	public static final field $stable I
+	public synthetic fun <init> (JJFJILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (JJFJLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-F1C5BW0 ()J
+	public final fun component2-F1C5BW0 ()J
+	public final fun component3 ()F
+	public final fun component4-0d7_KjU ()J
+	public final fun copy-JMV2s7g (JJFJ)Lcom/niyajali/compose/sign/SignaturePath;
+	public static synthetic fun copy-JMV2s7g$default (Lcom/niyajali/compose/sign/SignaturePath;JJFJILjava/lang/Object;)Lcom/niyajali/compose/sign/SignaturePath;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getColor-0d7_KjU ()J
+	public final fun getEnd-F1C5BW0 ()J
+	public final fun getStart-F1C5BW0 ()J
+	public final fun getStrokeWidth ()F
+	public fun hashCode ()I
+	public final fun intersectsWith (Lcom/niyajali/compose/sign/SignaturePath;)Z
+	public final fun length ()F
+	public final fun midpoint-F1C5BW0 ()J
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/niyajali/compose/sign/SignatureState : com/niyajali/compose/sign/ISignatureState {
+	public static final field $stable I
+	public static final field Companion Lcom/niyajali/compose/sign/SignatureState$Companion;
+	public fun addPath (Lcom/niyajali/compose/sign/SignaturePath;)V
+	public fun clear ()V
+	public fun getCanRedo ()Z
+	public fun getCanUndo ()Z
+	public fun getInputState ()Lcom/niyajali/compose/sign/SignatureInputState;
+	public fun getPaths ()Ljava/util/List;
+	public fun getSignature ()Landroidx/compose/ui/graphics/ImageBitmap;
+	public fun redo ()V
+	public fun undo ()V
+	public fun updateSignature (Landroidx/compose/ui/graphics/ImageBitmap;)V
+}
+
+public final class com/niyajali/compose/sign/SignatureState$Companion {
+	public final fun getSaver ()Landroidx/compose/runtime/saveable/Saver;
+}
+
+public final class com/niyajali/compose/sign/SignatureStateKt {
+	public static final fun rememberSignatureState (Landroidx/compose/runtime/Composer;I)Lcom/niyajali/compose/sign/SignatureState;
+}
+
