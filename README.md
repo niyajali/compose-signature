@@ -32,7 +32,7 @@ Add to your `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("io.github.niyajali:compose-signature:2.0.0")
+    implementation("io.github.niyajali:compose-signature:1.0.1")
 }
 ```
 
