@@ -1,0 +1,134 @@
+name: Publish release to Maven Central
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish'
+        required: true
+
+env:
+  PACKAGE_VERSION: ${{ github.event.inputs.version }}
+
+jobs:
+  publish:
+    name: Publish & Release to Maven Central
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Cache gradle, wrapper and buildSrc
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-
+          restore-keys: ${{ runner.os }}-gradle-
+
+
+      - name: Cache konan
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.konan/cache
+            ~/.konan/dependencies
+            ~/.konan/kotlin-native-macos*
+            ~/.konan/kotlin-native-mingw*
+            ~/.konan/kotlin-native-windows*
+            ~/.konan/kotlin-native-linux*
+            ~/.konan/kotlin-native-prebuilt-macos*
+            ~/.konan/kotlin-native-prebuilt-mingw*
+            ~/.konan/kotlin-native-prebuilt-windows*
+            ~/.konan/kotlin-native-prebuilt-linux*
+          key: ${{ runner.os }}-konan-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-konan-
+
+
+
+
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1.6.0
+        with:
+          xcode-version: 'latest-stable'
+
+      - name: Publish
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.GPG_SIGNING_KEY_ID }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.GPG_SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.GPG_PASSPHRASE }}
+          PACKAGE_VERSION: ${{ env.PACKAGE_VERSION }}
+        run: ./gradlew publishAndReleaseToMavenCentral --no-configuration-cache
+
+      - name: Prep openapi-docs
+        run: ./gradlew dokkaGenerate
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.8
+
+      - name: Build mkdocs
+        run: |
+          pip3 install -r .github/workflows/mkdocs-requirements.txt
+          mkdocs build
+
+      - name: Deploy 🚀
+        if: success()
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: site # The folder the action should deploy.
+          SINGLE_COMMIT: true
+
+  release:
+    name: Create Github release
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          commitish: ${{ github.ref }}
+          tag_name: ${{ github.event.inputs.version }}
+          release_name: v${{ github.event.inputs.version }}
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+
+
+      - name: Update gradle.properties
+        run: |
+          sed -i 's/^defaultVersion=.*/defaultVersion=${{ github.event.inputs.version }}/' gradle.properties
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Bump version to ${{ github.event.inputs.version }}
+          file_pattern: gradle.properties

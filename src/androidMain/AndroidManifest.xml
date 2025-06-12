@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright 2025 Mobile Byte Sensei
+
+    This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+    If a copy of the MPL was not distributed with this file,
+    You can obtain one at https://mozilla.org/MPL/2.0/.
+
+    See https://github.com/mobilebytesensei/financiera-bienestar/blob/dev/LICENSE
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Optional: Declare that the app uses signature features -->
+    <uses-feature
+            android:name="android.hardware.touchscreen"
+            android:required="false"/>
+
+    <!-- Optional: For better performance with graphics -->
+    <uses-feature
+            android:glEsVersion="0x00020000"
+            android:required="false"/>
+</manifest>

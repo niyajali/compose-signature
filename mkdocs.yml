@@ -1,0 +1,77 @@
+# Project information
+site_name: 'AES Kotlin'
+site_description: 'A pure Kotlin implementation of the AES block cipher algorithm and all common modes of operation (CBC, CFB, CTR, ECB, and OFB).'
+site_author: 'Sk Niyaj Ali'
+site_url: 'https://github.com/niyajali/aes-kotlin'
+remote_branch: gh-pages
+edit_uri: ""
+
+# Repository
+repo_name: 'AES Kotlin'
+repo_url: 'https://github.com/niyajali/aes-kotlin'
+
+# Configuration
+theme:
+  name: 'material'
+  language: 'en'
+#  favicon: 'images/logo.ico'
+#  logo: 'images/logo.svg'
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+      primary: white
+      accent: white
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+      primary: red
+      accent: lime
+
+# Social
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/niyajali
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/skniyajali1
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/skniyajali/
+
+# Navigation
+nav:
+  - 'Overview': index.md
+  - 'Release': releasing.md
+  #  - 'Change Log': changelog.md
+  #  - 'Contributing': contributing.md
+  #  - 'Code of Conduct': code_of_conduct.md
+  - 'API Docs 🡕': kdoc/index.html
+
+# CSS
+extra_css:
+  - 'css/app.css'
+
+# Extensions
+markdown_extensions:
+  - smarty
+  - codehilite:
+      guess_lang: false
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.emoji
+  - tables
+  - admonition
+
+# Copyright
+copyright: 'Copyright &copy; 2024 Sk Niyaj Ali.'

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>com.niyajali.compose.sign</title>
+    <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../index.html">
+                    compose-signature
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+1.0.0        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        data-filter=":/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":/commonMain"
+                                       data-filter=":/commonMain"/>
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    compose-signature
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageIds="compose-signature::com.niyajali.compose.sign////PointingToDeclaration//1558683979">
+  <div class="breadcrumbs"><a href="../../index.html">compose-signature</a><span class="delimiter">/</span><span class="current">com.niyajali.compose.sign</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="1887970176%2FClasslikes%2F1558683979" anchor-label="DefaultSignatureActionHandler" id="1887970176%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-default-signature-action-handler/index.html"><span>Default</span><wbr></wbr><span>Signature</span><wbr></wbr><span>Action</span><wbr></wbr><span><span>Handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1887970176%2FClasslikes%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-default-signature-action-handler/index.html">DefaultSignatureActionHandler</a> : <a href="-signature-action-handler/index.html">SignatureActionHandler</a></div><div class="brief "><p class="paragraph">Default implementation of SignatureActionHandler</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1936725659%2FClasslikes%2F1558683979" anchor-label="ISignatureState" id="1936725659%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-signature-state/index.html"><span>ISignature</span><wbr></wbr><span><span>State</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1936725659%2FClasslikes%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-i-signature-state/index.html">ISignatureState</a></div><div class="brief "><p class="paragraph">Interface defining signature state operations (Interface Segregation Principle)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="239952527%2FClasslikes%2F1558683979" anchor-label="SignatureAction" id="239952527%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-signature-action/index.html"><span>Signature</span><wbr></wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="239952527%2FClasslikes%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-signature-action/index.html">SignatureAction</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-signature-action/index.html">SignatureAction</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Defines actions that can be performed on a signature</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-411670803%2FClasslikes%2F1558683979" anchor-label="SignatureActionConfig" id="-411670803%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-signature-action-config/index.html"><span>Signature</span><wbr></wbr><span>Action</span><wbr></wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-411670803%2FClasslikes%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-signature-action-config/index.html">SignatureActionConfig</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>showClear<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>showSave<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>showUndo<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>showRedo<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>confirmDestructive<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>customLabels<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="-signature-action/index.html">SignatureAction</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator"> = </span>emptyMap()</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action configuration for customizing action behavior</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1844520919%2FClasslikes%2F1558683979" anchor-label="SignatureActionHandler" id="-1844520919%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-signature-action-handler/index.html"><span>Signature</span><wbr></wbr><span>Action</span><wbr></wbr><span><span>Handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1844520919%2FClasslikes%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-signature-action-handler/index.html">SignatureActionHandler</a></div><div class="brief "><p class="paragraph">Interface for handling signature actions with validation</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-920207758%2FClasslikes%2F1558683979" anchor-label="SignatureActionResult" id="-920207758%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-signature-action-result/index.html"><span>Signature</span><wbr></wbr><span>Action</span><wbr></wbr><span><span>Result</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-920207758%2FClasslikes%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-signature-action-result/index.html">SignatureActionResult</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>success<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>message<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>action<span class="token operator">: </span><a href="-signature-action/index.html">SignatureAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Result of executing a signature action</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1686755600%2FClasslikes%2F1558683979" anchor-label="SignatureBounds" id="-1686755600%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-signature-bounds/index.html"><span>Signature</span><wbr></wbr><span><span>Bounds</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1686755600%2FClasslikes%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-signature-bounds/index.html">SignatureBounds</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>left<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>top<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>right<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>bottom<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Represents bounds information for a signature</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="286057219%2FClasslikes%2F1558683979" anchor-label="SignatureConfig" id="286057219%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-signature-config/index.html"><span>Signature</span><wbr></wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="286057219%2FClasslikes%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-signature-config/index.html">SignatureConfig</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>strokeColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.Black<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>strokeWidth<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/unit/Dp.html">Dp</a><span class="token operator"> = </span>3.dp<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>backgroundColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.White<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderStroke<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/BorderStroke.html">BorderStroke</a><span class="token operator">?</span><span class="token operator"> = </span>BorderStroke(1.dp, Color.Gray)<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>cornerShape<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/shape/CornerBasedShape.html">CornerBasedShape</a><span class="token operator"> = </span>RoundedCornerShape(8.dp)<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>showGrid<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>gridColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.Gray.copy(alpha = 0.3f)<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>gridSpacing<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/unit/Dp.html">Dp</a><span class="token operator"> = </span>20.dp<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>isFullScreen<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>minHeight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/unit/Dp.html">Dp</a><span class="token operator"> = </span>200.dp<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>maxHeight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/unit/Dp.html">Dp</a><span class="token operator"> = </span>400.dp<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>showActions<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>enableSmoothDrawing<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Configuration object for signature appearance and behavior</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1028235695%2FClasslikes%2F1558683979" anchor-label="SignatureExportConfig" id="1028235695%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-signature-export-config/index.html"><span>Signature</span><wbr></wbr><span>Export</span><wbr></wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1028235695%2FClasslikes%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-signature-export-config/index.html">SignatureExportConfig</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>format<span class="token operator">: </span><a href="-signature-export-format/index.html">SignatureExportFormat</a><span class="token operator"> = </span>SignatureExportFormat.PNG<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>width<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">800</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>height<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">400</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>backgroundColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.White<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>quality<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">90</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>includeBorder<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>cropToBounds<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Export configuration for signature output</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="75199130%2FClasslikes%2F1558683979" anchor-label="SignatureExportFormat" id="75199130%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-signature-export-format/index.html"><span>Signature</span><wbr></wbr><span>Export</span><wbr></wbr><span><span>Format</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="75199130%2FClasslikes%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-signature-export-format/index.html">SignatureExportFormat</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-signature-export-format/index.html">SignatureExportFormat</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Export format options for signature</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="374473982%2FClasslikes%2F1558683979" anchor-label="SignatureInputState" id="374473982%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-signature-input-state/index.html"><span>Signature</span><wbr></wbr><span>Input</span><wbr></wbr><span><span>State</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="374473982%2FClasslikes%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-signature-input-state/index.html">SignatureInputState</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-signature-input-state/index.html">SignatureInputState</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents the current state of signature input</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="500931254%2FClasslikes%2F1558683979" anchor-label="SignatureMetadata" id="500931254%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-signature-metadata/index.html"><span>Signature</span><wbr></wbr><span><span>Metadata</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="500931254%2FClasslikes%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-signature-metadata/index.html">SignatureMetadata</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>pathCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>totalLength<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>bounds<span class="token operator">: </span><a href="-signature-bounds/index.html">SignatureBounds</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>complexity<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>timestamp<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span>Clock.System.now().toEpochMilliseconds()</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Represents metadata about a signature</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1739121536%2FClasslikes%2F1558683979" anchor-label="SignaturePath" id="-1739121536%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-signature-path/index.html"><span>Signature</span><wbr></wbr><span><span>Path</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1739121536%2FClasslikes%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-signature-path/index.html">SignaturePath</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>start<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/geometry/Offset.html">Offset</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>end<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/geometry/Offset.html">Offset</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>strokeWidth<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">5.0f</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>color<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.Black</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Represents a single stroke line in the signature</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="923884140%2FClasslikes%2F1558683979" anchor-label="SignatureState" id="923884140%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-signature-state/index.html"><span>Signature</span><wbr></wbr><span><span>State</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="923884140%2FClasslikes%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Stable.html"><span class="token annotation builtin">Stable</span></a></div></div><span class="token keyword">class </span><a href="-signature-state/index.html">SignatureState</a> : <a href="-i-signature-state/index.html">ISignatureState</a></div><div class="brief "><p class="paragraph">Enhanced signature state with comprehensive state management Implements the Single Responsibility Principle</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-675329986%2FFunctions%2F1558683979" anchor-label="asAccessible" id="-675329986%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="as-accessible.html"><span>as</span><wbr></wbr><span><span>Accessible</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-675329986%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-config/index.html">SignatureConfig</a><span class="token punctuation">.</span><a href="as-accessible.html"><span class="token function">asAccessible</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">highContrast<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-signature-config/index.html">SignatureConfig</a></div><div class="brief "><p class="paragraph">Create a copy of the config optimized for accessibility</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="672343724%2FFunctions%2F1558683979" anchor-label="asDarkTheme" id="672343724%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="as-dark-theme.html"><span>as</span><wbr></wbr><span>Dark</span><wbr></wbr><span><span>Theme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="672343724%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-config/index.html">SignatureConfig</a><span class="token punctuation">.</span><a href="as-dark-theme.html"><span class="token function">asDarkTheme</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-signature-config/index.html">SignatureConfig</a></div><div class="brief "><p class="paragraph">Create a copy of the config with dark theme colors</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-479498218%2FFunctions%2F1558683979" anchor-label="asLightTheme" id="-479498218%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="as-light-theme.html"><span>as</span><wbr></wbr><span>Light</span><wbr></wbr><span><span>Theme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-479498218%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-config/index.html">SignatureConfig</a><span class="token punctuation">.</span><a href="as-light-theme.html"><span class="token function">asLightTheme</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-signature-config/index.html">SignatureConfig</a></div><div class="brief "><p class="paragraph">Create a copy of the config with light theme colors</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-999859039%2FFunctions%2F1558683979" anchor-label="ComposeSign" id="-999859039%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-compose-sign.html"><span>Compose</span><wbr></wbr><span><span>Sign</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-999859039%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">fun </span><a href="-compose-sign.html"><span class="token function">ComposeSign</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">onSignatureUpdate<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/ImageBitmap.html">ImageBitmap</a><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token punctuation">, </span></span><span class="parameter ">modifier<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier.html">Modifier</a><span class="token operator"> = </span>Modifier<span class="token punctuation">, </span></span><span class="parameter ">state<span class="token operator">: </span><a href="-signature-state/index.html">SignatureState</a><span class="token operator"> = </span>rememberSignatureState()</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Simple signature composable with minimal configuration</p></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">fun </span><a href="-compose-sign.html"><span class="token function">ComposeSign</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">onSignatureUpdate<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/ImageBitmap.html">ImageBitmap</a><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token punctuation">, </span></span><span class="parameter ">modifier<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier.html">Modifier</a><span class="token operator"> = </span>Modifier<span class="token punctuation">, </span></span><span class="parameter ">config<span class="token operator">: </span><a href="-signature-config/index.html">SignatureConfig</a><span class="token operator"> = </span>SignatureConfig()<span class="token punctuation">, </span></span><span class="parameter ">state<span class="token operator">: </span><a href="-signature-state/index.html">SignatureState</a><span class="token operator"> = </span>rememberSignatureState()<span class="token punctuation">, </span></span><span class="parameter ">onActionClicked<span class="token operator">: </span><span class="token punctuation">(</span><a href="-signature-action/index.html">SignatureAction</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Full-featured signature composable with complete configuration</p></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">fun </span><a href="-compose-sign.html"><span class="token function">ComposeSign</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">onSignatureUpdate<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/ImageBitmap.html">ImageBitmap</a><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token punctuation">, </span></span><span class="parameter ">modifier<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier.html">Modifier</a><span class="token operator"> = </span>Modifier<span class="token punctuation">, </span></span><span class="parameter ">strokeColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.Black<span class="token punctuation">, </span></span><span class="parameter ">strokeWidth<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/unit/Dp.html">Dp</a><span class="token operator"> = </span>3.dp<span class="token punctuation">, </span></span><span class="parameter ">backgroundColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.White<span class="token punctuation">, </span></span><span class="parameter ">showGrid<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter ">state<span class="token operator">: </span><a href="-signature-state/index.html">SignatureState</a><span class="token operator"> = </span>rememberSignatureState()</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Basic signature composable with essential customization</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-888573341%2FFunctions%2F1558683979" anchor-label="ComposeSignFullscreen" id="-888573341%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-compose-sign-fullscreen.html"><span>Compose</span><wbr></wbr><span>Sign</span><wbr></wbr><span><span>Fullscreen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-888573341%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">fun </span><a href="-compose-sign-fullscreen.html"><span class="token function">ComposeSignFullscreen</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">onSignatureUpdate<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/ImageBitmap.html">ImageBitmap</a><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token punctuation">, </span></span><span class="parameter ">onDismiss<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token punctuation">, </span></span><span class="parameter ">modifier<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier.html">Modifier</a><span class="token operator"> = </span>Modifier<span class="token punctuation">, </span></span><span class="parameter ">config<span class="token operator">: </span><a href="-signature-config/index.html">SignatureConfig</a><span class="token operator"> = </span>SignatureConfig(
+        isFullScreen = true,
+        showActions = true
+    )<span class="token punctuation">, </span></span><span class="parameter ">state<span class="token operator">: </span><a href="-signature-state/index.html">SignatureState</a><span class="token operator"> = </span>rememberSignatureState()</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Fullscreen signature overlay composable</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-203830937%2FFunctions%2F1558683979" anchor-label="exportScaledSignature" id="-203830937%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="export-scaled-signature.html"><span>export</span><wbr></wbr><span>Scaled</span><wbr></wbr><span><span>Signature</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-203830937%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-state/index.html">SignatureState</a><span class="token punctuation">.</span><a href="export-scaled-signature.html"><span class="token function">exportScaledSignature</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">targetWidth<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">targetHeight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">maintainAspectRatio<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">backgroundColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.White</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/ImageBitmap.html">ImageBitmap</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Export the signature with scaling to fit the signature bounds</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1547886329%2FFunctions%2F1558683979" anchor-label="exportSignature" id="-1547886329%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="export-signature.html"><span>export</span><wbr></wbr><span><span>Signature</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1547886329%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-state/index.html">SignatureState</a><span class="token punctuation">.</span><a href="export-signature.html"><span class="token function">exportSignature</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">width<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">height<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">backgroundColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.White</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/ImageBitmap.html">ImageBitmap</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Export the signature as an ImageBitmap with custom dimensions</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-235757835%2FFunctions%2F1558683979" anchor-label="filterByColor" id="-235757835%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="filter-by-color.html"><span>filter</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-235757835%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-signature-path/index.html">SignaturePath</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="filter-by-color.html"><span class="token function">filterByColor</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">color<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-signature-path/index.html">SignaturePath</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Filter paths by color</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="417511228%2FFunctions%2F1558683979" anchor-label="filterByStrokeWidth" id="417511228%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="filter-by-stroke-width.html"><span>filter</span><wbr></wbr><span>By</span><wbr></wbr><span>Stroke</span><wbr></wbr><span><span>Width</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="417511228%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-signature-path/index.html">SignaturePath</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="filter-by-stroke-width.html"><span class="token function">filterByStrokeWidth</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">minWidth<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span></span><span class="parameter ">maxWidth<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-signature-path/index.html">SignaturePath</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Get paths within a specific stroke width range</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-874825231%2FFunctions%2F1558683979" anchor-label="getAngle" id="-874825231%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-angle.html"><span>get</span><wbr></wbr><span><span>Angle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-874825231%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-path/index.html">SignaturePath</a><span class="token punctuation">.</span><a href="get-angle.html"><span class="token function">getAngle</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div><div class="brief "><p class="paragraph">Get the angle of the path in degrees</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1351846512%2FFunctions%2F1558683979" anchor-label="getAspectRatio" id="-1351846512%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-aspect-ratio.html"><span>get</span><wbr></wbr><span>Aspect</span><wbr></wbr><span><span>Ratio</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1351846512%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/ImageBitmap.html">ImageBitmap</a><span class="token punctuation">.</span><a href="get-aspect-ratio.html"><span class="token function">getAspectRatio</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div><div class="brief "><p class="paragraph">Get the aspect ratio of the bitmap</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-bounds/index.html">SignatureBounds</a><span class="token punctuation">.</span><a href="get-aspect-ratio.html"><span class="token function">getAspectRatio</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div><div class="brief "><p class="paragraph">Get the aspect ratio of the bounds</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="615631099%2FFunctions%2F1558683979" anchor-label="getAverageStrokeWidth" id="615631099%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-average-stroke-width.html"><span>get</span><wbr></wbr><span>Average</span><wbr></wbr><span>Stroke</span><wbr></wbr><span><span>Width</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="615631099%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-signature-path/index.html">SignaturePath</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="get-average-stroke-width.html"><span class="token function">getAverageStrokeWidth</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div><div class="brief "><p class="paragraph">Get the average stroke width of all paths</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1411610528%2FFunctions%2F1558683979" anchor-label="getComplexityScore" id="1411610528%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-complexity-score.html"><span>get</span><wbr></wbr><span>Complexity</span><wbr></wbr><span><span>Score</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1411610528%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-state/index.html">SignatureState</a><span class="token punctuation">.</span><a href="get-complexity-score.html"><span class="token function">getComplexityScore</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div><div class="brief "><p class="paragraph">Get the complexity score of the signature (0-100)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="643016024%2FFunctions%2F1558683979" anchor-label="getDescription" id="643016024%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-description.html"><span>get</span><wbr></wbr><span><span>Description</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="643016024%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-state/index.html">SignatureState</a><span class="token punctuation">.</span><a href="get-description.html"><span class="token function">getDescription</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Get a human-readable description of the signature</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="956763732%2FFunctions%2F1558683979" anchor-label="getDimensionDescription" id="956763732%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-dimension-description.html"><span>get</span><wbr></wbr><span>Dimension</span><wbr></wbr><span><span>Description</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="956763732%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/ImageBitmap.html">ImageBitmap</a><span class="token punctuation">.</span><a href="get-dimension-description.html"><span class="token function">getDimensionDescription</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Get a description of the bitmap dimensions</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-510621313%2FFunctions%2F1558683979" anchor-label="getMetadata" id="-510621313%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-metadata.html"><span>get</span><wbr></wbr><span><span>Metadata</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-510621313%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-state/index.html">SignatureState</a><span class="token punctuation">.</span><a href="get-metadata.html"><span class="token function">getMetadata</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-signature-metadata/index.html">SignatureMetadata</a></div><div class="brief "><p class="paragraph">Get metadata about the current signature</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1042718823%2FFunctions%2F1558683979" anchor-label="getSignatureBounds" id="1042718823%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-signature-bounds.html"><span>get</span><wbr></wbr><span>Signature</span><wbr></wbr><span><span>Bounds</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1042718823%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-state/index.html">SignatureState</a><span class="token punctuation">.</span><a href="get-signature-bounds.html"><span class="token function">getSignatureBounds</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-signature-bounds/index.html">SignatureBounds</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Get the bounds of the current signature</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1971682358%2FFunctions%2F1558683979" anchor-label="getTotalLength" id="-1971682358%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-total-length.html"><span>get</span><wbr></wbr><span>Total</span><wbr></wbr><span><span>Length</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1971682358%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-state/index.html">SignatureState</a><span class="token punctuation">.</span><a href="get-total-length.html"><span class="token function">getTotalLength</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div><div class="brief "><p class="paragraph">Get the total length of all signature paths</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1320424405%2FFunctions%2F1558683979" anchor-label="getUniqueColors" id="-1320424405%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-unique-colors.html"><span>get</span><wbr></wbr><span>Unique</span><wbr></wbr><span><span>Colors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1320424405%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-signature-path/index.html">SignaturePath</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="get-unique-colors.html"><span class="token function">getUniqueColors</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-set/index.html">Set</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Get all unique colors used in the signature paths</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-718308063%2FFunctions%2F1558683979" anchor-label="isEmpty" id="-718308063%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-empty.html"><span>is</span><wbr></wbr><span><span>Empty</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-718308063%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-state/index.html">SignatureState</a><span class="token punctuation">.</span><a href="is-empty.html"><span class="token function">isEmpty</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Check if the signature is empty (no paths drawn)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-878846765%2FFunctions%2F1558683979" anchor-label="isHorizontal" id="-878846765%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-horizontal.html"><span>is</span><wbr></wbr><span><span>Horizontal</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-878846765%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-path/index.html">SignaturePath</a><span class="token punctuation">.</span><a href="is-horizontal.html"><span class="token function">isHorizontal</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">threshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">15.0f</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Check if this path is approximately horizontal</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1493871982%2FFunctions%2F1558683979" anchor-label="isLandscape" id="-1493871982%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-landscape.html"><span>is</span><wbr></wbr><span><span>Landscape</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1493871982%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/ImageBitmap.html">ImageBitmap</a><span class="token punctuation">.</span><a href="is-landscape.html"><span class="token function">isLandscape</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Check if the bitmap is in landscape orientation</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-bounds/index.html">SignatureBounds</a><span class="token punctuation">.</span><a href="is-landscape.html"><span class="token function">isLandscape</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Check if the bounds represent a landscape orientation</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="643735770%2FFunctions%2F1558683979" anchor-label="isNotEmpty" id="643735770%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-not-empty.html"><span>is</span><wbr></wbr><span>Not</span><wbr></wbr><span><span>Empty</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="643735770%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-state/index.html">SignatureState</a><span class="token punctuation">.</span><a href="is-not-empty.html"><span class="token function">isNotEmpty</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Check if the signature is not empty (has paths drawn)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2036789024%2FFunctions%2F1558683979" anchor-label="isPortrait" id="2036789024%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-portrait.html"><span>is</span><wbr></wbr><span><span>Portrait</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2036789024%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/ImageBitmap.html">ImageBitmap</a><span class="token punctuation">.</span><a href="is-portrait.html"><span class="token function">isPortrait</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Check if the bitmap is in portrait orientation</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-bounds/index.html">SignatureBounds</a><span class="token punctuation">.</span><a href="is-portrait.html"><span class="token function">isPortrait</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Check if the bounds represent a portrait orientation</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-343942308%2FFunctions%2F1558683979" anchor-label="isSquare" id="-343942308%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-square.html"><span>is</span><wbr></wbr><span><span>Square</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-343942308%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-bounds/index.html">SignatureBounds</a><span class="token punctuation">.</span><a href="is-square.html"><span class="token function">isSquare</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">tolerance<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.2f</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Check if the bounds represent a mostly square area</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-573202115%2FFunctions%2F1558683979" anchor-label="isValid" id="-573202115%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-valid.html"><span>is</span><wbr></wbr><span><span>Valid</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-573202115%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-state/index.html">SignatureState</a><span class="token punctuation">.</span><a href="is-valid.html"><span class="token function">isValid</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">minPaths<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">5</span><span class="token punctuation">, </span></span><span class="parameter ">minLength<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">100.0f</span><span class="token punctuation">, </span></span><span class="parameter ">minComplexity<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">10</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Validate the signature against minimum requirements</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1356665957%2FFunctions%2F1558683979" anchor-label="isVertical" id="1356665957%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-vertical.html"><span>is</span><wbr></wbr><span><span>Vertical</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1356665957%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-signature-path/index.html">SignaturePath</a><span class="token punctuation">.</span><a href="is-vertical.html"><span class="token function">isVertical</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">threshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">15.0f</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Check if this path is approximately vertical</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="301475156%2FFunctions%2F1558683979" anchor-label="rememberSignatureState" id="301475156%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="remember-signature-state.html"><span>remember</span><wbr></wbr><span>Signature</span><wbr></wbr><span><span>State</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="301475156%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">fun </span><a href="remember-signature-state.html"><span class="token function">rememberSignatureState</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-signature-state/index.html">SignatureState</a></div><div class="brief "><p class="paragraph">Remember signature state with automatic state saving</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
