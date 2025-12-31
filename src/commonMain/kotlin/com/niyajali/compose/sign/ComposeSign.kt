@@ -157,10 +157,11 @@ public fun ComposeSign(
                     }
                 }
                 .drawWithContent {
-                    drawContent()
-
                     // Draw background
                     drawRect(config.backgroundColor)
+
+                    // Draw signature
+                    drawContent()
 
                     // Draw grid if enabled
                     if (config.showGrid) {
