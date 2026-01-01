@@ -1,0 +1,27 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <!-- Background circle with gradient effect -->
+    <path
+        android:fillColor="#6366F1"
+        android:pathData="M48,8 C70.09,8 88,25.91 88,48 C88,70.09 70.09,88 48,88 C25.91,88 8,70.09 8,48 C8,25.91 25.91,8 48,8Z"/>
+    <path
+        android:fillColor="#818CF8"
+        android:pathData="M48,8 C70.09,8 88,25.91 88,48 C88,48 70.09,28 48,28 C25.91,28 8,48 8,48 C8,25.91 25.91,8 48,8Z"/>
+    <!-- Pen/stylus icon -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,64 L24,72 L32,72 L62,42 L54,34 L24,64Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M66.5,25.5 C68.43,23.57 68.43,20.43 66.5,18.5 C64.57,16.57 61.43,16.57 59.5,18.5 L56,22 L64,30 L67.5,26.5Z"/>
+    <!-- Signature curve -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M28,56 Q38,42 48,56 Q58,70 72,52"/>
+</vector>

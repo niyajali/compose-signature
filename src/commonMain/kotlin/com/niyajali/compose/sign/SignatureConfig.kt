@@ -1,3 +1,19 @@
+/*
+ * Copyright 2024 Niyaj Ali.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.niyajali.compose.sign
 
 import androidx.compose.foundation.BorderStroke
@@ -9,21 +25,56 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 /**
- * Configuration object for signature appearance and behavior
+ * Configuration class that defines the visual appearance and behavioral properties of a signature pad.
  *
- * @property strokeColor Color of the signature strokes
- * @property strokeWidth Width of the signature strokes in Dp
- * @property backgroundColor Background color of the signature pad
- * @property borderStroke Optional border stroke around the signature pad
- * @property cornerShape Shape of the signature pad corners
- * @property showGrid Whether to display grid lines over the signature pad
- * @property gridColor Color of the grid lines (when showGrid is true)
- * @property gridSpacing Spacing between grid lines in Dp
- * @property isFullScreen Whether the signature pad should fill the entire screen
- * @property minHeight Minimum height of the signature pad (when not fullscreen)
- * @property maxHeight Maximum height of the signature pad (when not fullscreen)
- * @property showActions Whether to show built-in action buttons
- * @property enableSmoothDrawing Whether to enable smooth drawing optimizations
+ * This immutable data class encapsulates all configurable aspects of the [ComposeSign] component,
+ * including stroke styling, canvas appearance, grid overlay settings, and dimensional constraints.
+ * The class provides builder-style methods for creating modified copies and includes several
+ * predefined configurations for common use cases.
+ *
+ * Usage example:
+ * ```kotlin
+ * val config = SignatureConfig(
+ *     strokeColor = Color.Blue,
+ *     strokeWidth = 4.dp,
+ *     showGrid = true
+ * )
+ * ComposeSign(
+ *     onSignatureUpdate = { bitmap -> /* handle signature */ },
+ *     config = config
+ * )
+ * ```
+ *
+ * @property strokeColor The color applied to signature strokes when drawing.
+ *                       Defaults to [Color.Black].
+ * @property strokeWidth The thickness of signature strokes in density-independent pixels.
+ *                       Defaults to 3.dp.
+ * @property backgroundColor The fill color of the signature pad canvas.
+ *                           Defaults to [Color.White].
+ * @property borderStroke Optional border definition for the signature pad container.
+ *                        Set to null to remove the border. Defaults to a 1.dp gray border.
+ * @property cornerShape The shape applied to the corners of the signature pad container.
+ *                       Defaults to rounded corners with an 8.dp radius.
+ * @property showGrid Whether to display a grid overlay on the canvas for visual guidance.
+ *                    Defaults to false.
+ * @property gridColor The color of grid lines when [showGrid] is enabled.
+ *                     Defaults to semi-transparent gray.
+ * @property gridSpacing The spacing between grid lines in density-independent pixels.
+ *                       Defaults to 20.dp.
+ * @property isFullScreen Whether the signature pad should expand to fill all available space.
+ *                        When true, [minHeight] and [maxHeight] constraints are ignored.
+ *                        Defaults to false.
+ * @property minHeight The minimum height constraint for the signature pad when not in fullscreen mode.
+ *                     Defaults to 200.dp.
+ * @property maxHeight The maximum height constraint for the signature pad when not in fullscreen mode.
+ *                     Defaults to 400.dp.
+ * @property showActions Whether to display built-in action buttons below the signature pad.
+ *                       Defaults to false.
+ * @property enableSmoothDrawing Whether to apply smoothing algorithms to the drawn paths.
+ *                               Defaults to true.
+ *
+ * @see ComposeSign
+ * @see SignatureState
  */
 @Immutable
 public data class SignatureConfig(
@@ -43,7 +94,14 @@ public data class SignatureConfig(
 ) {
 
     /**
-     * Creates a copy of this configuration with modified fullscreen settings
+     * Creates a copy of this configuration with fullscreen mode enabled.
+     *
+     * This method is a convenience builder for creating fullscreen signature pad configurations.
+     * When fullscreen is enabled, the signature pad expands to fill all available space,
+     * ignoring the [minHeight] and [maxHeight] constraints.
+     *
+     * @param showActions Whether to display action buttons in fullscreen mode. Defaults to true.
+     * @return A new [SignatureConfig] with fullscreen mode enabled.
      */
     public fun asFullScreen(
         showActions: Boolean = true
@@ -53,7 +111,15 @@ public data class SignatureConfig(
     )
 
     /**
-     * Creates a copy of this configuration with modified grid settings
+     * Creates a copy of this configuration with modified grid settings.
+     *
+     * This method provides a convenient way to enable or customize the grid overlay
+     * without manually specifying all grid-related properties.
+     *
+     * @param enabled Whether the grid should be displayed. Defaults to true.
+     * @param color The color to use for grid lines. Defaults to semi-transparent gray.
+     * @param spacing The spacing between grid lines. Defaults to 20.dp.
+     * @return A new [SignatureConfig] with the specified grid settings.
      */
     public fun withGrid(
         enabled: Boolean = true,
@@ -66,7 +132,14 @@ public data class SignatureConfig(
     )
 
     /**
-     * Creates a copy of this configuration with modified stroke settings
+     * Creates a copy of this configuration with modified stroke settings.
+     *
+     * This method allows convenient customization of the signature stroke appearance
+     * without affecting other configuration properties.
+     *
+     * @param color The color for signature strokes. Defaults to the current [strokeColor].
+     * @param width The thickness of signature strokes. Defaults to the current [strokeWidth].
+     * @return A new [SignatureConfig] with the specified stroke settings.
      */
     public fun withStroke(
         color: Color = strokeColor,
@@ -77,7 +150,15 @@ public data class SignatureConfig(
     )
 
     /**
-     * Creates a copy of this configuration with modified appearance settings
+     * Creates a copy of this configuration with modified visual appearance settings.
+     *
+     * This method enables bulk modification of the signature pad's visual properties
+     * including background, border, and corner shape.
+     *
+     * @param backgroundColor The canvas background color. Defaults to the current [backgroundColor].
+     * @param borderStroke The border definition, or null for no border. Defaults to the current [borderStroke].
+     * @param cornerShape The corner shape for the container. Defaults to the current [cornerShape].
+     * @return A new [SignatureConfig] with the specified appearance settings.
      */
     public fun withAppearance(
         backgroundColor: Color = this.backgroundColor,
@@ -89,15 +170,24 @@ public data class SignatureConfig(
         cornerShape = cornerShape
     )
 
+    /**
+     * Predefined configuration instances for common use cases.
+     */
     public companion object {
 
         /**
-         * Default configuration for minimal signature pad
+         * Default configuration providing a standard signature pad appearance.
+         *
+         * This configuration uses black strokes on a white background with a gray border
+         * and no grid overlay. Suitable for most general-purpose signature capture scenarios.
          */
         public val Default: SignatureConfig = SignatureConfig()
 
         /**
-         * Configuration for fullscreen signature with actions
+         * Configuration optimized for fullscreen signature capture.
+         *
+         * This configuration enables fullscreen mode, displays action buttons,
+         * and shows a grid overlay for visual guidance during signing.
          */
         public val Fullscreen: SignatureConfig = SignatureConfig(
             isFullScreen = true,
@@ -106,7 +196,10 @@ public data class SignatureConfig(
         )
 
         /**
-         * Configuration with grid enabled
+         * Configuration with grid overlay enabled.
+         *
+         * This configuration displays a subtle grid pattern to help users align
+         * and position their signature. Uses light gray grid lines with 25.dp spacing.
          */
         public val WithGrid: SignatureConfig = SignatureConfig(
             showGrid = true,
@@ -115,7 +208,10 @@ public data class SignatureConfig(
         )
 
         /**
-         * Configuration for thick signature strokes
+         * Configuration with increased stroke thickness.
+         *
+         * This configuration uses a 5.dp stroke width for more prominent,
+         * bolder signatures. Suitable for applications requiring high visibility.
          */
         public val ThickStroke: SignatureConfig = SignatureConfig(
             strokeWidth = 5.dp,
@@ -123,7 +219,11 @@ public data class SignatureConfig(
         )
 
         /**
-         * Configuration for form integration
+         * Configuration optimized for integration within forms.
+         *
+         * This configuration uses subtle styling with a light gray background,
+         * minimal corner rounding, and compact height constraints suitable for
+         * embedding within form layouts.
          */
         public val FormIntegration: SignatureConfig = SignatureConfig(
             strokeWidth = 2.dp,
@@ -135,7 +235,11 @@ public data class SignatureConfig(
         )
 
         /**
-         * Configuration for professional documents
+         * Configuration for professional document signing.
+         *
+         * This configuration uses a clean, formal appearance with sharp corners,
+         * a prominent black border, and compact dimensions suitable for
+         * legal or business document contexts.
          */
         public val Professional: SignatureConfig = SignatureConfig(
             strokeColor = Color.Black,
@@ -149,7 +253,11 @@ public data class SignatureConfig(
         )
 
         /**
-         * Configuration for creative/artistic signatures
+         * Configuration for creative or artistic signature capture.
+         *
+         * This configuration uses a distinctive blue color scheme, larger corner
+         * radius, thicker strokes, and a coordinated grid overlay for a more
+         * expressive signing experience.
          */
         public val Creative: SignatureConfig = SignatureConfig(
             strokeColor = Color.Blue,

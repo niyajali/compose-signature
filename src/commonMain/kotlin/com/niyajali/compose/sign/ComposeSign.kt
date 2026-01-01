@@ -16,7 +16,6 @@
 
 package com.niyajali.compose.sign
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.detectDragGestures
@@ -33,20 +32,41 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
 
 /**
- * Simple signature composable with minimal configuration
+ * A composable signature pad component that allows users to draw signatures using touch or mouse input.
  *
- * @param onSignatureUpdate Callback invoked when signature changes
- * @param modifier Modifier to be applied to the signature pad
- * @param state Signature state holder
+ * This is the simplest overload that uses default configuration settings. The signature is captured
+ * as an [ImageBitmap] and provided through the [onSignatureUpdate] callback whenever the signature
+ * content changes.
+ *
+ * @param onSignatureUpdate Callback invoked when the signature content changes. Receives the current
+ *                          signature as an [ImageBitmap], or null if the signature pad is empty.
+ * @param modifier The modifier to be applied to the signature pad container.
+ * @param state The state object that manages the signature drawing data and undo/redo history.
+ *              Defaults to a new instance created by [rememberSignatureState].
+ *
+ * @see SignatureState
+ * @see SignatureConfig
  */
 @Composable
 public fun ComposeSign(
@@ -64,15 +84,24 @@ public fun ComposeSign(
 }
 
 /**
- * Basic signature composable with essential customization
+ * A composable signature pad component with customizable stroke and background properties.
  *
- * @param onSignatureUpdate Callback invoked when signature changes
- * @param modifier Modifier to be applied to the signature pad
- * @param strokeColor Color of the signature strokes
- * @param strokeWidth Width of the signature strokes
- * @param backgroundColor Background color of the signature pad
- * @param showGrid Whether to show grid lines
- * @param state Signature state holder
+ * This overload provides direct access to common visual customization options without requiring
+ * a full [SignatureConfig] object. For more advanced configuration options, use the overload
+ * that accepts a [SignatureConfig] parameter.
+ *
+ * @param onSignatureUpdate Callback invoked when the signature content changes. Receives the current
+ *                          signature as an [ImageBitmap], or null if the signature pad is empty.
+ * @param modifier The modifier to be applied to the signature pad container.
+ * @param strokeColor The color used for drawing signature strokes.
+ * @param strokeWidth The width of signature strokes in density-independent pixels.
+ * @param backgroundColor The background color of the signature pad canvas.
+ * @param showGrid Whether to display a grid overlay on the signature pad for visual guidance.
+ * @param state The state object that manages the signature drawing data and undo/redo history.
+ *              Defaults to a new instance created by [rememberSignatureState].
+ *
+ * @see SignatureConfig
+ * @see SignatureState
  */
 @Composable
 public fun ComposeSign(
@@ -99,14 +128,32 @@ public fun ComposeSign(
 }
 
 /**
- * Full-featured signature composable with complete configuration
+ * A fully configurable composable signature pad component with action button support.
  *
- * @param onSignatureUpdate Callback invoked when signature changes
- * @param modifier Modifier to be applied to the signature pad
- * @param config Configuration object containing all appearance and behavior settings
- * @param state Signature state holder
- * @param onActionClicked Optional callback for signature actions
+ * This is the most flexible overload, providing complete control over the signature pad's
+ * appearance, behavior, and action handling. The component supports touch and mouse input
+ * for drawing signatures, with optional undo/redo functionality and built-in action buttons.
+ *
+ * The signature is automatically converted to an [ImageBitmap] and provided through the
+ * [onSignatureUpdate] callback with a debounced mechanism to optimize performance.
+ *
+ * @param onSignatureUpdate Callback invoked when the signature content changes. Receives the current
+ *                          signature as an [ImageBitmap], or null if the signature pad is empty.
+ *                          This callback is debounced to prevent excessive updates during drawing.
+ * @param modifier The modifier to be applied to the signature pad container.
+ * @param config Configuration object controlling the visual appearance and behavior of the
+ *               signature pad, including stroke properties, colors, dimensions, and grid settings.
+ * @param state The state object that manages the signature drawing data, undo/redo history,
+ *              and current input state. Defaults to a new instance created by [rememberSignatureState].
+ * @param onActionClicked Optional callback invoked when a built-in action button is clicked.
+ *                        When provided and [SignatureConfig.showActions] is true, action buttons
+ *                        are displayed below the signature pad. Pass null to hide action buttons.
+ *
+ * @see SignatureConfig
+ * @see SignatureState
+ * @see SignatureAction
  */
+@OptIn(FlowPreview::class)
 @Composable
 public fun ComposeSign(
     onSignatureUpdate: (ImageBitmap?) -> Unit,
@@ -123,25 +170,30 @@ public fun ComposeSign(
             .heightIn(min = config.minHeight, max = config.maxHeight)
     }
 
+    var canvasSize by remember { mutableStateOf(IntSize.Zero) }
+
     Column(modifier = actualModifier) {
-        // Main signature drawing area
         Box(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxWidth()
-                .background(config.backgroundColor)
+                .onSizeChanged { size ->
+                    canvasSize = size
+                }
+                .background(config.backgroundColor, config.cornerShape)
                 .run {
                     config.borderStroke?.let { border ->
                         border(border, config.cornerShape)
                     } ?: this
                 }
+                .clipToBounds()
                 .pointerInput(config) {
                     detectDragGestures(
-                        onDragStart = { offset ->
-                            // Optional: Add haptic feedback or visual indication
+                        onDragStart = { _ ->
+                            state.beginStroke()
                         },
                         onDragEnd = {
-                            // Optional: Add completion callback or haptic feedback
+                            state.endStroke()
                         }
                     ) { change, dragAmount ->
                         change.consume()
@@ -156,38 +208,25 @@ public fun ComposeSign(
                         state.addPath(path)
                     }
                 }
-                .drawWithContent {
-                    drawContent()
-
-                    // Draw background
+                .drawBehind {
                     drawRect(config.backgroundColor)
 
-                    // Draw grid if enabled
                     if (config.showGrid) {
                         drawGrid(config.gridColor, config.gridSpacing.toPx())
                     }
 
-                    // Update signature bitmap
-                    val bitmap = pathsToImageBitmap(
-                        width = size.width.toInt(),
-                        height = size.height.toInt(),
-                        paths = state.paths,
-                        backgroundColor = config.backgroundColor
-                    )
-                    state.updateSignature(bitmap)
+                    state.paths.forEach { path ->
+                        drawLine(
+                            color = path.color,
+                            start = path.start,
+                            end = path.end,
+                            strokeWidth = path.strokeWidth,
+                            cap = StrokeCap.Round
+                        )
+                    }
                 }
-        ) {
-            // Display current signature
-            state.signature?.let { signature ->
-                Image(
-                    bitmap = signature,
-                    contentDescription = "Digital Signature",
-                    modifier = Modifier.fillMaxSize()
-                )
-            }
-        }
+        )
 
-        // Built-in actions (if enabled)
         if (config.showActions && onActionClicked != null) {
             SignatureActionsRow(
                 state = state,
@@ -197,20 +236,54 @@ public fun ComposeSign(
         }
     }
 
-    // Trigger callback when signature changes
-    LaunchedEffect(state.signature) {
-        onSignatureUpdate(state.signature)
+    LaunchedEffect(state, canvasSize) {
+        snapshotFlow { state.paths.toList() to canvasSize }
+            .debounce(16L)
+            .collectLatest { (paths, size) ->
+                if (size.width > 0 && size.height > 0) {
+                    val bitmap = if (paths.isNotEmpty()) {
+                        pathsToImageBitmap(
+                            width = size.width,
+                            height = size.height,
+                            paths = paths,
+                            backgroundColor = config.backgroundColor
+                        )
+                    } else {
+                        null
+                    }
+                    state.updateSignature(bitmap)
+                    onSignatureUpdate(bitmap)
+                }
+            }
     }
 }
 
 /**
- * Fullscreen signature overlay composable
+ * A fullscreen composable signature pad designed for dedicated signature capture screens.
  *
- * @param onSignatureUpdate Callback invoked when signature changes
- * @param onDismiss Callback to dismiss the fullscreen signature
- * @param modifier Modifier to be applied to the signature pad
- * @param config Configuration object (defaults to fullscreen with actions)
- * @param state Signature state holder
+ * This composable provides a signature pad that fills the entire available screen space
+ * with built-in action handling for common operations such as clear, undo, redo, and save.
+ * It is particularly useful for modal signature capture flows where the user's full attention
+ * should be on signing.
+ *
+ * The component automatically handles action button clicks internally, delegating to the
+ * [SignatureState] for state management operations and invoking [onDismiss] when the
+ * save action is triggered.
+ *
+ * @param onSignatureUpdate Callback invoked when the signature content changes. Receives the current
+ *                          signature as an [ImageBitmap], or null if the signature pad is empty.
+ * @param onDismiss Callback invoked when the user completes the signature by clicking the save button.
+ *                  Typically used to close the fullscreen signature view and process the captured signature.
+ * @param modifier The modifier to be applied to the signature pad container.
+ * @param config Configuration object controlling the visual appearance and behavior. Defaults to
+ *               fullscreen mode with action buttons enabled. The [SignatureConfig.isFullScreen]
+ *               property is automatically set to true regardless of the provided configuration.
+ * @param state The state object that manages the signature drawing data and undo/redo history.
+ *              Defaults to a new instance created by [rememberSignatureState].
+ *
+ * @see ComposeSign
+ * @see SignatureConfig
+ * @see SignatureState
  */
 @Composable
 public fun ComposeSignFullscreen(
@@ -240,7 +313,17 @@ public fun ComposeSignFullscreen(
 }
 
 /**
- * Built-in actions row for signature controls
+ * Internal composable that displays a row of action buttons for signature operations.
+ *
+ * This component renders Clear, Undo, Redo, and Save buttons in a horizontal arrangement,
+ * with each button's enabled state determined by the current [SignatureState]. The Clear
+ * and Save buttons are enabled when the signature is not empty, while Undo and Redo buttons
+ * are enabled based on the availability of undo/redo history.
+ *
+ * @param state The signature state used to determine button enabled states.
+ * @param onActionClicked Callback invoked when any action button is clicked, providing
+ *                        the corresponding [SignatureAction].
+ * @param modifier The modifier to be applied to the row container.
  */
 @Composable
 internal fun SignatureActionsRow(
@@ -252,36 +335,32 @@ internal fun SignatureActionsRow(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        // Clear button
         OutlinedButton(
             onClick = { onActionClicked(SignatureAction.CLEAR) },
             enabled = !state.isEmpty()
         ) {
-            Text("Clear")
+            Text(SignatureAction.CLEAR.getDisplayName())
         }
 
-        // Undo button
         OutlinedButton(
             onClick = { onActionClicked(SignatureAction.UNDO) },
             enabled = state.canUndo
         ) {
-            Text("Undo")
+            Text(SignatureAction.UNDO.getDisplayName())
         }
 
-        // Redo button
         OutlinedButton(
             onClick = { onActionClicked(SignatureAction.REDO) },
             enabled = state.canRedo
         ) {
-            Text("Redo")
+            Text(SignatureAction.REDO.getDisplayName())
         }
 
-        // Save button
         Button(
             onClick = { onActionClicked(SignatureAction.SAVE) },
             enabled = !state.isEmpty()
         ) {
-            Text("Save")
+            Text(SignatureAction.SAVE.getDisplayName())
         }
     }
 }

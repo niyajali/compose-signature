@@ -24,65 +24,81 @@ import kotlin.math.abs
 import kotlin.math.atan2
 
 /**
- * Extension functions for SignatureState to enhance usability and functionality
- */
-
-/**
- * Check if the signature is empty (no paths drawn)
+ * Checks whether the signature state contains no drawn paths.
  *
- * @return True if no signature paths exist
+ * @receiver The [SignatureState] to check.
+ * @return True if the signature state has no paths, false otherwise.
  */
 public fun SignatureState.isEmpty(): Boolean = paths.isEmpty()
 
 /**
- * Check if the signature is not empty (has paths drawn)
+ * Checks whether the signature state contains at least one drawn path.
  *
- * @return True if signature paths exist
+ * @receiver The [SignatureState] to check.
+ * @return True if the signature state has one or more paths, false otherwise.
  */
 public fun SignatureState.isNotEmpty(): Boolean = paths.isNotEmpty()
 
 /**
- * Get the bounds of the current signature
+ * Calculates the bounding rectangle that encompasses all signature paths.
  *
- * @return SignatureBounds containing the bounding rectangle, or null if empty
+ * The bounds represent the smallest rectangle that contains all drawn strokes,
+ * accounting for stroke width to ensure no content is clipped.
+ *
+ * @receiver The [SignatureState] from which to calculate bounds.
+ * @return The [SignatureBounds] containing the signature, or null if the signature is empty.
  */
 public fun SignatureState.getSignatureBounds(): SignatureBounds? =
     calculateSignatureBounds(paths)
 
 /**
- * Get metadata about the current signature
+ * Generates comprehensive metadata about the current signature.
  *
- * @return SignatureMetadata containing analysis information
+ * The metadata includes path count, total stroke length, bounding dimensions,
+ * complexity score, and timestamp information useful for analysis and validation.
+ *
+ * @receiver The [SignatureState] from which to generate metadata.
+ * @return A [SignatureMetadata] object containing signature analysis data.
  */
 public fun SignatureState.getMetadata(): SignatureMetadata =
     generateSignatureMetadata(paths)
 
 /**
- * Export the signature as an ImageBitmap with custom dimensions
+ * Exports the current signature as an [ImageBitmap] with specified dimensions.
  *
- * @param width Width of the exported bitmap
- * @param height Height of the exported bitmap
- * @param backgroundColor Background color for the export
- * @return ImageBitmap containing the signature, or null if empty
+ * This method renders all signature paths to a bitmap image suitable for saving,
+ * displaying, or further processing. The signature is rendered at the exact
+ * dimensions specified without scaling.
+ *
+ * @receiver The [SignatureState] containing the signature to export.
+ * @param width The width of the output bitmap in pixels. Must be greater than zero.
+ * @param height The height of the output bitmap in pixels. Must be greater than zero.
+ * @param backgroundColor The background color to fill the bitmap with before rendering strokes.
+ * @return The rendered [ImageBitmap], or null if the signature is empty or dimensions are invalid.
  */
 public fun SignatureState.exportSignature(
     width: Int,
     height: Int,
     backgroundColor: Color = Color.White
 ): ImageBitmap? {
-    return if (isNotEmpty()) {
-        pathsToImageBitmap(width, height, paths, backgroundColor)
-    } else null
+    if (isEmpty() || width <= 0 || height <= 0) return null
+    return pathsToImageBitmap(width, height, paths, backgroundColor)
 }
 
 /**
- * Export the signature with scaling to fit the signature bounds
+ * Exports the signature as a scaled [ImageBitmap] to fit target dimensions.
  *
- * @param targetWidth Target width for the export
- * @param targetHeight Target height for the export
- * @param maintainAspectRatio Whether to maintain aspect ratio
- * @param backgroundColor Background color for the export
- * @return Scaled ImageBitmap, or null if empty
+ * This method scales the signature paths to fit within the specified target dimensions,
+ * optionally maintaining the original aspect ratio and centering the result.
+ * Useful for generating thumbnails or fitting signatures into predefined spaces.
+ *
+ * @receiver The [SignatureState] containing the signature to export.
+ * @param targetWidth The desired width of the output bitmap in pixels.
+ * @param targetHeight The desired height of the output bitmap in pixels.
+ * @param maintainAspectRatio Whether to preserve the signature's original proportions.
+ *                            If true, the signature is scaled uniformly to fit within bounds.
+ * @param backgroundColor The background color for the output bitmap.
+ * @return The scaled [ImageBitmap], or null if the signature is empty or dimensions are invalid.
  */
 public fun SignatureState.exportScaledSignature(
     targetWidth: Int,
@@ -90,41 +106,55 @@ public fun SignatureState.exportScaledSignature(
     maintainAspectRatio: Boolean = true,
     backgroundColor: Color = Color.White
 ): ImageBitmap? {
-    if (isEmpty()) return null
+    if (isEmpty() || targetWidth <= 0 || targetHeight <= 0) return null
 
     val scaledPaths = scaleSignaturePaths(
         paths = paths,
         targetWidth = targetWidth.toFloat(),
         targetHeight = targetHeight.toFloat(),
-        maintainAspectRatio = maintainAspectRatio
+        maintainAspectRatio = maintainAspectRatio,
+        centerInTarget = true
     )
 
     return pathsToImageBitmap(targetWidth, targetHeight, scaledPaths, backgroundColor)
 }
 
 /**
- * Get the total length of all signature paths
+ * Calculates the total length of all signature strokes combined.
  *
- * @return Total length of all drawn paths
+ * This measurement represents the cumulative distance of all drawn paths,
+ * useful for signature complexity analysis and validation.
+ *
+ * @receiver The [SignatureState] to measure.
+ * @return The total stroke length in pixels.
  */
 public fun SignatureState.getTotalLength(): Float =
     paths.sumOf { it.length().toDouble() }.toFloat()
 
 /**
- * Get the complexity score of the signature (0-100)
+ * Computes a complexity score for the signature based on multiple factors.
  *
- * @return Complexity score where 0 is very simple and 100 is very complex
+ * The score considers path count, total stroke length, and bounding area
+ * to produce a normalized value between 0 and 100. Higher scores indicate
+ * more complex signatures with more detail.
+ *
+ * @receiver The [SignatureState] to analyze.
+ * @return An integer complexity score from 0 to 100.
  */
 public fun SignatureState.getComplexityScore(): Int =
     calculateSignatureComplexity(paths)
 
 /**
- * Validate the signature against minimum requirements
+ * Validates whether the signature meets minimum requirements for authenticity.
  *
- * @param minPaths Minimum number of paths required
- * @param minLength Minimum total length required
- * @param minComplexity Minimum complexity score required
- * @return True if signature meets all requirements
+ * This method checks multiple criteria to determine if the signature appears
+ * to be a genuine attempt rather than a simple mark or accidental input.
+ *
+ * @receiver The [SignatureState] to validate.
+ * @param minPaths The minimum number of paths required for validity.
+ * @param minLength The minimum total stroke length in pixels required.
+ * @param minComplexity The minimum complexity score required.
+ * @return True if all validation criteria are met, false otherwise.
  */
 public fun SignatureState.isValid(
     minPaths: Int = 5,
@@ -133,9 +163,13 @@ public fun SignatureState.isValid(
 ): Boolean = validateSignature(paths, minPaths, minLength, minComplexity)
 
 /**
- * Get a human-readable description of the signature
+ * Generates a human-readable description of the signature state.
  *
- * @return String describing the signature characteristics
+ * The description includes stroke count, complexity assessment, and dimensional
+ * information when available. Useful for accessibility features or status displays.
+ *
+ * @receiver The [SignatureState] to describe.
+ * @return A descriptive string summarizing the signature characteristics.
  */
 public fun SignatureState.getDescription(): String {
     if (isEmpty()) return "No signature"
@@ -145,19 +179,21 @@ public fun SignatureState.getDescription(): String {
         append("Signature with ${metadata.pathCount} strokes, ")
         append("${metadata.complexityDescription().lowercase()} complexity")
         metadata.bounds?.let { bounds ->
-            append(", ${bounds.width.toInt()}x${bounds.height.toInt()} area")
+            if (bounds.isValid()) {
+                append(", ${bounds.width.toInt()}x${bounds.height.toInt()} area")
+            }
         }
     }
 }
 
 /**
- * Extension functions for SignatureConfig to create variants
- */
-
-/**
- * Create a copy of the config with dark theme colors
+ * Creates a dark theme variant of this configuration.
  *
- * @return SignatureConfig optimized for dark themes
+ * This method inverts the color scheme to use light strokes on a dark background,
+ * suitable for dark mode user interfaces.
+ *
+ * @receiver The [SignatureConfig] to convert.
+ * @return A new [SignatureConfig] with dark theme colors applied.
  */
 public fun SignatureConfig.asDarkTheme(): SignatureConfig = copy(
     strokeColor = Color.White,
@@ -167,9 +203,13 @@ public fun SignatureConfig.asDarkTheme(): SignatureConfig = copy(
 )
 
 /**
- * Create a copy of the config with light theme colors
+ * Creates a light theme variant of this configuration.
  *
- * @return SignatureConfig optimized for light themes
+ * This method applies standard light theme colors with dark strokes on a light background,
+ * suitable for light mode user interfaces.
+ *
+ * @receiver The [SignatureConfig] to convert.
+ * @return A new [SignatureConfig] with light theme colors applied.
  */
 public fun SignatureConfig.asLightTheme(): SignatureConfig = copy(
     strokeColor = Color.Black,
@@ -179,27 +219,31 @@ public fun SignatureConfig.asLightTheme(): SignatureConfig = copy(
 )
 
 /**
- * Create a copy of the config optimized for accessibility
+ * Creates an accessibility-enhanced variant of this configuration.
  *
- * @param highContrast Whether to use high contrast colors
- * @return SignatureConfig with accessibility improvements
+ * This method adjusts visual properties to improve usability for users with
+ * visual impairments, including increased stroke width and high contrast colors.
+ *
+ * @receiver The [SignatureConfig] to enhance.
+ * @param highContrast Whether to apply maximum contrast colors for better visibility.
+ * @return A new [SignatureConfig] with accessibility enhancements applied.
  */
 public fun SignatureConfig.asAccessible(highContrast: Boolean = true): SignatureConfig = copy(
     strokeWidth = if (highContrast) strokeWidth * 1.5f else strokeWidth,
     strokeColor = if (highContrast) Color.Black else strokeColor,
     backgroundColor = if (highContrast) Color.White else backgroundColor,
     showGrid = true,
-    gridSpacing = gridSpacing * 1.2f // Larger grid for better visibility
+    gridSpacing = gridSpacing * 1.2f
 )
 
 /**
- * Extension functions for SignaturePath
- */
-
-/**
- * Get the angle of the path in degrees
+ * Calculates the angle of this path segment in degrees.
  *
- * @return Angle in degrees (0-360)
+ * The angle is measured from the positive x-axis to the direction from start to end,
+ * normalized to a range of 0 to 360 degrees.
+ *
+ * @receiver The [SignaturePath] to measure.
+ * @return The angle in degrees, where 0 represents horizontal right direction.
  */
 public fun SignaturePath.getAngle(): Float {
     val dx = end.x - start.x
@@ -209,10 +253,14 @@ public fun SignaturePath.getAngle(): Float {
 }
 
 /**
- * Check if this path is approximately horizontal
+ * Determines whether this path segment is approximately horizontal.
  *
- * @param threshold Angle threshold in degrees
- * @return True if the path is within the threshold of horizontal
+ * A path is considered horizontal if its angle falls within the specified threshold
+ * of the horizontal axis (0, 180, or 360 degrees).
+ *
+ * @receiver The [SignaturePath] to evaluate.
+ * @param threshold The maximum angular deviation from horizontal in degrees.
+ * @return True if the path is within the threshold of horizontal orientation.
  */
 public fun SignaturePath.isHorizontal(threshold: Float = 15f): Boolean {
     val angle = getAngle()
@@ -221,10 +269,14 @@ public fun SignaturePath.isHorizontal(threshold: Float = 15f): Boolean {
 }
 
 /**
- * Check if this path is approximately vertical
+ * Determines whether this path segment is approximately vertical.
  *
- * @param threshold Angle threshold in degrees
- * @return True if the path is within the threshold of vertical
+ * A path is considered vertical if its angle falls within the specified threshold
+ * of the vertical axis (90 or 270 degrees).
+ *
+ * @receiver The [SignaturePath] to evaluate.
+ * @param threshold The maximum angular deviation from vertical in degrees.
+ * @return True if the path is within the threshold of vertical orientation.
  */
 public fun SignaturePath.isVertical(threshold: Float = 15f): Boolean {
     val angle = getAngle()
@@ -233,14 +285,14 @@ public fun SignaturePath.isVertical(threshold: Float = 15f): Boolean {
 }
 
 /**
- * Extension functions for SignatureBounds
- */
-
-/**
- * Check if the bounds represent a mostly square area
+ * Determines whether the bounds represent an approximately square region.
  *
- * @param tolerance Tolerance for aspect ratio (0.0 = perfect square, 1.0 = any ratio)
- * @return True if the bounds are approximately square
+ * This method compares the width and height to check if their ratio
+ * falls within an acceptable tolerance of 1:1.
+ *
+ * @receiver The [SignatureBounds] to evaluate.
+ * @param tolerance The maximum acceptable deviation from a 1:1 aspect ratio.
+ * @return True if the bounds are approximately square within the given tolerance.
  */
 public fun SignatureBounds.isSquare(tolerance: Float = 0.2f): Boolean {
     if (!isValid()) return false
@@ -249,54 +301,56 @@ public fun SignatureBounds.isSquare(tolerance: Float = 0.2f): Boolean {
 }
 
 /**
- * Check if the bounds represent a landscape orientation
+ * Determines whether the bounds have a landscape orientation.
  *
- * @return True if width is greater than height
+ * @receiver The [SignatureBounds] to evaluate.
+ * @return True if width is greater than height and bounds are valid.
  */
 public fun SignatureBounds.isLandscape(): Boolean = isValid() && width > height
 
 /**
- * Check if the bounds represent a portrait orientation
+ * Determines whether the bounds have a portrait orientation.
  *
- * @return True if height is greater than width
+ * @receiver The [SignatureBounds] to evaluate.
+ * @return True if height is greater than width and bounds are valid.
  */
 public fun SignatureBounds.isPortrait(): Boolean = isValid() && height > width
 
 /**
- * Get the aspect ratio of the bounds
+ * Calculates the aspect ratio of the bounds as width divided by height.
  *
- * @return Aspect ratio (width/height), or 1.0 if invalid
+ * @receiver The [SignatureBounds] to measure.
+ * @return The aspect ratio, or 1.0 if bounds are invalid or height is zero.
  */
 public fun SignatureBounds.getAspectRatio(): Float =
     if (isValid() && height > 0) width / height else 1f
 
 /**
- * Extension functions for List<SignaturePath>
- */
-
-/**
- * Get all unique colors used in the signature paths
+ * Extracts all unique stroke colors used in the path collection.
  *
- * @return Set of unique colors
+ * @receiver The list of [SignaturePath] to analyze.
+ * @return A set containing all distinct colors used across all paths.
  */
 public fun List<SignaturePath>.getUniqueColors(): Set<Color> =
     map { it.color }.toSet()
 
 /**
- * Filter paths by color
+ * Filters paths to include only those with the specified stroke color.
  *
- * @param color Color to filter by
- * @return List of paths with the specified color
+ * @receiver The list of [SignaturePath] to filter.
+ * @param color The color to match against.
+ * @return A new list containing only paths with the matching color.
  */
 public fun List<SignaturePath>.filterByColor(color: Color): List<SignaturePath> =
     filter { it.color == color }
 
 /**
- * Get paths within a specific stroke width range
+ * Filters paths to include only those with stroke width within the specified range.
  *
- * @param minWidth Minimum stroke width
- * @param maxWidth Maximum stroke width
- * @return List of paths within the width range
+ * @receiver The list of [SignaturePath] to filter.
+ * @param minWidth The minimum stroke width to include.
+ * @param maxWidth The maximum stroke width to include.
+ * @return A new list containing only paths within the stroke width range.
  */
 public fun List<SignaturePath>.filterByStrokeWidth(
     minWidth: Float,
@@ -304,42 +358,43 @@ public fun List<SignaturePath>.filterByStrokeWidth(
 ): List<SignaturePath> = filter { it.strokeWidth in minWidth..maxWidth }
 
 /**
- * Get the average stroke width of all paths
+ * Calculates the average stroke width across all paths in the collection.
  *
- * @return Average stroke width, or 0 if empty
+ * @receiver The list of [SignaturePath] to analyze.
+ * @return The average stroke width, or 0.0 if the list is empty.
  */
 public fun List<SignaturePath>.getAverageStrokeWidth(): Float =
     if (isEmpty()) 0f else map { it.strokeWidth }.average().toFloat()
 
 /**
- * Utility extension for ImageBitmap
- */
-
-/**
- * Get a description of the bitmap dimensions
+ * Returns a human-readable string describing the bitmap dimensions.
  *
- * @return String describing the bitmap size
+ * @receiver The [ImageBitmap] to describe.
+ * @return A formatted string in the format "WIDTHxHEIGHT pixels".
  */
 public fun ImageBitmap.getDimensionDescription(): String = "${width}x${height} pixels"
 
 /**
- * Check if the bitmap is in landscape orientation
+ * Determines whether the bitmap has a landscape orientation.
  *
- * @return True if width > height
+ * @receiver The [ImageBitmap] to evaluate.
+ * @return True if width is greater than height.
  */
 public fun ImageBitmap.isLandscape(): Boolean = width > height
 
 /**
- * Check if the bitmap is in portrait orientation
+ * Determines whether the bitmap has a portrait orientation.
  *
- * @return True if height > width
+ * @receiver The [ImageBitmap] to evaluate.
+ * @return True if height is greater than width.
  */
 public fun ImageBitmap.isPortrait(): Boolean = height > width
 
 /**
- * Get the aspect ratio of the bitmap
+ * Calculates the aspect ratio of the bitmap as width divided by height.
  *
- * @return Aspect ratio (width/height)
+ * @receiver The [ImageBitmap] to measure.
+ * @return The aspect ratio, or 1.0 if height is zero.
  */
 public fun ImageBitmap.getAspectRatio(): Float =
     if (height > 0) width.toFloat() / height.toFloat() else 1f
