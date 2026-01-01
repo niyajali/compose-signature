@@ -1,5 +1,5 @@
 public final class com/niyajali/compose/sign/sample/AppKt {
-	public static final fun App (Landroidx/compose/runtime/Composer;I)V
+	public static final fun App (ZLandroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/niyajali/compose/sign/sample/BackgroundOption : java/lang/Enum {
@@ -28,8 +28,8 @@ public final class com/niyajali/compose/sign/sample/BuiltInActionsSampleKt {
 public final class com/niyajali/compose/sign/sample/ComposableSingletons$AppKt {
 	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/ComposableSingletons$AppKt;
 	public fun <init> ()V
-	public final fun getLambda$-1395157411$sample ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$892845794$sample ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-1050014650$sample ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1321919595$sample ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class com/niyajali/compose/sign/sample/ComposableSingletons$BuiltInActionsSampleKt {
