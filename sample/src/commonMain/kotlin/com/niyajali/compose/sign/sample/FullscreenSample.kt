@@ -1,5 +1,6 @@
 package com.niyajali.compose.sign.sample
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -12,6 +13,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import com.niyajali.compose.sign.ComposeSignFullscreen
 import com.niyajali.compose.sign.SignatureConfig
 import com.niyajali.compose.sign.rememberSignatureState
+import com.niyajali.compose.sign.sample.theme.Gradients
 
 @Composable
 fun FullscreenSample(
@@ -27,7 +29,11 @@ fun FullscreenSample(
         showGrid = true
     )
 
-    Box(modifier = modifier.fillMaxSize()) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Gradients.Sample.fullscreenSubtle)
+    ) {
         ComposeSignFullscreen(
             onSignatureUpdate = { bitmap ->
                 capturedSignature = bitmap

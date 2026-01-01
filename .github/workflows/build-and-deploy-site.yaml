@@ -1,0 +1,66 @@
+name: 🌐 KMP Publish Web App
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read  # Read repository contents
+  pages: write    # Write to GitHub Pages
+  id-token: write # Write authentication tokens
+
+jobs:
+  build-web-app:
+    name: Build Kotlin JS Web App
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.konan
+            build
+            */build
+            ~/.kotlin
+            /build-cache
+          key: ${{ runner.os }}-gradle-
+          restore-keys: ${{ runner.os }}-gradle-
+
+      - name: Build Web App
+        run: ./gradlew :sample:wasmJsBrowserDistribution
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload static files as artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './sample/build/dist/wasmJs/productionExecutable'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

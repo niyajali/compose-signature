@@ -4,32 +4,44 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.unit.dp
 import com.niyajali.compose.sign.ComposeSign
 import com.niyajali.compose.sign.SignatureConfig
 import com.niyajali.compose.sign.asDarkTheme
 import com.niyajali.compose.sign.isEmpty
 import com.niyajali.compose.sign.rememberSignatureState
+import com.niyajali.compose.sign.sample.components.cards.GradientCard
+import com.niyajali.compose.sign.sample.components.icons.IconMapper
+import com.niyajali.compose.sign.sample.theme.CornerRadius
+import com.niyajali.compose.sign.sample.theme.Elevation
+import com.niyajali.compose.sign.sample.theme.Gradients
+import com.niyajali.compose.sign.sample.theme.Size
+import com.niyajali.compose.sign.sample.theme.Spacing
+import com.niyajali.compose.sign.sample.utils.Strings
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun DarkThemeSample(modifier: Modifier = Modifier) {
@@ -45,27 +57,43 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .background(Color(0xFF121212))
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+            .padding(Spacing.md),
+        verticalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
-        Text(
-            text = "Dark Theme",
-            style = MaterialTheme.typography.titleLarge,
-            color = Color.White
-        )
+        // Header with icon
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = Spacing.sm),
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                painter = painterResource(IconMapper.getScreenIcon(SampleScreen.DARK_THEME)),
+                contentDescription = Strings.darkTitle(),
+                tint = Color(0xFFA855F7),
+                modifier = Modifier.size(Size.iconLG)
+            )
+            Spacer(modifier = Modifier.width(Spacing.sm))
+            Text(
+                text = Strings.darkTitle(),
+                style = MaterialTheme.typography.titleLarge,
+                color = Color.White
+            )
+        }
 
+        // Description
         Text(
-            text = "Signature pad styled for dark theme using the asDarkTheme() extension.",
+            text = Strings.darkDescription(),
             style = MaterialTheme.typography.bodyMedium,
             color = Color.White.copy(alpha = 0.7f)
         )
 
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = Color(0xFF1E1E1E)
-            ),
-            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+        // Signature Pad
+        GradientCard(
+            gradient = Gradients.Sample.darkThemeSubtle,
+            backgroundColor = Color(0xFF1E1E1E),
+            elevation = Elevation.lg
         ) {
             ComposeSign(
                 onSignatureUpdate = { bitmap ->
@@ -75,136 +103,209 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
                 state = signatureState,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(250.dp)
+                    .height(Size.signaturePadHeight)
             )
         }
 
+        // Action Buttons
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(Spacing.sm)
         ) {
-            OutlinedButton(
+            // Clear Button
+            IconButton(
                 onClick = { signatureState.clear() },
                 enabled = !signatureState.isEmpty(),
-                modifier = Modifier.weight(1f)
+                modifier = Modifier
+                    .weight(1f)
+                    .height(Size.buttonHeight)
+                    .clip(RoundedCornerShape(CornerRadius.md))
+                    .background(
+                        if (!signatureState.isEmpty())
+                            Color(0xFF7F1D1D)
+                        else
+                            Color(0xFF2D2D2D)
+                    )
             ) {
-                Text("Clear", color = Color.White)
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        painter = painterResource(IconMapper.Actions.clear),
+                        contentDescription = Strings.actionClear(),
+                        tint = if (!signatureState.isEmpty())
+                            Color(0xFFFEE2E2)
+                        else
+                            Color(0xFF9CA3AF),
+                        modifier = Modifier.size(Size.iconMD)
+                    )
+                    Text(
+                        text = Strings.actionClear(),
+                        color = if (!signatureState.isEmpty())
+                            Color(0xFFFEE2E2)
+                        else
+                            Color(0xFF9CA3AF)
+                    )
+                }
             }
 
-            OutlinedButton(
+            // Undo Button
+            IconButton(
                 onClick = { signatureState.undo() },
                 enabled = signatureState.canUndo,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier
+                    .weight(1f)
+                    .height(Size.buttonHeight)
+                    .clip(RoundedCornerShape(CornerRadius.md))
+                    .background(
+                        if (signatureState.canUndo)
+                            Color(0xFF312E81)
+                        else
+                            Color(0xFF2D2D2D)
+                    )
             ) {
-                Text("Undo", color = Color.White)
-            }
-
-            OutlinedButton(
-                onClick = { signatureState.redo() },
-                enabled = signatureState.canRedo,
-                modifier = Modifier.weight(1f)
-            ) {
-                Text("Redo", color = Color.White)
-            }
-        }
-
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = Color(0xFF2D2D2D)
-            )
-        ) {
-            Column(
-                modifier = Modifier.padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                Text(
-                    text = "Dark Theme Configuration",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = Color.White
-                )
-
-                DarkThemeInfoRow("Stroke Color", "White")
-                DarkThemeInfoRow("Background Color", "Black")
-                DarkThemeInfoRow("Grid Color", "White (30% opacity)")
-                DarkThemeInfoRow("Border Color", "White")
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        painter = painterResource(IconMapper.Actions.undo),
+                        contentDescription = Strings.actionUndo(),
+                        tint = if (signatureState.canUndo)
+                            Color(0xFFEEF2FF)
+                        else
+                            Color(0xFF9CA3AF),
+                        modifier = Modifier.size(Size.iconMD)
+                    )
+                    Text(
+                        text = Strings.actionUndo(),
+                        color = if (signatureState.canUndo)
+                            Color(0xFFEEF2FF)
+                        else
+                            Color(0xFF9CA3AF)
+                    )
+                }
             }
         }
 
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = Color(0xFF1E1E1E)
-            )
+        // Dark Theme Configuration Info
+        GradientCard(
+            backgroundColor = Color(0xFF1E1E1E),
+            elevation = Elevation.md
         ) {
             Column(
-                modifier = Modifier.padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(Spacing.sm)
             ) {
-                Text(
-                    text = "Usage",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = Color.White
-                )
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        painter = painterResource(IconMapper.getScreenIcon(SampleScreen.DARK_THEME)),
+                        contentDescription = null,
+                        tint = Color(0xFFA855F7),
+                        modifier = Modifier.size(Size.iconMD)
+                    )
+                    Text(
+                        text = Strings.darkConfig(),
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.White
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(Spacing.xs))
+
+                DarkThemeInfoRow(Strings.usage(), Strings.usageCode())
 
                 Text(
-                    text = "val darkConfig = SignatureConfig().asDarkTheme()",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = Color(0xFF81C784),
-                    modifier = Modifier
-                        .background(Color(0xFF263238), MaterialTheme.shapes.small)
-                        .padding(8.dp)
-                )
-
-                Text(
-                    text = "The asDarkTheme() extension automatically applies dark-friendly colors to your signature configuration.",
-                    style = MaterialTheme.typography.bodySmall,
+                    text = Strings.usageDescription(),
+                    style = MaterialTheme.typography.bodyMedium,
                     color = Color.White.copy(alpha = 0.7f)
                 )
             }
         }
 
-        capturedSignature?.let { bitmap ->
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(
-                    containerColor = Color(0xFF2D2D2D)
-                )
+        // Signature Info
+        GradientCard(
+            backgroundColor = Color(0xFF2D2D2D),
+            elevation = Elevation.sm
+        ) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(Spacing.xs)
             ) {
-                Column(
-                    modifier = Modifier.padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Text(
-                        text = "Signature Info",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = Color.White
-                    )
+                Text(
+                    text = Strings.signatureInfo(),
+                    style = MaterialTheme.typography.titleMedium,
+                    color = Color.White
+                )
 
-                    DarkThemeInfoRow("Paths", signatureState.paths.size.toString())
-                    DarkThemeInfoRow("Bitmap Size", "${bitmap.width} x ${bitmap.height}")
-                    DarkThemeInfoRow("Can Undo", signatureState.canUndo.toString())
-                    DarkThemeInfoRow("Can Redo", signatureState.canRedo.toString())
+                Spacer(modifier = Modifier.height(Spacing.xxs))
+
+                DarkThemeInfoRow(Strings.paths(), signatureState.paths.size.toString())
+                DarkThemeInfoRow(Strings.canUndo(), signatureState.canUndo.toString())
+                DarkThemeInfoRow(Strings.canRedo(), signatureState.canRedo.toString())
+
+                capturedSignature?.let { bitmap ->
+                    DarkThemeInfoRow(
+                        Strings.bitmapSize(),
+                        "${bitmap.width} × ${bitmap.height} px"
+                    )
                 }
+            }
+        }
+
+        // Config Details
+        GradientCard(
+            backgroundColor = Color(0xFF263238),
+            elevation = Elevation.sm
+        ) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+            ) {
+                Text(
+                    text = "Configuration",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = Color(0xFF81C784)
+                )
+
+                Text(
+                    text = "Stroke Color: ${Strings.white30Opacity()}",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.White.copy(alpha = 0.8f)
+                )
+
+                Text(
+                    text = "Background: Dark (#1E1E1E)",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.White.copy(alpha = 0.8f)
+                )
+
+                Text(
+                    text = "Grid Color: White (10% opacity)",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.White.copy(alpha = 0.8f)
+                )
             }
         }
     }
 }
 
 @Composable
-fun DarkThemeInfoRow(
+private fun DarkThemeInfoRow(
     label: String,
     value: String,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = label,
             style = MaterialTheme.typography.bodyMedium,
-            color = Color.White.copy(alpha = 0.7f)
+            color = Color.White.copy(alpha = 0.6f)
         )
         Text(
             text = value,

@@ -5,6 +5,6 @@ import com.niyajali.compose.sign.sample.App
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
     CanvasBasedWindow(canvasElementId = "ComposeTarget") {
-        App()
+        App(darkTheme = false)
     }
 }

@@ -11,6 +11,6 @@ fun main() = application {
         title = "Compose Signature Sample",
         state = rememberWindowState(width = 900.dp, height = 700.dp)
     ) {
-        App()
+        App(darkTheme = false)
     }
 }

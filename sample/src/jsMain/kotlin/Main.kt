@@ -1,5 +1,4 @@
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.window.CanvasBasedWindow
 import androidx.compose.ui.window.ComposeViewport
 import com.niyajali.compose.sign.sample.App
 import kotlinx.browser.document
@@ -9,7 +8,7 @@ import org.jetbrains.skiko.wasm.onWasmReady
 fun main() {
     onWasmReady {
         ComposeViewport(document.body!!) {
-            App()
+            App(darkTheme = false)
         }
     }
 }

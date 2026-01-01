@@ -1,19 +1,22 @@
 package com.niyajali.compose.sign.sample
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -21,9 +24,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.unit.dp
 import com.niyajali.compose.sign.ComposeSign
 import com.niyajali.compose.sign.getComplexityScore
@@ -34,45 +40,72 @@ import com.niyajali.compose.sign.getTotalLength
 import com.niyajali.compose.sign.isEmpty
 import com.niyajali.compose.sign.isValid
 import com.niyajali.compose.sign.rememberSignatureState
+import com.niyajali.compose.sign.sample.components.cards.GradientCard
+import com.niyajali.compose.sign.sample.components.icons.IconMapper
+import com.niyajali.compose.sign.sample.components.layout.SectionHeader
+import com.niyajali.compose.sign.sample.theme.CornerRadius
+import com.niyajali.compose.sign.sample.theme.Elevation
+import com.niyajali.compose.sign.sample.theme.Gradients
+import com.niyajali.compose.sign.sample.theme.Size
+import com.niyajali.compose.sign.sample.theme.Spacing
+import com.niyajali.compose.sign.sample.utils.Strings
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun ValidationSample(modifier: Modifier = Modifier) {
     val signatureState = rememberSignatureState()
     var capturedSignature by remember { mutableStateOf<ImageBitmap?>(null) }
 
+    val minPaths = 10
+    val minLength = 200f
+    val minComplexity = 15
+
     val metadata by remember(signatureState.paths) {
         derivedStateOf { signatureState.getMetadata() }
     }
 
     val isValidSignature by remember(signatureState.paths) {
-        derivedStateOf { signatureState.isValid(minPaths = 10, minLength = 200f, minComplexity = 15) }
+        derivedStateOf {
+            signatureState.isValid(
+                minPaths = minPaths,
+                minLength = minLength,
+                minComplexity = minComplexity
+            )
+        }
     }
 
     val bounds by remember(signatureState.paths) {
         derivedStateOf { signatureState.getSignatureBounds() }
     }
 
+    val totalLength = signatureState.getTotalLength()
+    val complexityScore = signatureState.getComplexityScore()
+
     Column(
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+            .background(Gradients.Sample.validationSubtle)
+            .padding(Spacing.md),
+        verticalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
-        Text(
-            text = "Signature Validation",
-            style = MaterialTheme.typography.titleLarge
+        // Header with icon
+        SectionHeader(
+            title = Strings.validationTitle(),
+            icon = IconMapper.getScreenIcon(SampleScreen.VALIDATION)
         )
 
+        // Description
         Text(
-            text = "Validate signatures based on complexity, length, and path count requirements.",
+            text = Strings.validationDescription(),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        // Signature Pad
+        GradientCard(
+            gradient = Gradients.Sample.validationSubtle,
+            elevation = Elevation.md
         ) {
             ComposeSign(
                 onSignatureUpdate = { bitmap ->
@@ -81,209 +114,318 @@ fun ValidationSample(modifier: Modifier = Modifier) {
                 state = signatureState,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(220.dp)
+                    .height(Size.signaturePadHeight)
             )
         }
 
+        // Action Buttons
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(Spacing.sm)
         ) {
-            OutlinedButton(
+            // Clear Button
+            IconButton(
                 onClick = { signatureState.clear() },
                 enabled = !signatureState.isEmpty(),
-                modifier = Modifier.weight(1f)
-            ) {
-                Text("Clear")
-            }
-
-            OutlinedButton(
-                onClick = { signatureState.undo() },
-                enabled = signatureState.canUndo,
-                modifier = Modifier.weight(1f)
-            ) {
-                Text("Undo")
-            }
-        }
-
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = if (isValidSignature)
-                    Color(0xFFE8F5E9)
-                else
-                    Color(0xFFFFEBEE)
-            )
-        ) {
-            Column(
-                modifier = Modifier.padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                modifier = Modifier
+                    .weight(1f)
+                    .height(Size.buttonHeight)
+                    .clip(RoundedCornerShape(CornerRadius.md))
+                    .background(
+                        if (!signatureState.isEmpty())
+                            MaterialTheme.colorScheme.errorContainer
+                        else
+                            MaterialTheme.colorScheme.surfaceVariant
+                    )
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "Validation Status",
-                        style = MaterialTheme.typography.titleMedium
+                    Icon(
+                        painter = painterResource(IconMapper.Actions.clear),
+                        contentDescription = Strings.actionClear(),
+                        tint = if (!signatureState.isEmpty())
+                            MaterialTheme.colorScheme.onErrorContainer
+                        else
+                            MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.size(Size.iconMD)
                     )
                     Text(
-                        text = if (isValidSignature) "✓ Valid" else "✗ Invalid",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = if (isValidSignature) Color(0xFF2E7D32) else Color(0xFFC62828)
+                        text = Strings.actionClear(),
+                        color = if (!signatureState.isEmpty())
+                            MaterialTheme.colorScheme.onErrorContainer
+                        else
+                            MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
+            }
 
-                Text(
-                    text = "Requirements: min 10 paths, min 200px length, min 15 complexity",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
-                )
+            // Undo Button
+            IconButton(
+                onClick = { signatureState.undo() },
+                enabled = signatureState.canUndo,
+                modifier = Modifier
+                    .weight(1f)
+                    .height(Size.buttonHeight)
+                    .clip(RoundedCornerShape(CornerRadius.md))
+                    .background(
+                        if (signatureState.canUndo)
+                            MaterialTheme.colorScheme.primaryContainer
+                        else
+                            MaterialTheme.colorScheme.surfaceVariant
+                    )
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        painter = painterResource(IconMapper.Actions.undo),
+                        contentDescription = Strings.actionUndo(),
+                        tint = if (signatureState.canUndo)
+                            MaterialTheme.colorScheme.onPrimaryContainer
+                        else
+                            MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.size(Size.iconMD)
+                    )
+                    Text(
+                        text = Strings.actionUndo(),
+                        color = if (signatureState.canUndo)
+                            MaterialTheme.colorScheme.onPrimaryContainer
+                        else
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
         }
 
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant
-            )
+        // Validation Status
+        GradientCard(
+            gradient = if (isValidSignature) Gradients.success else Gradients.error,
+            elevation = Elevation.md
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    painter = painterResource(
+                        if (isValidSignature) IconMapper.Icons.check else IconMapper.Icons.block
+                    ),
+                    contentDescription = null,
+                    tint = if (isValidSignature)
+                        MaterialTheme.colorScheme.onTertiaryContainer
+                    else
+                        MaterialTheme.colorScheme.onErrorContainer,
+                    modifier = Modifier.size(Size.iconLG)
+                )
+
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = Strings.validationStatus(),
+                        style = MaterialTheme.typography.titleMedium,
+                        color = if (isValidSignature)
+                            MaterialTheme.colorScheme.onTertiaryContainer
+                        else
+                            MaterialTheme.colorScheme.onErrorContainer
+                    )
+                    Text(
+                        text = if (isValidSignature) Strings.statusValid() else Strings.statusInvalid(),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = if (isValidSignature)
+                            MaterialTheme.colorScheme.onTertiaryContainer
+                        else
+                            MaterialTheme.colorScheme.onErrorContainer
+                    )
+                }
+            }
+        }
+
+        // Requirements
+        GradientCard(
+            gradient = Gradients.Sample.validationSubtle,
+            elevation = Elevation.sm
         ) {
             Column(
-                modifier = Modifier.padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                verticalArrangement = Arrangement.spacedBy(Spacing.sm)
             ) {
                 Text(
-                    text = "Signature Metrics",
-                    style = MaterialTheme.typography.titleMedium
-                )
-
-                MetricRow(
-                    label = "Path Count",
-                    value = metadata.pathCount.toString(),
-                    requirement = "≥ 10",
-                    isMet = metadata.pathCount >= 10
-                )
-
-                MetricRow(
-                    label = "Total Length",
-                    value = "${signatureState.getTotalLength().toInt()} px",
-                    requirement = "≥ 200 px",
-                    isMet = signatureState.getTotalLength() >= 200f
-                )
-
-                MetricRow(
-                    label = "Complexity Score",
-                    value = "${signatureState.getComplexityScore()}/100",
-                    requirement = "≥ 15",
-                    isMet = signatureState.getComplexityScore() >= 15
-                )
-
-                Text(
-                    text = "Complexity Progress",
-                    style = MaterialTheme.typography.titleSmall
-                )
-
-                LinearProgressIndicator(
-                    progress = { (signatureState.getComplexityScore() / 100f).coerceIn(0f, 1f) },
-                    modifier = Modifier.fillMaxWidth(),
-                    color = when {
-                        signatureState.getComplexityScore() < 20 -> Color(0xFFF44336)
-                        signatureState.getComplexityScore() < 40 -> Color(0xFFFF9800)
-                        signatureState.getComplexityScore() < 60 -> Color(0xFFFFEB3B)
-                        else -> Color(0xFF4CAF50)
-                    }
-                )
-
-                Text(
-                    text = metadata.complexityDescription(),
+                    text = Strings.validationRequirements(minPaths, minLength.toInt(), minComplexity),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }
 
-        bounds?.let { b ->
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.tertiaryContainer
-                )
+        // Signature Metrics
+        GradientCard(
+            gradient = Gradients.Sample.validationSubtle,
+            elevation = Elevation.sm
+        ) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(Spacing.md)
             ) {
-                Column(
-                    modifier = Modifier.padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "Signature Bounds",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onTertiaryContainer
+                    Icon(
+                        painter = painterResource(IconMapper.getScreenIcon(SampleScreen.VALIDATION)),
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(Size.iconMD)
                     )
-
-                    InfoRow("Width", "${b.width.toInt()} px")
-                    InfoRow("Height", "${b.height.toInt()} px")
-                    InfoRow("Area", "${b.area().toInt()} sq px")
-                    InfoRow("Center", "(${b.center.x.toInt()}, ${b.center.y.toInt()})")
+                    Text(
+                        text = Strings.signatureMetrics(),
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
                 }
+
+                Spacer(modifier = Modifier.height(Spacing.xs))
+
+                // Path Count
+                MetricRow(
+                    label = Strings.pathCount(),
+                    value = metadata.pathCount.toString(),
+                    requirement = minPaths,
+                    currentValue = metadata.pathCount,
+                    isValid = metadata.pathCount >= minPaths
+                )
+
+                // Total Length
+                MetricRow(
+                    label = Strings.totalLength(),
+                    value = Strings.pixels(totalLength.toInt()),
+                    requirement = minLength.toInt(),
+                    currentValue = totalLength.toInt(),
+                    isValid = totalLength >= minLength
+                )
+
+                // Complexity Score
+                MetricRow(
+                    label = Strings.complexityScore(),
+                    value = complexityScore.toString(),
+                    requirement = minComplexity,
+                    currentValue = complexityScore,
+                    isValid = complexityScore >= minComplexity
+                )
+
+                Spacer(modifier = Modifier.height(Spacing.xs))
+
+                // Complexity Progress
+                Text(
+                    text = Strings.complexityProgress(),
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+
+                val progress = (complexityScore.toFloat() / minComplexity.toFloat()).coerceIn(0f, 1f)
+
+                LinearProgressIndicator(
+                    progress = { progress },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(8.dp)
+                        .clip(RoundedCornerShape(CornerRadius.sm)),
+                    color = when {
+                        progress >= 1f -> MaterialTheme.colorScheme.tertiary
+                        progress >= 0.7f -> MaterialTheme.colorScheme.primary
+                        progress >= 0.4f -> Color(0xFFF59E0B)
+                        else -> MaterialTheme.colorScheme.error
+                    },
+                    trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                    strokeCap = StrokeCap.Round
+                )
+
+                Text(
+                    text = signatureState.getDescription(),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
             }
         }
 
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer
-            )
-        ) {
-            Column(
-                modifier = Modifier.padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
+        // Signature Bounds
+        if (bounds != null) {
+            GradientCard(
+                gradient = Gradients.cardPrimary,
+                elevation = Elevation.sm
             ) {
-                Text(
-                    text = "Description",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer
-                )
-                Text(
-                    text = signatureState.getDescription(),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f)
-                )
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(Spacing.xs)
+                ) {
+                    Text(
+                        text = Strings.signatureBounds(),
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+
+                    Spacer(modifier = Modifier.height(Spacing.xxs))
+
+                    bounds?.let { b ->
+                        InfoRow(Strings.width(), Strings.pixels(b.width.toInt()))
+                        InfoRow(Strings.height(), Strings.pixels(b.height.toInt()))
+                        InfoRow(Strings.area(), Strings.squarePixels((b.width * b.height).toInt()))
+                        InfoRow(Strings.center(), Strings.coordinates(b.center.x.toInt(), b.center.y.toInt()))
+                    }
+                }
             }
         }
     }
 }
 
 @Composable
-fun MetricRow(
+private fun MetricRow(
     label: String,
     value: String,
-    requirement: String,
-    isMet: Boolean,
+    requirement: Int,
+    currentValue: Int,
+    isValid: Boolean,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Column {
-            Text(
-                text = label,
-                style = MaterialTheme.typography.bodyMedium
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                painter = painterResource(
+                    if (isValid) IconMapper.Icons.check else IconMapper.Icons.block
+                ),
+                contentDescription = null,
+                tint = if (isValid)
+                    MaterialTheme.colorScheme.tertiary
+                else
+                    MaterialTheme.colorScheme.error,
+                modifier = Modifier.size(16.dp)
             )
-            Text(
-                text = "Requirement: $requirement",
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
+            Column {
+                Text(
+                    text = label,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                Text(
+                    text = Strings.requirement("≥ $requirement"),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
         }
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text(
-                text = value,
-                style = MaterialTheme.typography.bodyLarge
-            )
-            Text(
-                text = if (isMet) "✓" else "✗",
-                color = if (isMet) Color(0xFF4CAF50) else Color(0xFFF44336)
-            )
-        }
+        Text(
+            text = value,
+            style = MaterialTheme.typography.titleMedium,
+            color = if (isValid)
+                MaterialTheme.colorScheme.tertiary
+            else
+                MaterialTheme.colorScheme.error
+        )
     }
 }

@@ -1,21 +1,23 @@
 package com.niyajali.compose.sign.sample
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilterChip
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,7 +26,9 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.unit.dp
@@ -32,6 +36,17 @@ import com.niyajali.compose.sign.ComposeSign
 import com.niyajali.compose.sign.SignatureConfig
 import com.niyajali.compose.sign.isEmpty
 import com.niyajali.compose.sign.rememberSignatureState
+import com.niyajali.compose.sign.sample.components.cards.GradientCard
+import com.niyajali.compose.sign.sample.components.icons.IconMapper
+import com.niyajali.compose.sign.sample.components.layout.SectionHeader
+import com.niyajali.compose.sign.sample.components.layout.SmallSectionHeader
+import com.niyajali.compose.sign.sample.theme.CornerRadius
+import com.niyajali.compose.sign.sample.theme.Elevation
+import com.niyajali.compose.sign.sample.theme.Gradients
+import com.niyajali.compose.sign.sample.theme.Size
+import com.niyajali.compose.sign.sample.theme.Spacing
+import com.niyajali.compose.sign.sample.utils.Strings
+import org.jetbrains.compose.resources.painterResource
 
 enum class StrokeColorOption(val color: Color, val displayName: String) {
     BLACK(Color.Black, "Black"),
@@ -70,23 +85,27 @@ fun CustomStyleSample(modifier: Modifier = Modifier) {
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+            .background(Gradients.Sample.customStyleSubtle)
+            .padding(Spacing.md),
+        verticalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
-        Text(
-            text = "Custom Styling",
-            style = MaterialTheme.typography.titleLarge
+        // Header with icon
+        SectionHeader(
+            title = Strings.styleTitle(),
+            icon = IconMapper.getScreenIcon(SampleScreen.CUSTOM_STYLE)
         )
 
+        // Description
         Text(
-            text = "Customize the appearance of your signature pad.",
+            text = Strings.styleDescription(),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        // Signature Pad
+        GradientCard(
+            gradient = Gradients.Sample.customStyleSubtle,
+            elevation = Elevation.md
         ) {
             ComposeSign(
                 onSignatureUpdate = { bitmap ->
@@ -96,62 +115,128 @@ fun CustomStyleSample(modifier: Modifier = Modifier) {
                 state = signatureState,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(220.dp)
+                    .height(Size.signaturePadHeight)
             )
         }
 
+        // Action Buttons
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(Spacing.sm)
         ) {
-            OutlinedButton(
+            // Clear Button
+            IconButton(
                 onClick = { signatureState.clear() },
                 enabled = !signatureState.isEmpty(),
-                modifier = Modifier.weight(1f)
+                modifier = Modifier
+                    .weight(1f)
+                    .height(Size.buttonHeight)
+                    .clip(RoundedCornerShape(CornerRadius.md))
+                    .background(
+                        if (!signatureState.isEmpty())
+                            MaterialTheme.colorScheme.errorContainer
+                        else
+                            MaterialTheme.colorScheme.surfaceVariant
+                    )
             ) {
-                Text("Clear")
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        painter = painterResource(IconMapper.Actions.clear),
+                        contentDescription = Strings.actionClear(),
+                        tint = if (!signatureState.isEmpty())
+                            MaterialTheme.colorScheme.onErrorContainer
+                        else
+                            MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.size(Size.iconMD)
+                    )
+                    Text(
+                        text = Strings.actionClear(),
+                        color = if (!signatureState.isEmpty())
+                            MaterialTheme.colorScheme.onErrorContainer
+                        else
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
 
-            OutlinedButton(
+            // Undo Button
+            IconButton(
                 onClick = { signatureState.undo() },
                 enabled = signatureState.canUndo,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier
+                    .weight(1f)
+                    .height(Size.buttonHeight)
+                    .clip(RoundedCornerShape(CornerRadius.md))
+                    .background(
+                        if (signatureState.canUndo)
+                            MaterialTheme.colorScheme.primaryContainer
+                        else
+                            MaterialTheme.colorScheme.surfaceVariant
+                    )
             ) {
-                Text("Undo")
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        painter = painterResource(IconMapper.Actions.undo),
+                        contentDescription = Strings.actionUndo(),
+                        tint = if (signatureState.canUndo)
+                            MaterialTheme.colorScheme.onPrimaryContainer
+                        else
+                            MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.size(Size.iconMD)
+                    )
+                    Text(
+                        text = Strings.actionUndo(),
+                        color = if (signatureState.canUndo)
+                            MaterialTheme.colorScheme.onPrimaryContainer
+                        else
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
         }
 
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant
-            )
+        // Customization Options
+        GradientCard(
+            gradient = Gradients.Sample.customStyleSubtle,
+            elevation = Elevation.sm
         ) {
             Column(
-                modifier = Modifier.padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                verticalArrangement = Arrangement.spacedBy(Spacing.md)
             ) {
-                Text(
-                    text = "Stroke Color",
-                    style = MaterialTheme.typography.titleSmall
-                )
+                // Stroke Color
+                SmallSectionHeader(title = Strings.strokeColor())
 
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     StrokeColorOption.entries.forEach { option ->
                         FilterChip(
                             selected = selectedStrokeColor == option,
                             onClick = { selectedStrokeColor = option },
-                            label = { Text(option.displayName, style = MaterialTheme.typography.labelSmall) }
+                            label = {
+                                Text(
+                                    option.displayName,
+                                    style = MaterialTheme.typography.labelSmall
+                                )
+                            }
                         )
                     }
                 }
 
+                Spacer(modifier = Modifier.height(Spacing.xs))
+
+                // Stroke Width
                 Text(
-                    text = "Stroke Width: ${strokeWidth.toInt()} dp",
-                    style = MaterialTheme.typography.titleSmall
+                    text = Strings.strokeWidthValue(strokeWidth.toInt()),
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
 
                 Slider(
@@ -161,27 +246,36 @@ fun CustomStyleSample(modifier: Modifier = Modifier) {
                     steps = 8
                 )
 
-                Text(
-                    text = "Background Color",
-                    style = MaterialTheme.typography.titleSmall
-                )
+                Spacer(modifier = Modifier.height(Spacing.xs))
+
+                // Background Color
+                SmallSectionHeader(title = Strings.backgroundColor())
 
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     BackgroundOption.entries.forEach { option ->
                         FilterChip(
                             selected = selectedBackground == option,
                             onClick = { selectedBackground = option },
-                            label = { Text(option.displayName, style = MaterialTheme.typography.labelSmall) }
+                            label = {
+                                Text(
+                                    option.displayName,
+                                    style = MaterialTheme.typography.labelSmall
+                                )
+                            }
                         )
                     }
                 }
 
+                Spacer(modifier = Modifier.height(Spacing.xs))
+
+                // Corner Radius
                 Text(
-                    text = "Corner Radius: ${cornerRadius.toInt()} dp",
-                    style = MaterialTheme.typography.titleSmall
+                    text = Strings.cornerRadiusValue(cornerRadius.toInt()),
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
 
                 Slider(
@@ -193,8 +287,9 @@ fun CustomStyleSample(modifier: Modifier = Modifier) {
             }
         }
 
+        // Preview
         SignaturePreviewCard(
-            title = "Preview",
+            title = Strings.preview(),
             bitmap = capturedSignature
         )
     }
