@@ -1,3 +1,24 @@
+/**
+ * Copyright 2026 Sk Niyaj Ali
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package com.niyajali.compose.sign.sample
 
 import androidx.compose.foundation.background
@@ -52,7 +73,7 @@ enum class GridColorOption(val color: Color, val displayName: String) {
     GRAY(Color.Gray.copy(alpha = 0.3f), "Gray"),
     BLUE(Color.Blue.copy(alpha = 0.2f), "Blue"),
     GREEN(Color.Green.copy(alpha = 0.2f), "Green"),
-    RED(Color.Red.copy(alpha = 0.2f), "Red")
+    RED(Color.Red.copy(alpha = 0.2f), "Red"),
 }
 
 @Composable
@@ -67,7 +88,7 @@ fun GridEnabledSample(modifier: Modifier = Modifier) {
     val config = SignatureConfig(
         showGrid = showGrid,
         gridColor = selectedGridColor.color,
-        gridSpacing = gridSpacing.dp
+        gridSpacing = gridSpacing.dp,
     )
 
     Column(
@@ -76,25 +97,25 @@ fun GridEnabledSample(modifier: Modifier = Modifier) {
             .verticalScroll(rememberScrollState())
             .background(Gradients.Sample.gridSubtle)
             .padding(Spacing.md),
-        verticalArrangement = Arrangement.spacedBy(Spacing.md)
+        verticalArrangement = Arrangement.spacedBy(Spacing.md),
     ) {
         // Header with icon
         SectionHeader(
             title = Strings.gridTitle(),
-            icon = IconMapper.getScreenIcon(SampleScreen.WITH_GRID)
+            icon = IconMapper.getScreenIcon(SampleScreen.WITH_GRID),
         )
 
         // Description
         Text(
             text = Strings.gridDescription(),
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
 
         // Signature Pad
         GradientCard(
             gradient = Gradients.Sample.gridSubtle,
-            elevation = Elevation.md
+            elevation = Elevation.md,
         ) {
             ComposeSign(
                 onSignatureUpdate = { bitmap ->
@@ -104,14 +125,14 @@ fun GridEnabledSample(modifier: Modifier = Modifier) {
                 state = signatureState,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(Size.signaturePadHeight)
+                    .height(Size.signaturePadHeight),
             )
         }
 
         // Action Buttons
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(Spacing.sm)
+            horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
         ) {
             // Clear Button
             IconButton(
@@ -122,31 +143,34 @@ fun GridEnabledSample(modifier: Modifier = Modifier) {
                     .height(Size.buttonHeight)
                     .clip(RoundedCornerShape(CornerRadius.md))
                     .background(
-                        if (!signatureState.isEmpty())
+                        if (!signatureState.isEmpty()) {
                             MaterialTheme.colorScheme.errorContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.surfaceVariant
-                    )
+                        },
+                    ),
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         painter = painterResource(IconMapper.Actions.clear),
                         contentDescription = Strings.actionClear(),
-                        tint = if (!signatureState.isEmpty())
+                        tint = if (!signatureState.isEmpty()) {
                             MaterialTheme.colorScheme.onErrorContainer
-                        else
-                            MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.size(Size.iconMD)
+                        } else {
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                        },
+                        modifier = Modifier.size(Size.iconMD),
                     )
                     Text(
                         text = Strings.actionClear(),
-                        color = if (!signatureState.isEmpty())
+                        color = if (!signatureState.isEmpty()) {
                             MaterialTheme.colorScheme.onErrorContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.onSurfaceVariant
+                        },
                     )
                 }
             }
@@ -160,31 +184,34 @@ fun GridEnabledSample(modifier: Modifier = Modifier) {
                     .height(Size.buttonHeight)
                     .clip(RoundedCornerShape(CornerRadius.md))
                     .background(
-                        if (signatureState.canUndo)
+                        if (signatureState.canUndo) {
                             MaterialTheme.colorScheme.primaryContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.surfaceVariant
-                    )
+                        },
+                    ),
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         painter = painterResource(IconMapper.Actions.undo),
                         contentDescription = Strings.actionUndo(),
-                        tint = if (signatureState.canUndo)
+                        tint = if (signatureState.canUndo) {
                             MaterialTheme.colorScheme.onPrimaryContainer
-                        else
-                            MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.size(Size.iconMD)
+                        } else {
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                        },
+                        modifier = Modifier.size(Size.iconMD),
                     )
                     Text(
                         text = Strings.actionUndo(),
-                        color = if (signatureState.canUndo)
+                        color = if (signatureState.canUndo) {
                             MaterialTheme.colorScheme.onPrimaryContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.onSurfaceVariant
+                        },
                     )
                 }
             }
@@ -193,30 +220,30 @@ fun GridEnabledSample(modifier: Modifier = Modifier) {
         // Grid Settings
         GradientCard(
             gradient = Gradients.Sample.gridSubtle,
-            elevation = Elevation.sm
+            elevation = Elevation.sm,
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(Spacing.md)
+                verticalArrangement = Arrangement.spacedBy(Spacing.md),
             ) {
                 SmallSectionHeader(
                     title = Strings.gridSettings(),
-                    icon = IconMapper.getScreenIcon(SampleScreen.WITH_GRID)
+                    icon = IconMapper.getScreenIcon(SampleScreen.WITH_GRID),
                 )
 
                 // Show Grid Toggle
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
                         text = Strings.showGrid(),
                         style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.onSurface,
                     )
                     Switch(
                         checked = showGrid,
-                        onCheckedChange = { showGrid = it }
+                        onCheckedChange = { showGrid = it },
                     )
                 }
 
@@ -228,7 +255,7 @@ fun GridEnabledSample(modifier: Modifier = Modifier) {
 
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
                         GridColorOption.entries.forEach { option ->
                             FilterChip(
@@ -237,9 +264,9 @@ fun GridEnabledSample(modifier: Modifier = Modifier) {
                                 label = {
                                     Text(
                                         option.displayName,
-                                        style = MaterialTheme.typography.labelSmall
+                                        style = MaterialTheme.typography.labelSmall,
                                     )
-                                }
+                                },
                             )
                         }
                     }
@@ -250,14 +277,14 @@ fun GridEnabledSample(modifier: Modifier = Modifier) {
                     Text(
                         text = Strings.gridSpacingValue(gridSpacing.toInt()),
                         style = MaterialTheme.typography.titleSmall,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.onSurface,
                     )
 
                     Slider(
                         value = gridSpacing,
                         onValueChange = { gridSpacing = it },
                         valueRange = 10f..50f,
-                        steps = 39
+                        steps = 39,
                     )
                 }
             }
@@ -266,7 +293,7 @@ fun GridEnabledSample(modifier: Modifier = Modifier) {
         // Preview
         SignaturePreviewCard(
             title = Strings.preview(),
-            bitmap = capturedSignature
+            bitmap = capturedSignature,
         )
     }
 }

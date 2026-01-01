@@ -1,3 +1,24 @@
+/**
+ * Copyright 2026 Sk Niyaj Ali
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package com.niyajali.compose.sign.sample.screens.home
 
 import androidx.compose.animation.core.animateFloatAsState
@@ -17,8 +38,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -61,7 +80,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun HomeScreen(
     onNavigate: (SampleScreen) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var isVisible by remember { mutableStateOf(false) }
 
@@ -73,13 +92,13 @@ fun HomeScreen(
     val alpha by animateFloatAsState(
         targetValue = if (isVisible) 1f else 0f,
         animationSpec = tween(600),
-        label = "home_fade_in"
+        label = "home_fade_in",
     )
 
     Column(
         modifier = modifier
             .fillMaxSize()
-            .alpha(alpha)
+            .alpha(alpha),
     ) {
         // Sample Cards Grid
         SampleCardsSection(onNavigate = onNavigate)
@@ -96,11 +115,11 @@ private fun HeroSection() {
             .fillMaxWidth()
             .background(Gradients.primaryDiagonal)
             .padding(Spacing.xl),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(Spacing.md)
+            verticalArrangement = Arrangement.spacedBy(Spacing.md),
         ) {
             // App Logo
             AnimatedIcon(
@@ -108,7 +127,7 @@ private fun HeroSection() {
                 contentDescription = Strings.cdAppLogo(),
                 size = Size.iconXXL,
                 tint = MaterialTheme.colorScheme.onPrimary,
-                animationType = IconAnimation.Bounce
+                animationType = IconAnimation.Bounce,
             )
 
             // Welcome Title
@@ -116,7 +135,7 @@ private fun HeroSection() {
                 text = Strings.appWelcomeTitle(),
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onPrimary
+                color = MaterialTheme.colorScheme.onPrimary,
             )
 
             // Subtitle
@@ -124,7 +143,7 @@ private fun HeroSection() {
                 text = Strings.appWelcomeSubtitle(),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.9f),
-                modifier = Modifier.padding(horizontal = Spacing.md)
+                modifier = Modifier.padding(horizontal = Spacing.md),
             )
         }
     }
@@ -137,7 +156,7 @@ private fun HeroSection() {
 private fun SampleCardsSection(onNavigate: (SampleScreen) -> Unit) {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         // Sample cards in grid
         val samples = getSampleScreens()
@@ -146,7 +165,7 @@ private fun SampleCardsSection(onNavigate: (SampleScreen) -> Unit) {
             columns = GridCells.Adaptive(160.dp),
             contentPadding = PaddingValues(16.dp),
             horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
-            verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+            verticalArrangement = Arrangement.spacedBy(Spacing.sm),
         ) {
             items(samples) { sampleData ->
                 var cardVisible by remember { mutableStateOf(false) }
@@ -159,7 +178,7 @@ private fun SampleCardsSection(onNavigate: (SampleScreen) -> Unit) {
                 val cardAlpha by animateFloatAsState(
                     targetValue = if (cardVisible) 1f else 0f,
                     animationSpec = tween(400),
-                    label = "card_fade"
+                    label = "card_fade",
                 )
 
                 Box(modifier = Modifier.alpha(cardAlpha)) {
@@ -168,7 +187,7 @@ private fun SampleCardsSection(onNavigate: (SampleScreen) -> Unit) {
                         description = sampleData.description,
                         icon = IconMapper.getScreenIcon(sampleData.screen),
                         gradient = IconMapper.getScreenGradientSubtle(sampleData.screen),
-                        onClick = { onNavigate(sampleData.screen) }
+                        onClick = { onNavigate(sampleData.screen) },
                     )
                 }
             }
@@ -192,12 +211,12 @@ private fun FeaturesSection() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(Spacing.md)
+            .padding(Spacing.md),
     ) {
         // Section Header with icon
         SectionHeader(
             title = Strings.libraryFeatures(),
-            icon = IconMapper.Icons.star
+            icon = IconMapper.Icons.star,
         )
 
         Spacer(modifier = Modifier.height(Spacing.sm))
@@ -217,7 +236,7 @@ private fun FeaturesSection() {
                 val featureAlpha by animateFloatAsState(
                     targetValue = if (featureVisible) 1f else 0f,
                     animationSpec = tween(300),
-                    label = "feature_fade"
+                    label = "feature_fade",
                 )
 
                 Row(
@@ -225,18 +244,18 @@ private fun FeaturesSection() {
                         .fillMaxWidth()
                         .alpha(featureAlpha),
                     horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         painter = painterResource(IconMapper.Icons.check),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(20.dp),
                     )
                     Text(
                         text = feature,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.onSurface,
                     )
                 }
             }
@@ -251,7 +270,7 @@ private data class SampleData(
     val screen: SampleScreen,
     val title: String,
     val description: String,
-    val delay: Long = 0L
+    val delay: Long = 0L,
 )
 
 /**
@@ -264,50 +283,50 @@ private fun getSampleScreens(): List<SampleData> {
             screen = SampleScreen.BASIC,
             title = Strings.sampleBasic(),
             description = Strings.sampleBasicDesc(),
-            delay = 0L
+            delay = 0L,
         ),
         SampleData(
             screen = SampleScreen.CUSTOM_STYLE,
             title = Strings.sampleCustomStyle(),
             description = Strings.sampleCustomStyleDesc(),
-            delay = AnimationDelays.STAGGER_SHORT
+            delay = AnimationDelays.STAGGER_SHORT,
         ),
         SampleData(
             screen = SampleScreen.WITH_GRID,
             title = Strings.sampleGrid(),
             description = Strings.sampleGridDesc(),
-            delay = AnimationDelays.STAGGER_SHORT * 2
+            delay = AnimationDelays.STAGGER_SHORT * 2,
         ),
         SampleData(
             screen = SampleScreen.WITH_ACTIONS,
             title = Strings.sampleActions(),
             description = Strings.sampleActionsDesc(),
-            delay = AnimationDelays.STAGGER_SHORT * 3
+            delay = AnimationDelays.STAGGER_SHORT * 3,
         ),
         SampleData(
             screen = SampleScreen.EXPORT,
             title = Strings.sampleExport(),
             description = Strings.sampleExportDesc(),
-            delay = AnimationDelays.STAGGER_SHORT * 4
+            delay = AnimationDelays.STAGGER_SHORT * 4,
         ),
         SampleData(
             screen = SampleScreen.VALIDATION,
             title = Strings.sampleValidation(),
             description = Strings.sampleValidationDesc(),
-            delay = AnimationDelays.STAGGER_SHORT * 5
+            delay = AnimationDelays.STAGGER_SHORT * 5,
         ),
         SampleData(
             screen = SampleScreen.DARK_THEME,
             title = Strings.sampleDark(),
             description = Strings.sampleDarkDesc(),
-            delay = AnimationDelays.STAGGER_SHORT * 6
+            delay = AnimationDelays.STAGGER_SHORT * 6,
         ),
         SampleData(
             screen = SampleScreen.FULLSCREEN,
             title = Strings.sampleFullscreen(),
             description = Strings.sampleFullscreenDesc(),
-            delay = AnimationDelays.STAGGER_SHORT * 7
-        )
+            delay = AnimationDelays.STAGGER_SHORT * 7,
+        ),
     )
 }
 
@@ -326,6 +345,6 @@ private fun getFeatureList(): List<String> {
         Strings.featureValidation(),
         Strings.featureDarkTheme(),
         Strings.featureFullscreen(),
-        Strings.featurePersistence()
+        Strings.featurePersistence(),
     )
 }

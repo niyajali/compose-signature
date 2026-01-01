@@ -1,3 +1,24 @@
+/**
+ * Copyright 2026 Sk Niyaj Ali
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package com.niyajali.compose.sign.sample.components.animations
 
 import androidx.compose.animation.core.FastOutLinearInEasing
@@ -33,35 +54,35 @@ object AnimationSpecs {
     // Fast out slow in - Good for standard UI transitions
     val fastOutSlowIn = tween<Float>(
         durationMillis = AnimationDurations.NORMAL,
-        easing = FastOutSlowInEasing
+        easing = FastOutSlowInEasing,
     )
 
     // Fast out linear in - Good for exit animations
     val fastOutLinearIn = tween<Float>(
         durationMillis = AnimationDurations.FAST,
-        easing = FastOutLinearInEasing
+        easing = FastOutLinearInEasing,
     )
 
     // Spring animation - Good for bouncy, organic feel
     val bounce = spring<Float>(
         dampingRatio = Spring.DampingRatioMediumBouncy,
-        stiffness = Spring.StiffnessLow
+        stiffness = Spring.StiffnessLow,
     )
 
     val mediumBounce = spring<Float>(
         dampingRatio = Spring.DampingRatioMediumBouncy,
-        stiffness = Spring.StiffnessMedium
+        stiffness = Spring.StiffnessMedium,
     )
 
     val lowBounce = spring<Float>(
         dampingRatio = Spring.DampingRatioLowBouncy,
-        stiffness = Spring.StiffnessLow
+        stiffness = Spring.StiffnessLow,
     )
 
     // Standard spring - Good for most interactive elements
     val spring = spring<Float>(
         dampingRatio = Spring.DampingRatioNoBouncy,
-        stiffness = Spring.StiffnessMedium
+        stiffness = Spring.StiffnessMedium,
     )
 }
 
@@ -69,10 +90,10 @@ object AnimationSpecs {
  * Icon animation types
  */
 enum class IconAnimation {
-    None,       // No animation
-    Scale,      // Scale from 0.8 to 1.0
-    Rotation,   // Rotate from -15° to 0°
-    Fade,       // Fade from 0.0 to 1.0
-    Bounce,     // Bouncy scale animation
-    Pulse       // Continuous pulsing animation
+    None, // No animation
+    Scale, // Scale from 0.8 to 1.0
+    Rotation, // Rotate from -15° to 0°
+    Fade, // Fade from 0.0 to 1.0
+    Bounce, // Bouncy scale animation
+    Pulse, // Continuous pulsing animation
 }

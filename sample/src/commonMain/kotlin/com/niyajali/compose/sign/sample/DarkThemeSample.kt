@@ -1,3 +1,24 @@
+/**
+ * Copyright 2026 Sk Niyaj Ali
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package com.niyajali.compose.sign.sample
 
 import androidx.compose.foundation.background
@@ -49,7 +70,7 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
     var capturedSignature by remember { mutableStateOf<ImageBitmap?>(null) }
 
     val darkConfig = SignatureConfig(
-        showGrid = true
+        showGrid = true,
     ).asDarkTheme()
 
     Column(
@@ -58,7 +79,7 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
             .background(Color(0xFF121212))
             .verticalScroll(rememberScrollState())
             .padding(Spacing.md),
-        verticalArrangement = Arrangement.spacedBy(Spacing.md)
+        verticalArrangement = Arrangement.spacedBy(Spacing.md),
     ) {
         // Header with icon
         Row(
@@ -66,19 +87,19 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .padding(vertical = Spacing.sm),
             horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
                 painter = painterResource(IconMapper.getScreenIcon(SampleScreen.DARK_THEME)),
                 contentDescription = Strings.darkTitle(),
                 tint = Color(0xFFA855F7),
-                modifier = Modifier.size(Size.iconLG)
+                modifier = Modifier.size(Size.iconLG),
             )
             Spacer(modifier = Modifier.width(Spacing.sm))
             Text(
                 text = Strings.darkTitle(),
                 style = MaterialTheme.typography.titleLarge,
-                color = Color.White
+                color = Color.White,
             )
         }
 
@@ -86,14 +107,14 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
         Text(
             text = Strings.darkDescription(),
             style = MaterialTheme.typography.bodyMedium,
-            color = Color.White.copy(alpha = 0.7f)
+            color = Color.White.copy(alpha = 0.7f),
         )
 
         // Signature Pad
         GradientCard(
             gradient = Gradients.Sample.darkThemeSubtle,
             backgroundColor = Color(0xFF1E1E1E),
-            elevation = Elevation.lg
+            elevation = Elevation.lg,
         ) {
             ComposeSign(
                 onSignatureUpdate = { bitmap ->
@@ -103,14 +124,14 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
                 state = signatureState,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(Size.signaturePadHeight)
+                    .height(Size.signaturePadHeight),
             )
         }
 
         // Action Buttons
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(Spacing.sm)
+            horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
         ) {
             // Clear Button
             IconButton(
@@ -121,31 +142,34 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
                     .height(Size.buttonHeight)
                     .clip(RoundedCornerShape(CornerRadius.md))
                     .background(
-                        if (!signatureState.isEmpty())
+                        if (!signatureState.isEmpty()) {
                             Color(0xFF7F1D1D)
-                        else
+                        } else {
                             Color(0xFF2D2D2D)
-                    )
+                        },
+                    ),
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         painter = painterResource(IconMapper.Actions.clear),
                         contentDescription = Strings.actionClear(),
-                        tint = if (!signatureState.isEmpty())
+                        tint = if (!signatureState.isEmpty()) {
                             Color(0xFFFEE2E2)
-                        else
-                            Color(0xFF9CA3AF),
-                        modifier = Modifier.size(Size.iconMD)
+                        } else {
+                            Color(0xFF9CA3AF)
+                        },
+                        modifier = Modifier.size(Size.iconMD),
                     )
                     Text(
                         text = Strings.actionClear(),
-                        color = if (!signatureState.isEmpty())
+                        color = if (!signatureState.isEmpty()) {
                             Color(0xFFFEE2E2)
-                        else
+                        } else {
                             Color(0xFF9CA3AF)
+                        },
                     )
                 }
             }
@@ -159,31 +183,34 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
                     .height(Size.buttonHeight)
                     .clip(RoundedCornerShape(CornerRadius.md))
                     .background(
-                        if (signatureState.canUndo)
+                        if (signatureState.canUndo) {
                             Color(0xFF312E81)
-                        else
+                        } else {
                             Color(0xFF2D2D2D)
-                    )
+                        },
+                    ),
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         painter = painterResource(IconMapper.Actions.undo),
                         contentDescription = Strings.actionUndo(),
-                        tint = if (signatureState.canUndo)
+                        tint = if (signatureState.canUndo) {
                             Color(0xFFEEF2FF)
-                        else
-                            Color(0xFF9CA3AF),
-                        modifier = Modifier.size(Size.iconMD)
+                        } else {
+                            Color(0xFF9CA3AF)
+                        },
+                        modifier = Modifier.size(Size.iconMD),
                     )
                     Text(
                         text = Strings.actionUndo(),
-                        color = if (signatureState.canUndo)
+                        color = if (signatureState.canUndo) {
                             Color(0xFFEEF2FF)
-                        else
+                        } else {
                             Color(0xFF9CA3AF)
+                        },
                     )
                 }
             }
@@ -192,25 +219,25 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
         // Dark Theme Configuration Info
         GradientCard(
             backgroundColor = Color(0xFF1E1E1E),
-            elevation = Elevation.md
+            elevation = Elevation.md,
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+                verticalArrangement = Arrangement.spacedBy(Spacing.sm),
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         painter = painterResource(IconMapper.getScreenIcon(SampleScreen.DARK_THEME)),
                         contentDescription = null,
                         tint = Color(0xFFA855F7),
-                        modifier = Modifier.size(Size.iconMD)
+                        modifier = Modifier.size(Size.iconMD),
                     )
                     Text(
                         text = Strings.darkConfig(),
                         style = MaterialTheme.typography.titleMedium,
-                        color = Color.White
+                        color = Color.White,
                     )
                 }
 
@@ -221,7 +248,7 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
                 Text(
                     text = Strings.usageDescription(),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color.White.copy(alpha = 0.7f)
+                    color = Color.White.copy(alpha = 0.7f),
                 )
             }
         }
@@ -229,15 +256,15 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
         // Signature Info
         GradientCard(
             backgroundColor = Color(0xFF2D2D2D),
-            elevation = Elevation.sm
+            elevation = Elevation.sm,
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(Spacing.xs)
+                verticalArrangement = Arrangement.spacedBy(Spacing.xs),
             ) {
                 Text(
                     text = Strings.signatureInfo(),
                     style = MaterialTheme.typography.titleMedium,
-                    color = Color.White
+                    color = Color.White,
                 )
 
                 Spacer(modifier = Modifier.height(Spacing.xxs))
@@ -249,7 +276,7 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
                 capturedSignature?.let { bitmap ->
                     DarkThemeInfoRow(
                         Strings.bitmapSize(),
-                        "${bitmap.width} × ${bitmap.height} px"
+                        "${bitmap.width} × ${bitmap.height} px",
                     )
                 }
             }
@@ -258,33 +285,33 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
         // Config Details
         GradientCard(
             backgroundColor = Color(0xFF263238),
-            elevation = Elevation.sm
+            elevation = Elevation.sm,
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+                verticalArrangement = Arrangement.spacedBy(Spacing.sm),
             ) {
                 Text(
                     text = "Configuration",
                     style = MaterialTheme.typography.titleMedium,
-                    color = Color(0xFF81C784)
+                    color = Color(0xFF81C784),
                 )
 
                 Text(
                     text = "Stroke Color: ${Strings.white30Opacity()}",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color.White.copy(alpha = 0.8f)
+                    color = Color.White.copy(alpha = 0.8f),
                 )
 
                 Text(
                     text = "Background: Dark (#1E1E1E)",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color.White.copy(alpha = 0.8f)
+                    color = Color.White.copy(alpha = 0.8f),
                 )
 
                 Text(
                     text = "Grid Color: White (10% opacity)",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color.White.copy(alpha = 0.8f)
+                    color = Color.White.copy(alpha = 0.8f),
                 )
             }
         }
@@ -295,22 +322,22 @@ fun DarkThemeSample(modifier: Modifier = Modifier) {
 private fun DarkThemeInfoRow(
     label: String,
     value: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = label,
             style = MaterialTheme.typography.bodyMedium,
-            color = Color.White.copy(alpha = 0.6f)
+            color = Color.White.copy(alpha = 0.6f),
         )
         Text(
             text = value,
             style = MaterialTheme.typography.bodyMedium,
-            color = Color.White
+            color = Color.White,
         )
     }
 }

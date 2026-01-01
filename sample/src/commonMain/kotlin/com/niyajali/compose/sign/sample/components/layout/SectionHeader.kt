@@ -1,3 +1,24 @@
+/**
+ * Copyright 2026 Sk Niyaj Ali
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package com.niyajali.compose.sign.sample.components.layout
 
 import androidx.compose.foundation.layout.Arrangement
@@ -31,14 +52,14 @@ fun SectionHeader(
     title: String,
     modifier: Modifier = Modifier,
     icon: DrawableResource? = null,
-    subtitle: String? = null
+    subtitle: String? = null,
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .padding(vertical = Spacing.sm),
         horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         // Icon if provided
         if (icon != null) {
@@ -47,7 +68,7 @@ fun SectionHeader(
                 contentDescription = title,
                 size = Size.iconLG,
                 tint = MaterialTheme.colorScheme.primary,
-                animationType = IconAnimation.Scale
+                animationType = IconAnimation.Scale,
             )
             Spacer(modifier = Modifier.width(Spacing.sm))
         }
@@ -57,18 +78,18 @@ fun SectionHeader(
             Row(
                 modifier = Modifier.weight(1f),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(Spacing.xs)
+                horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
             ) {
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
                 Text(
                     text = subtitle,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         } else {
@@ -76,7 +97,7 @@ fun SectionHeader(
                 text = title,
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.SemiBold,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
         }
     }
@@ -93,14 +114,14 @@ fun SectionHeader(
 fun SmallSectionHeader(
     title: String,
     modifier: Modifier = Modifier,
-    icon: DrawableResource? = null
+    icon: DrawableResource? = null,
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .padding(vertical = Spacing.xs),
         horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         // Icon if provided
         if (icon != null) {
@@ -109,7 +130,7 @@ fun SmallSectionHeader(
                 contentDescription = title,
                 size = Size.iconMD,
                 tint = MaterialTheme.colorScheme.primary,
-                animationType = IconAnimation.Scale
+                animationType = IconAnimation.Scale,
             )
             Spacer(modifier = Modifier.width(Spacing.xs))
         }
@@ -118,7 +139,7 @@ fun SmallSectionHeader(
             text = title,
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Medium,
-            color = MaterialTheme.colorScheme.onSurface
+            color = MaterialTheme.colorScheme.onSurface,
         )
     }
 }

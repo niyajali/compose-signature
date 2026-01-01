@@ -1,3 +1,24 @@
+/**
+ * Copyright 2026 Sk Niyaj Ali
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package com.niyajali.compose.sign.sample
 
 import androidx.compose.foundation.background
@@ -69,7 +90,7 @@ fun ValidationSample(modifier: Modifier = Modifier) {
             signatureState.isValid(
                 minPaths = minPaths,
                 minLength = minLength,
-                minComplexity = minComplexity
+                minComplexity = minComplexity,
             )
         }
     }
@@ -87,25 +108,25 @@ fun ValidationSample(modifier: Modifier = Modifier) {
             .verticalScroll(rememberScrollState())
             .background(Gradients.Sample.validationSubtle)
             .padding(Spacing.md),
-        verticalArrangement = Arrangement.spacedBy(Spacing.md)
+        verticalArrangement = Arrangement.spacedBy(Spacing.md),
     ) {
         // Header with icon
         SectionHeader(
             title = Strings.validationTitle(),
-            icon = IconMapper.getScreenIcon(SampleScreen.VALIDATION)
+            icon = IconMapper.getScreenIcon(SampleScreen.VALIDATION),
         )
 
         // Description
         Text(
             text = Strings.validationDescription(),
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
 
         // Signature Pad
         GradientCard(
             gradient = Gradients.Sample.validationSubtle,
-            elevation = Elevation.md
+            elevation = Elevation.md,
         ) {
             ComposeSign(
                 onSignatureUpdate = { bitmap ->
@@ -114,14 +135,14 @@ fun ValidationSample(modifier: Modifier = Modifier) {
                 state = signatureState,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(Size.signaturePadHeight)
+                    .height(Size.signaturePadHeight),
             )
         }
 
         // Action Buttons
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(Spacing.sm)
+            horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
         ) {
             // Clear Button
             IconButton(
@@ -132,31 +153,34 @@ fun ValidationSample(modifier: Modifier = Modifier) {
                     .height(Size.buttonHeight)
                     .clip(RoundedCornerShape(CornerRadius.md))
                     .background(
-                        if (!signatureState.isEmpty())
+                        if (!signatureState.isEmpty()) {
                             MaterialTheme.colorScheme.errorContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.surfaceVariant
-                    )
+                        },
+                    ),
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         painter = painterResource(IconMapper.Actions.clear),
                         contentDescription = Strings.actionClear(),
-                        tint = if (!signatureState.isEmpty())
+                        tint = if (!signatureState.isEmpty()) {
                             MaterialTheme.colorScheme.onErrorContainer
-                        else
-                            MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.size(Size.iconMD)
+                        } else {
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                        },
+                        modifier = Modifier.size(Size.iconMD),
                     )
                     Text(
                         text = Strings.actionClear(),
-                        color = if (!signatureState.isEmpty())
+                        color = if (!signatureState.isEmpty()) {
                             MaterialTheme.colorScheme.onErrorContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.onSurfaceVariant
+                        },
                     )
                 }
             }
@@ -170,31 +194,34 @@ fun ValidationSample(modifier: Modifier = Modifier) {
                     .height(Size.buttonHeight)
                     .clip(RoundedCornerShape(CornerRadius.md))
                     .background(
-                        if (signatureState.canUndo)
+                        if (signatureState.canUndo) {
                             MaterialTheme.colorScheme.primaryContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.surfaceVariant
-                    )
+                        },
+                    ),
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         painter = painterResource(IconMapper.Actions.undo),
                         contentDescription = Strings.actionUndo(),
-                        tint = if (signatureState.canUndo)
+                        tint = if (signatureState.canUndo) {
                             MaterialTheme.colorScheme.onPrimaryContainer
-                        else
-                            MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.size(Size.iconMD)
+                        } else {
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                        },
+                        modifier = Modifier.size(Size.iconMD),
                     )
                     Text(
                         text = Strings.actionUndo(),
-                        color = if (signatureState.canUndo)
+                        color = if (signatureState.canUndo) {
                             MaterialTheme.colorScheme.onPrimaryContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.onSurfaceVariant
+                        },
                     )
                 }
             }
@@ -203,41 +230,44 @@ fun ValidationSample(modifier: Modifier = Modifier) {
         // Validation Status
         GradientCard(
             gradient = if (isValidSignature) Gradients.success else Gradients.error,
-            elevation = Elevation.md
+            elevation = Elevation.md,
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
                     painter = painterResource(
-                        if (isValidSignature) IconMapper.Icons.check else IconMapper.Icons.block
+                        if (isValidSignature) IconMapper.Icons.check else IconMapper.Icons.block,
                     ),
                     contentDescription = null,
-                    tint = if (isValidSignature)
+                    tint = if (isValidSignature) {
                         MaterialTheme.colorScheme.onTertiaryContainer
-                    else
-                        MaterialTheme.colorScheme.onErrorContainer,
-                    modifier = Modifier.size(Size.iconLG)
+                    } else {
+                        MaterialTheme.colorScheme.onErrorContainer
+                    },
+                    modifier = Modifier.size(Size.iconLG),
                 )
 
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = Strings.validationStatus(),
                         style = MaterialTheme.typography.titleMedium,
-                        color = if (isValidSignature)
+                        color = if (isValidSignature) {
                             MaterialTheme.colorScheme.onTertiaryContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.onErrorContainer
+                        },
                     )
                     Text(
                         text = if (isValidSignature) Strings.statusValid() else Strings.statusInvalid(),
                         style = MaterialTheme.typography.bodyLarge,
-                        color = if (isValidSignature)
+                        color = if (isValidSignature) {
                             MaterialTheme.colorScheme.onTertiaryContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.onErrorContainer
+                        },
                     )
                 }
             }
@@ -246,15 +276,15 @@ fun ValidationSample(modifier: Modifier = Modifier) {
         // Requirements
         GradientCard(
             gradient = Gradients.Sample.validationSubtle,
-            elevation = Elevation.sm
+            elevation = Elevation.sm,
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+                verticalArrangement = Arrangement.spacedBy(Spacing.sm),
             ) {
                 Text(
                     text = Strings.validationRequirements(minPaths, minLength.toInt(), minComplexity),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
@@ -262,25 +292,25 @@ fun ValidationSample(modifier: Modifier = Modifier) {
         // Signature Metrics
         GradientCard(
             gradient = Gradients.Sample.validationSubtle,
-            elevation = Elevation.sm
+            elevation = Elevation.sm,
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(Spacing.md)
+                verticalArrangement = Arrangement.spacedBy(Spacing.md),
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         painter = painterResource(IconMapper.getScreenIcon(SampleScreen.VALIDATION)),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.size(Size.iconMD)
+                        modifier = Modifier.size(Size.iconMD),
                     )
                     Text(
                         text = Strings.signatureMetrics(),
                         style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.onSurface,
                     )
                 }
 
@@ -292,7 +322,7 @@ fun ValidationSample(modifier: Modifier = Modifier) {
                     value = metadata.pathCount.toString(),
                     requirement = minPaths,
                     currentValue = metadata.pathCount,
-                    isValid = metadata.pathCount >= minPaths
+                    isValid = metadata.pathCount >= minPaths,
                 )
 
                 // Total Length
@@ -301,7 +331,7 @@ fun ValidationSample(modifier: Modifier = Modifier) {
                     value = Strings.pixels(totalLength.toInt()),
                     requirement = minLength.toInt(),
                     currentValue = totalLength.toInt(),
-                    isValid = totalLength >= minLength
+                    isValid = totalLength >= minLength,
                 )
 
                 // Complexity Score
@@ -310,7 +340,7 @@ fun ValidationSample(modifier: Modifier = Modifier) {
                     value = complexityScore.toString(),
                     requirement = minComplexity,
                     currentValue = complexityScore,
-                    isValid = complexityScore >= minComplexity
+                    isValid = complexityScore >= minComplexity,
                 )
 
                 Spacer(modifier = Modifier.height(Spacing.xs))
@@ -319,7 +349,7 @@ fun ValidationSample(modifier: Modifier = Modifier) {
                 Text(
                     text = Strings.complexityProgress(),
                     style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
 
                 val progress = (complexityScore.toFloat() / minComplexity.toFloat()).coerceIn(0f, 1f)
@@ -337,13 +367,13 @@ fun ValidationSample(modifier: Modifier = Modifier) {
                         else -> MaterialTheme.colorScheme.error
                     },
                     trackColor = MaterialTheme.colorScheme.surfaceVariant,
-                    strokeCap = StrokeCap.Round
+                    strokeCap = StrokeCap.Round,
                 )
 
                 Text(
                     text = signatureState.getDescription(),
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
@@ -352,15 +382,15 @@ fun ValidationSample(modifier: Modifier = Modifier) {
         if (bounds != null) {
             GradientCard(
                 gradient = Gradients.cardPrimary,
-                elevation = Elevation.sm
+                elevation = Elevation.sm,
             ) {
                 Column(
-                    verticalArrangement = Arrangement.spacedBy(Spacing.xs)
+                    verticalArrangement = Arrangement.spacedBy(Spacing.xs),
                 ) {
                     Text(
                         text = Strings.signatureBounds(),
                         style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.onSurface,
                     )
 
                     Spacer(modifier = Modifier.height(Spacing.xxs))
@@ -384,48 +414,50 @@ private fun MetricRow(
     requirement: Int,
     currentValue: Int,
     isValid: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
                 painter = painterResource(
-                    if (isValid) IconMapper.Icons.check else IconMapper.Icons.block
+                    if (isValid) IconMapper.Icons.check else IconMapper.Icons.block,
                 ),
                 contentDescription = null,
-                tint = if (isValid)
+                tint = if (isValid) {
                     MaterialTheme.colorScheme.tertiary
-                else
-                    MaterialTheme.colorScheme.error,
-                modifier = Modifier.size(16.dp)
+                } else {
+                    MaterialTheme.colorScheme.error
+                },
+                modifier = Modifier.size(16.dp),
             )
             Column {
                 Text(
                     text = label,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
                 Text(
                     text = Strings.requirement("≥ $requirement"),
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
         Text(
             text = value,
             style = MaterialTheme.typography.titleMedium,
-            color = if (isValid)
+            color = if (isValid) {
                 MaterialTheme.colorScheme.tertiary
-            else
+            } else {
                 MaterialTheme.colorScheme.error
+            },
         )
     }
 }

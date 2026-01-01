@@ -1,3 +1,24 @@
+/**
+ * Copyright 2026 Sk Niyaj Ali
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package com.niyajali.compose.sign.sample
 
 import androidx.compose.foundation.Image
@@ -56,25 +77,25 @@ fun BasicSignatureSample(modifier: Modifier = Modifier) {
             .verticalScroll(rememberScrollState())
             .background(Gradients.Sample.basicSubtle)
             .padding(Spacing.md),
-        verticalArrangement = Arrangement.spacedBy(Spacing.md)
+        verticalArrangement = Arrangement.spacedBy(Spacing.md),
     ) {
         // Header with icon
         SectionHeader(
             title = Strings.basicTitle(),
-            icon = IconMapper.getScreenIcon(SampleScreen.BASIC)
+            icon = IconMapper.getScreenIcon(SampleScreen.BASIC),
         )
 
         // Description
         Text(
             text = Strings.basicDescription(),
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
 
         // Signature Pad Card
         GradientCard(
             gradient = Gradients.Sample.basicSubtle,
-            elevation = Elevation.md
+            elevation = Elevation.md,
         ) {
             ComposeSign(
                 onSignatureUpdate = { bitmap ->
@@ -83,14 +104,14 @@ fun BasicSignatureSample(modifier: Modifier = Modifier) {
                 state = signatureState,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(Size.signaturePadHeight)
+                    .height(Size.signaturePadHeight),
             )
         }
 
         // Action Buttons Row
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(Spacing.sm)
+            horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
         ) {
             // Clear Button
             IconButton(
@@ -101,31 +122,34 @@ fun BasicSignatureSample(modifier: Modifier = Modifier) {
                     .height(Size.buttonHeight)
                     .clip(RoundedCornerShape(CornerRadius.md))
                     .background(
-                        if (!signatureState.isEmpty())
+                        if (!signatureState.isEmpty()) {
                             MaterialTheme.colorScheme.errorContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.surfaceVariant
-                    )
+                        },
+                    ),
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         painter = painterResource(IconMapper.Actions.clear),
                         contentDescription = Strings.actionClear(),
-                        tint = if (!signatureState.isEmpty())
+                        tint = if (!signatureState.isEmpty()) {
                             MaterialTheme.colorScheme.onErrorContainer
-                        else
-                            MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.size(Size.iconMD)
+                        } else {
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                        },
+                        modifier = Modifier.size(Size.iconMD),
                     )
                     Text(
                         text = Strings.actionClear(),
-                        color = if (!signatureState.isEmpty())
+                        color = if (!signatureState.isEmpty()) {
                             MaterialTheme.colorScheme.onErrorContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.onSurfaceVariant
+                        },
                     )
                 }
             }
@@ -139,31 +163,34 @@ fun BasicSignatureSample(modifier: Modifier = Modifier) {
                     .height(Size.buttonHeight)
                     .clip(RoundedCornerShape(CornerRadius.md))
                     .background(
-                        if (signatureState.canUndo)
+                        if (signatureState.canUndo) {
                             MaterialTheme.colorScheme.primaryContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.surfaceVariant
-                    )
+                        },
+                    ),
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         painter = painterResource(IconMapper.Actions.undo),
                         contentDescription = Strings.actionUndo(),
-                        tint = if (signatureState.canUndo)
+                        tint = if (signatureState.canUndo) {
                             MaterialTheme.colorScheme.onPrimaryContainer
-                        else
-                            MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.size(Size.iconMD)
+                        } else {
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                        },
+                        modifier = Modifier.size(Size.iconMD),
                     )
                     Text(
                         text = Strings.actionUndo(),
-                        color = if (signatureState.canUndo)
+                        color = if (signatureState.canUndo) {
                             MaterialTheme.colorScheme.onPrimaryContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.onSurfaceVariant
+                        },
                     )
                 }
             }
@@ -177,31 +204,34 @@ fun BasicSignatureSample(modifier: Modifier = Modifier) {
                     .height(Size.buttonHeight)
                     .clip(RoundedCornerShape(CornerRadius.md))
                     .background(
-                        if (signatureState.canRedo)
+                        if (signatureState.canRedo) {
                             MaterialTheme.colorScheme.primaryContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.surfaceVariant
-                    )
+                        },
+                    ),
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         painter = painterResource(IconMapper.Actions.redo),
                         contentDescription = Strings.actionRedo(),
-                        tint = if (signatureState.canRedo)
+                        tint = if (signatureState.canRedo) {
                             MaterialTheme.colorScheme.onPrimaryContainer
-                        else
-                            MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.size(Size.iconMD)
+                        } else {
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                        },
+                        modifier = Modifier.size(Size.iconMD),
                     )
                     Text(
                         text = Strings.actionRedo(),
-                        color = if (signatureState.canRedo)
+                        color = if (signatureState.canRedo) {
                             MaterialTheme.colorScheme.onPrimaryContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.onSurfaceVariant
+                        },
                     )
                 }
             }
@@ -210,7 +240,7 @@ fun BasicSignatureSample(modifier: Modifier = Modifier) {
         // Preview Section
         SignaturePreviewCard(
             title = Strings.capturedSignature(),
-            bitmap = capturedSignature
+            bitmap = capturedSignature,
         )
 
         // Info Section
@@ -218,7 +248,7 @@ fun BasicSignatureSample(modifier: Modifier = Modifier) {
             pathCount = signatureState.paths.size,
             isEmpty = signatureState.isEmpty(),
             canUndo = signatureState.canUndo,
-            canRedo = signatureState.canRedo
+            canRedo = signatureState.canRedo,
         )
     }
 }
@@ -227,20 +257,20 @@ fun BasicSignatureSample(modifier: Modifier = Modifier) {
 fun SignaturePreviewCard(
     title: String,
     bitmap: ImageBitmap?,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     GradientCard(
         modifier = modifier,
         gradient = Gradients.cardPrimary,
-        elevation = Elevation.sm
+        elevation = Elevation.sm,
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+            verticalArrangement = Arrangement.spacedBy(Spacing.sm),
         ) {
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
 
             if (bitmap != null) {
@@ -253,21 +283,21 @@ fun SignaturePreviewCard(
                         .border(
                             width = 2.dp,
                             brush = Gradients.Sample.basic,
-                            shape = RoundedCornerShape(CornerRadius.md)
+                            shape = RoundedCornerShape(CornerRadius.md),
                         ),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     Image(
                         bitmap = bitmap,
                         contentDescription = Strings.cdSignaturePreview(),
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize(),
                     )
                 }
 
                 Text(
                     text = Strings.signatureSize(bitmap.width, bitmap.height),
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             } else {
                 Box(
@@ -279,14 +309,14 @@ fun SignaturePreviewCard(
                         .border(
                             width = 1.dp,
                             color = MaterialTheme.colorScheme.outline,
-                            shape = RoundedCornerShape(CornerRadius.md)
+                            shape = RoundedCornerShape(CornerRadius.md),
                         ),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     Text(
                         text = Strings.noSignatureYet(),
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                 }
             }
@@ -300,20 +330,20 @@ fun SignatureInfoCard(
     isEmpty: Boolean,
     canUndo: Boolean,
     canRedo: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     GradientCard(
         modifier = modifier,
         gradient = Gradients.Sample.basicSubtle,
-        elevation = Elevation.sm
+        elevation = Elevation.sm,
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(Spacing.xs)
+            verticalArrangement = Arrangement.spacedBy(Spacing.xs),
         ) {
             Text(
                 text = Strings.signatureState(),
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
 
             Spacer(modifier = Modifier.height(Spacing.xxs))
@@ -330,22 +360,22 @@ fun SignatureInfoCard(
 fun InfoRow(
     label: String,
     value: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = label,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Text(
             text = value,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurface
+            color = MaterialTheme.colorScheme.onSurface,
         )
     }
 }

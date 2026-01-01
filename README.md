@@ -5,36 +5,37 @@
 [![Kotlin](https://img.shields.io/badge/kotlin-multiplatform-orange.svg?logo=kotlin)](http://kotlinlang.org)
 [![Compose](https://img.shields.io/badge/Compose-Multiplatform-blue.svg?logo=jetpackcompose)](https://www.jetbrains.com/lp/compose-mpp/)
 
-A powerful and highly customizable **Compose Multiplatform signature library** that enables users to draw digital
-signatures with advanced features including undo/redo functionality, grid display, fullscreen mode, and comprehensive
-state management.
+A customizable Compose Multiplatform library for capturing digital signatures. The library provides
+comprehensive state management, undo/redo functionality, and support for Android, iOS, Desktop (
+JVM), and Web (JS/WASM) platforms.
 
-## ✨ Features
+## Features
 
-- 🎨 **Customizable Appearance**: Colors, stroke width, backgrounds, borders, and shapes
-- 📱 **Multiplatform Support**: Android, iOS, Desktop (JVM), Web (JS/WASM)
-- ↩️ **Undo/Redo**: Full undo/redo stack with configurable limits
-- 🔲 **Grid Display**: Optional grid overlay with customizable spacing and colors
-- 🖥️ **Fullscreen Mode**: Dedicated fullscreen signature experience
-- 🎯 **Real-time Updates**: Live signature updates instead of completion-only callbacks
-- 📊 **State Management**: Comprehensive state tracking with SOLID architecture
-- 🔧 **Multiple Overloads**: Simple to advanced usage patterns
-- 📋 **Built-in Actions**: Optional action buttons (Clear, Save, Undo, Redo)
-- 📈 **Signature Analytics**: Complexity analysis, bounds calculation, metadata generation
-- 🎨 **Export Options**: Multiple export formats and scaling options
-- ♿ **Accessibility**: High contrast modes and accessibility-friendly options
+- **Customizable Appearance**: Configure colors, stroke width, backgrounds, borders, and corner
+  shapes
+- **Multiplatform Support**: Works across Android, iOS, Desktop, and Web platforms
+- **Undo/Redo**: Full history management with configurable stack limits
+- **Grid Display**: Optional grid overlay with customizable spacing and colors
+- **Fullscreen Mode**: Dedicated fullscreen signature capture interface
+- **Real-time Updates**: Live signature updates as the user draws
+- **State Management**: Comprehensive state tracking with proper lifecycle handling
+- **Multiple API Levels**: Simple to advanced usage patterns through different overloads
+- **Built-in Actions**: Optional action buttons for common operations (Clear, Save, Undo, Redo)
+- **Signature Analytics**: Complexity analysis, bounds calculation, and metadata generation
+- **Export Options**: Multiple export formats with configurable scaling
+- **Accessibility**: High contrast modes and accessibility-friendly configurations
 
-## 🚀 Quick Start
+## Installation
 
-### Installation
-
-Add to your `build.gradle.kts`:
+Add the dependency to your `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("io.github.niyajali:compose-signature:1.0.1")
+    implementation("io.github.niyajali:compose-signature:1.0.2")
 }
 ```
+
+## Quick Start
 
 ### Basic Usage
 
@@ -79,7 +80,6 @@ fun AdvancedSignature() {
                 SignatureAction.UNDO -> signatureState.undo()
                 SignatureAction.REDO -> signatureState.redo()
                 SignatureAction.SAVE -> {
-                    // Handle save logic
                     signature?.let { /* Save to file */ }
                 }
             }
@@ -88,13 +88,11 @@ fun AdvancedSignature() {
 }
 ```
 
-## 📚 Documentation
+## Core Components
 
-### Core Components
+### ComposeSign
 
-#### ComposeSign
-
-The main composable with multiple overloads for different use cases:
+The main composable provides multiple overloads for different levels of customization:
 
 ```kotlin
 // Simple usage
@@ -117,9 +115,9 @@ ComposeSign(
 )
 ```
 
-#### SignatureConfig
+### SignatureConfig
 
-Comprehensive configuration object:
+Configuration object for controlling visual appearance and behavior:
 
 ```kotlin
 data class SignatureConfig(
@@ -139,21 +137,31 @@ data class SignatureConfig(
 )
 ```
 
-#### SignatureState
+Predefined configurations are available:
 
-Enhanced state management with undo/redo:
+- `SignatureConfig.Default` - Standard configuration
+- `SignatureConfig.Fullscreen` - Fullscreen mode with actions
+- `SignatureConfig.WithGrid` - Includes grid overlay
+- `SignatureConfig.ThickStroke` - Thicker stroke width
+- `SignatureConfig.Professional` - Professional document styling
+- `SignatureConfig.Creative` - Creative color scheme
+- `SignatureConfig.FormIntegration` - Compact form styling
+
+### SignatureState
+
+Manages signature paths, input state, and history:
 
 ```kotlin
 val state = rememberSignatureState()
 
-// State properties
-state.paths // List of signature paths
-state.inputState // Current input state (IDLE, DRAWING, COMPLETED)
-state.signature // Generated ImageBitmap
-state.canUndo // Whether undo is available
-state.canRedo // Whether redo is available
+// Available properties
+state.paths           // List of signature paths
+state.inputState      // Current input state (IDLE, DRAWING, COMPLETED)
+state.signature       // Generated ImageBitmap
+state.canUndo         // Whether undo is available
+state.canRedo         // Whether redo is available
 
-// State operations
+// Operations
 state.addPath(path)
 state.clear()
 state.undo()
@@ -165,28 +173,6 @@ state.getSignatureBounds()
 state.getMetadata()
 state.exportSignature(width, height)
 state.isValid()
-```
-
-### Predefined Configurations
-
-```kotlin
-// Default minimal configuration
-SignatureConfig.Default
-
-// Fullscreen with actions
-SignatureConfig.Fullscreen
-
-// With grid enabled
-SignatureConfig.WithGrid
-
-// Thick strokes
-SignatureConfig.ThickStroke
-
-// Professional documents
-SignatureConfig.Professional
-
-// Creative/artistic
-SignatureConfig.Creative
 ```
 
 ### Fullscreen Mode
@@ -207,33 +193,22 @@ fun FullscreenExample() {
 }
 ```
 
-## 🎨 Customization Examples
+## Customization
 
-### Dark Theme
-
-```kotlin
-ComposeSign(
-    config = SignatureConfig.Default.asDarkTheme()
-)
-```
-
-### High Contrast (Accessibility)
+### Theme Variants
 
 ```kotlin
-ComposeSign(
-    config = SignatureConfig.Default.asAccessible(highContrast = true)
-)
+// Dark theme
+ComposeSign(config = SignatureConfig.Default.asDarkTheme())
+
+// High contrast for accessibility
+ComposeSign(config = SignatureConfig.Default.asAccessible(highContrast = true))
+
+// Form integration
+ComposeSign(config = SignatureConfig.FormIntegration)
 ```
 
-### Form Integration
-
-```kotlin
-ComposeSign(
-    config = SignatureConfig.FormIntegration
-)
-```
-
-### Multi-Color Signature
+### Custom Stroke Colors
 
 ```kotlin
 @Composable
@@ -247,7 +222,6 @@ fun MultiColorSignature() {
         showGrid = true
     )
 
-    // Color picker UI
     ColorPicker(
         selectedColor = currentColor,
         onColorSelected = { currentColor = it }
@@ -255,25 +229,28 @@ fun MultiColorSignature() {
 }
 ```
 
-## 📈 Analytics & Metadata
+## Analytics and Validation
+
+### Signature Metadata
 
 ```kotlin
 val state = rememberSignatureState()
 
-// Get signature metadata
 val metadata = state.getMetadata()
-println("Paths: ${metadata.pathCount}")
+println("Path count: ${metadata.pathCount}")
 println("Complexity: ${metadata.complexityDescription()}")
 println("Total length: ${metadata.totalLength}")
 
-// Get bounds information
 val bounds = state.getSignatureBounds()
 bounds?.let {
-    println("Size: ${it.width} x ${it.height}")
+    println("Dimensions: ${it.width} x ${it.height}")
     println("Area: ${it.area()}")
 }
+```
 
-// Validation
+### Validation
+
+```kotlin
 val isValid = state.isValid(
     minPaths = 5,
     minLength = 100f,
@@ -281,47 +258,22 @@ val isValid = state.isValid(
 )
 ```
 
-## 🏗️ Architecture
+## Architecture
 
-ComposeSign follows SOLID principles:
+The library follows SOLID principles with clear separation of concerns:
 
-- **Single Responsibility**: Each class has a single, well-defined purpose
-- **Open/Closed**: Extensible through configuration without modification
-- **Liskov Substitution**: Implementations can be substituted seamlessly
-- **Interface Segregation**: Clean interfaces for different responsibilities
-- **Dependency Inversion**: High-level modules don't depend on low-level details
+- **ComposeSign.kt**: Main composable component with gesture handling and rendering
+- **SignatureConfig.kt**: Configuration management with builder methods
+- **SignatureState.kt**: State management with undo/redo functionality
+- **SignatureModels.kt**: Core data models (SignaturePath, SignatureBounds, SignatureMetadata)
+- **SignatureUtils.kt**: Utility functions for rendering, analysis, and optimization
+- **SignatureActions.kt**: Action handling system for built-in operations
+- **SignatureExtensions.kt**: Extension functions for convenience APIs
 
-## 🧪 Testing
-
-```kotlin
-class SignatureStateTest {
-    @Test
-    fun `should handle undo redo correctly`() {
-        val state = SignatureState()
-        state.addPath(createTestPath())
-        state.undo()
-        assertTrue(state.isEmpty())
-        assertTrue(state.canRedo)
-        state.redo()
-        assertFalse(state.isEmpty())
-    }
-}
-```
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
-
-## 📄 License
+## License
 
 ```
-Copyright 2024 Niyaj Ali
+Copyright 2026 Niyaj Ali
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -335,19 +287,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
-## 🔗 Links
-
-- [Documentation](https://github.com/niyajali/compose-signature/wiki)
-- [API Reference](https://niyajali.github.io/compose-signature/)
-- [Examples](https://github.com/niyajali/compose-signature/tree/main/examples)
-
-## 🙏 Acknowledgments
-
-- Thanks to the Compose Multiplatform team for the amazing framework
-- Inspired by the need for better signature solutions in multiplatform apps
-- Built with ❤️ for the Kotlin Multiplatform community
-
----
-
-**ComposeSign** - Making digital signatures simple, powerful, and beautiful across all platforms.

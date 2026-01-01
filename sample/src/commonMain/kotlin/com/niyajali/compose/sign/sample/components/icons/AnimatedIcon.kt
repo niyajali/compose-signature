@@ -1,3 +1,24 @@
+/**
+ * Copyright 2026 Sk Niyaj Ali
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package com.niyajali.compose.sign.sample.components.icons
 
 import androidx.compose.animation.core.animateFloatAsState
@@ -44,7 +65,7 @@ fun AnimatedIcon(
     tint: Color? = null,
     animationType: IconAnimation = IconAnimation.Scale,
     isVisible: Boolean = true,
-    onClick: (() -> Unit)? = null
+    onClick: (() -> Unit)? = null,
 ) {
     val iconColor = tint ?: LocalContentColor.current
 
@@ -61,7 +82,7 @@ fun AnimatedIcon(
             IconAnimation.Scale -> AnimationSpecs.mediumBounce
             else -> AnimationSpecs.spring
         },
-        label = "icon_scale"
+        label = "icon_scale",
     )
 
     val rotation by animateFloatAsState(
@@ -71,13 +92,13 @@ fun AnimatedIcon(
             else -> 0f
         },
         animationSpec = AnimationSpecs.fastOutSlowIn,
-        label = "icon_rotation"
+        label = "icon_rotation",
     )
 
     val alpha by animateFloatAsState(
         targetValue = if (isVisible) 1f else 0f,
         animationSpec = AnimationSpecs.fastOutSlowIn,
-        label = "icon_alpha"
+        label = "icon_alpha",
     )
 
     Box(
@@ -88,22 +109,22 @@ fun AnimatedIcon(
                     Modifier.clickable(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null,
-                        onClick = onClick
+                        onClick = onClick,
                     )
                 } else {
                     Modifier
-                }
+                },
             )
             .scale(scale)
             .rotate(rotation)
             .alpha(alpha),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Icon(
             painter = painterResource(icon),
             contentDescription = contentDescription,
             tint = iconColor,
-            modifier = Modifier.size(size)
+            modifier = Modifier.size(size),
         )
     }
 }

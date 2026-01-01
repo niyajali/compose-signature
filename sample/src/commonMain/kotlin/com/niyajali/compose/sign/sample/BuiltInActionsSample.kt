@@ -1,3 +1,24 @@
+/**
+ * Copyright 2026 Sk Niyaj Ali
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package com.niyajali.compose.sign.sample
 
 import androidx.compose.foundation.background
@@ -46,7 +67,7 @@ fun BuiltInActionsSample(modifier: Modifier = Modifier) {
 
     val config = SignatureConfig(
         showActions = true,
-        showGrid = true
+        showGrid = true,
     )
 
     Column(
@@ -55,25 +76,25 @@ fun BuiltInActionsSample(modifier: Modifier = Modifier) {
             .verticalScroll(rememberScrollState())
             .background(Gradients.Sample.actionsSubtle)
             .padding(Spacing.md),
-        verticalArrangement = Arrangement.spacedBy(Spacing.md)
+        verticalArrangement = Arrangement.spacedBy(Spacing.md),
     ) {
         // Header with icon
         SectionHeader(
             title = Strings.actionsTitle(),
-            icon = IconMapper.getScreenIcon(SampleScreen.WITH_ACTIONS)
+            icon = IconMapper.getScreenIcon(SampleScreen.WITH_ACTIONS),
         )
 
         // Description
         Text(
             text = Strings.actionsDescription(),
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
 
         // Signature Pad with Built-in Actions
         GradientCard(
             gradient = Gradients.Sample.actionsSubtle,
-            elevation = Elevation.md
+            elevation = Elevation.md,
         ) {
             ComposeSign(
                 onSignatureUpdate = { bitmap ->
@@ -94,7 +115,7 @@ fun BuiltInActionsSample(modifier: Modifier = Modifier) {
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(300.dp)
+                    .height(300.dp),
             )
         }
 
@@ -102,43 +123,43 @@ fun BuiltInActionsSample(modifier: Modifier = Modifier) {
         lastAction?.let { action ->
             GradientCard(
                 gradient = Gradients.secondaryDiagonal,
-                elevation = Elevation.sm
+                elevation = Elevation.sm,
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(Spacing.xs)) {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(
                             painter = painterResource(getActionIcon(action)),
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.onSecondaryContainer,
-                            modifier = Modifier.size(Size.iconMD)
+                            modifier = Modifier.size(Size.iconMD),
                         )
                         Text(
                             text = Strings.lastAction(action.getDisplayName()),
                             style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onSecondaryContainer
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
                         )
                     }
                     Text(
                         text = action.getDescription(),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.8f)
+                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.8f),
                     )
                     if (action == SignatureAction.CLEAR) {
                         Row(
                             horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text(
                                 text = "⚠️",
-                                style = MaterialTheme.typography.bodyMedium
+                                style = MaterialTheme.typography.bodyMedium,
                             )
                             Text(
                                 text = Strings.destructiveAction(),
                                 style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.7f)
+                                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.7f),
                             )
                         }
                     }
@@ -149,15 +170,15 @@ fun BuiltInActionsSample(modifier: Modifier = Modifier) {
         // Available Actions Info
         GradientCard(
             gradient = Gradients.Sample.actionsSubtle,
-            elevation = Elevation.sm
+            elevation = Elevation.sm,
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+                verticalArrangement = Arrangement.spacedBy(Spacing.sm),
             ) {
                 Text(
                     text = Strings.availableActions(),
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
 
                 Spacer(modifier = Modifier.height(Spacing.xxs))
@@ -166,24 +187,24 @@ fun BuiltInActionsSample(modifier: Modifier = Modifier) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(
                             painter = painterResource(getActionIcon(action)),
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.size(20.dp)
+                            modifier = Modifier.size(20.dp),
                         )
                         Column {
                             Text(
                                 text = action.getDisplayName(),
                                 style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurface
+                                color = MaterialTheme.colorScheme.onSurface,
                             )
                             Text(
                                 text = action.getDescription(),
                                 style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
                         }
                     }
@@ -194,7 +215,7 @@ fun BuiltInActionsSample(modifier: Modifier = Modifier) {
         // Preview
         SignaturePreviewCard(
             title = Strings.preview(),
-            bitmap = capturedSignature
+            bitmap = capturedSignature,
         )
     }
 }
