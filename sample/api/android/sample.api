@@ -1,0 +1,638 @@
+public final class com/niyajali/compose/sign/sample/AppKt {
+	public static final fun App (ZLandroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/BackgroundOption : java/lang/Enum {
+	public static final field CREAM Lcom/niyajali/compose/sign/sample/BackgroundOption;
+	public static final field LIGHT_BLUE Lcom/niyajali/compose/sign/sample/BackgroundOption;
+	public static final field LIGHT_GRAY Lcom/niyajali/compose/sign/sample/BackgroundOption;
+	public static final field WHITE Lcom/niyajali/compose/sign/sample/BackgroundOption;
+	public final fun getColor-0d7_KjU ()J
+	public final fun getDisplayName ()Ljava/lang/String;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/niyajali/compose/sign/sample/BackgroundOption;
+	public static fun values ()[Lcom/niyajali/compose/sign/sample/BackgroundOption;
+}
+
+public final class com/niyajali/compose/sign/sample/BasicSignatureSampleKt {
+	public static final fun BasicSignatureSample (Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+	public static final fun InfoRow (Ljava/lang/String;Ljava/lang/String;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+	public static final fun SignatureInfoCard (IZZZLandroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+	public static final fun SignaturePreviewCard (Ljava/lang/String;Landroidx/compose/ui/graphics/ImageBitmap;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/BuiltInActionsSampleKt {
+	public static final fun BuiltInActionsSample (Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/ComposableSingletons$AppKt {
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/ComposableSingletons$AppKt;
+	public fun <init> ()V
+	public final fun getLambda$-1050014650$sample_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1321919595$sample_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class com/niyajali/compose/sign/sample/ComposableSingletons$BuiltInActionsSampleKt {
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/ComposableSingletons$BuiltInActionsSampleKt;
+	public fun <init> ()V
+	public final fun getLambda$-771094660$sample_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/niyajali/compose/sign/sample/ComposableSingletons$DarkThemeSampleKt {
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/ComposableSingletons$DarkThemeSampleKt;
+	public fun <init> ()V
+	public final fun getLambda$-1141586668$sample_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1406234158$sample_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/niyajali/compose/sign/sample/ComposableSingletons$MainActivityKt {
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/ComposableSingletons$MainActivityKt;
+	public fun <init> ()V
+	public final fun getLambda$-203141875$sample_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class com/niyajali/compose/sign/sample/CustomStyleSampleKt {
+	public static final fun CustomStyleSample (Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/DarkThemeSampleKt {
+	public static final fun DarkThemeSample (Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/ExportBackground : java/lang/Enum {
+	public static final field CREAM Lcom/niyajali/compose/sign/sample/ExportBackground;
+	public static final field LIGHT_GRAY Lcom/niyajali/compose/sign/sample/ExportBackground;
+	public static final field TRANSPARENT Lcom/niyajali/compose/sign/sample/ExportBackground;
+	public static final field WHITE Lcom/niyajali/compose/sign/sample/ExportBackground;
+	public final fun getColor-0d7_KjU ()J
+	public final fun getDisplayName ()Ljava/lang/String;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/niyajali/compose/sign/sample/ExportBackground;
+	public static fun values ()[Lcom/niyajali/compose/sign/sample/ExportBackground;
+}
+
+public final class com/niyajali/compose/sign/sample/ExportSampleKt {
+	public static final fun ExportSample (Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/ExportSize : java/lang/Enum {
+	public static final field LARGE Lcom/niyajali/compose/sign/sample/ExportSize;
+	public static final field MEDIUM Lcom/niyajali/compose/sign/sample/ExportSize;
+	public static final field SMALL Lcom/niyajali/compose/sign/sample/ExportSize;
+	public static final field SQUARE Lcom/niyajali/compose/sign/sample/ExportSize;
+	public final fun getDisplayName ()Ljava/lang/String;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getHeight ()I
+	public final fun getWidth ()I
+	public static fun valueOf (Ljava/lang/String;)Lcom/niyajali/compose/sign/sample/ExportSize;
+	public static fun values ()[Lcom/niyajali/compose/sign/sample/ExportSize;
+}
+
+public final class com/niyajali/compose/sign/sample/FullscreenSampleKt {
+	public static final fun FullscreenSample (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/GridColorOption : java/lang/Enum {
+	public static final field BLUE Lcom/niyajali/compose/sign/sample/GridColorOption;
+	public static final field GRAY Lcom/niyajali/compose/sign/sample/GridColorOption;
+	public static final field GREEN Lcom/niyajali/compose/sign/sample/GridColorOption;
+	public static final field RED Lcom/niyajali/compose/sign/sample/GridColorOption;
+	public final fun getColor-0d7_KjU ()J
+	public final fun getDisplayName ()Ljava/lang/String;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/niyajali/compose/sign/sample/GridColorOption;
+	public static fun values ()[Lcom/niyajali/compose/sign/sample/GridColorOption;
+}
+
+public final class com/niyajali/compose/sign/sample/GridEnabledSampleKt {
+	public static final fun GridEnabledSample (Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/MainActivity : androidx/activity/ComponentActivity {
+	public static final field $stable I
+	public fun <init> ()V
+}
+
+public final class com/niyajali/compose/sign/sample/SampleScreen : java/lang/Enum {
+	public static final field BASIC Lcom/niyajali/compose/sign/sample/SampleScreen;
+	public static final field CUSTOM_STYLE Lcom/niyajali/compose/sign/sample/SampleScreen;
+	public static final field DARK_THEME Lcom/niyajali/compose/sign/sample/SampleScreen;
+	public static final field EXPORT Lcom/niyajali/compose/sign/sample/SampleScreen;
+	public static final field FULLSCREEN Lcom/niyajali/compose/sign/sample/SampleScreen;
+	public static final field HOME Lcom/niyajali/compose/sign/sample/SampleScreen;
+	public static final field VALIDATION Lcom/niyajali/compose/sign/sample/SampleScreen;
+	public static final field WITH_ACTIONS Lcom/niyajali/compose/sign/sample/SampleScreen;
+	public static final field WITH_GRID Lcom/niyajali/compose/sign/sample/SampleScreen;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getTitle ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lcom/niyajali/compose/sign/sample/SampleScreen;
+	public static fun values ()[Lcom/niyajali/compose/sign/sample/SampleScreen;
+}
+
+public final class com/niyajali/compose/sign/sample/SignatureSampleAppKt {
+	public static final fun SignatureSampleApp (Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class com/niyajali/compose/sign/sample/StrokeColorOption : java/lang/Enum {
+	public static final field BLACK Lcom/niyajali/compose/sign/sample/StrokeColorOption;
+	public static final field BLUE Lcom/niyajali/compose/sign/sample/StrokeColorOption;
+	public static final field GREEN Lcom/niyajali/compose/sign/sample/StrokeColorOption;
+	public static final field PURPLE Lcom/niyajali/compose/sign/sample/StrokeColorOption;
+	public static final field RED Lcom/niyajali/compose/sign/sample/StrokeColorOption;
+	public final fun getColor-0d7_KjU ()J
+	public final fun getDisplayName ()Ljava/lang/String;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/niyajali/compose/sign/sample/StrokeColorOption;
+	public static fun values ()[Lcom/niyajali/compose/sign/sample/StrokeColorOption;
+}
+
+public final class com/niyajali/compose/sign/sample/ValidationSampleKt {
+	public static final fun ValidationSample (Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/components/animations/AnimationDelays {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/components/animations/AnimationDelays;
+	public static final field STAGGER_LONG J
+	public static final field STAGGER_MEDIUM J
+	public static final field STAGGER_SHORT J
+}
+
+public final class com/niyajali/compose/sign/sample/components/animations/AnimationDurations {
+	public static final field $stable I
+	public static final field FAST I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/components/animations/AnimationDurations;
+	public static final field NORMAL I
+	public static final field PAGE_TRANSITION I
+	public static final field SLOW I
+	public static final field VERY_SLOW I
+}
+
+public final class com/niyajali/compose/sign/sample/components/animations/AnimationSpecs {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/components/animations/AnimationSpecs;
+	public final fun getBounce ()Landroidx/compose/animation/core/SpringSpec;
+	public final fun getFastOutLinearIn ()Landroidx/compose/animation/core/TweenSpec;
+	public final fun getFastOutSlowIn ()Landroidx/compose/animation/core/TweenSpec;
+	public final fun getLowBounce ()Landroidx/compose/animation/core/SpringSpec;
+	public final fun getMediumBounce ()Landroidx/compose/animation/core/SpringSpec;
+	public final fun getSpring ()Landroidx/compose/animation/core/SpringSpec;
+}
+
+public final class com/niyajali/compose/sign/sample/components/animations/IconAnimation : java/lang/Enum {
+	public static final field Bounce Lcom/niyajali/compose/sign/sample/components/animations/IconAnimation;
+	public static final field Fade Lcom/niyajali/compose/sign/sample/components/animations/IconAnimation;
+	public static final field None Lcom/niyajali/compose/sign/sample/components/animations/IconAnimation;
+	public static final field Pulse Lcom/niyajali/compose/sign/sample/components/animations/IconAnimation;
+	public static final field Rotation Lcom/niyajali/compose/sign/sample/components/animations/IconAnimation;
+	public static final field Scale Lcom/niyajali/compose/sign/sample/components/animations/IconAnimation;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/niyajali/compose/sign/sample/components/animations/IconAnimation;
+	public static fun values ()[Lcom/niyajali/compose/sign/sample/components/animations/IconAnimation;
+}
+
+public final class com/niyajali/compose/sign/sample/components/animations/PageTransitions {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/components/animations/PageTransitions;
+	public final fun fadeTransition (Landroidx/compose/animation/AnimatedContentTransitionScope;)Landroidx/compose/animation/ContentTransform;
+	public final fun slideInFromRight (Landroidx/compose/animation/AnimatedContentTransitionScope;)Landroidx/compose/animation/ContentTransform;
+	public final fun slideOutToRight (Landroidx/compose/animation/AnimatedContentTransitionScope;)Landroidx/compose/animation/ContentTransform;
+}
+
+public final class com/niyajali/compose/sign/sample/components/buttons/GradientButtonKt {
+	public static final fun GradientButton (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/graphics/Brush;ZLandroidx/compose/runtime/Composer;II)V
+	public static final fun SecondaryButton (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLandroidx/compose/runtime/Composer;II)V
+	public static final fun TertiaryButton (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLandroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/components/cards/GradientCardKt {
+	public static final fun GradientCard-D0_EFys (Landroidx/compose/ui/Modifier;Landroidx/compose/ui/graphics/Brush;Landroidx/compose/ui/graphics/Color;FFLkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/components/cards/SampleCardKt {
+	public static final fun SampleCard (Ljava/lang/String;Ljava/lang/String;Lorg/jetbrains/compose/resources/DrawableResource;Landroidx/compose/ui/graphics/Brush;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/components/icons/AnimatedIconKt {
+	public static final fun AnimatedIcon-g36zZHI (Lorg/jetbrains/compose/resources/DrawableResource;Ljava/lang/String;Landroidx/compose/ui/Modifier;FLandroidx/compose/ui/graphics/Color;Lcom/niyajali/compose/sign/sample/components/animations/IconAnimation;ZLkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/components/icons/IconMapper {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/components/icons/IconMapper;
+	public final fun getScreenGradient (Lcom/niyajali/compose/sign/sample/SampleScreen;)Landroidx/compose/ui/graphics/Brush;
+	public final fun getScreenGradientSubtle (Lcom/niyajali/compose/sign/sample/SampleScreen;)Landroidx/compose/ui/graphics/Brush;
+	public final fun getScreenIcon (Lcom/niyajali/compose/sign/sample/SampleScreen;)Lorg/jetbrains/compose/resources/DrawableResource;
+}
+
+public final class com/niyajali/compose/sign/sample/components/icons/IconMapper$Actions {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/components/icons/IconMapper$Actions;
+	public final fun getClear ()Lorg/jetbrains/compose/resources/DrawableResource;
+	public final fun getRedo ()Lorg/jetbrains/compose/resources/DrawableResource;
+	public final fun getSave ()Lorg/jetbrains/compose/resources/DrawableResource;
+	public final fun getUndo ()Lorg/jetbrains/compose/resources/DrawableResource;
+}
+
+public final class com/niyajali/compose/sign/sample/components/icons/IconMapper$Icons {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/components/icons/IconMapper$Icons;
+	public final fun getAppLogo ()Lorg/jetbrains/compose/resources/DrawableResource;
+	public final fun getArrowBack ()Lorg/jetbrains/compose/resources/DrawableResource;
+	public final fun getBlock ()Lorg/jetbrains/compose/resources/DrawableResource;
+	public final fun getCheck ()Lorg/jetbrains/compose/resources/DrawableResource;
+	public final fun getChevronRight ()Lorg/jetbrains/compose/resources/DrawableResource;
+	public final fun getStar ()Lorg/jetbrains/compose/resources/DrawableResource;
+}
+
+public final class com/niyajali/compose/sign/sample/components/layout/GradientBackgroundKt {
+	public static final fun GradientBackground (Landroidx/compose/ui/graphics/Brush;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/components/layout/GridLayoutKt {
+	public static final fun ResponsiveGrid-o3XDK20 (Landroidx/compose/ui/Modifier;FFLandroidx/compose/foundation/layout/PaddingValues;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun ThreeColumnGrid-DzVHIIc (Landroidx/compose/ui/Modifier;FLandroidx/compose/foundation/layout/PaddingValues;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun TwoColumnGrid-DzVHIIc (Landroidx/compose/ui/Modifier;FLandroidx/compose/foundation/layout/PaddingValues;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/components/layout/SectionHeaderKt {
+	public static final fun SectionHeader (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lorg/jetbrains/compose/resources/DrawableResource;Ljava/lang/String;Landroidx/compose/runtime/Composer;II)V
+	public static final fun SmallSectionHeader (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lorg/jetbrains/compose/resources/DrawableResource;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/components/navigation/BackButtonKt {
+	public static final fun BackButton-FNF3uiM (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;JLandroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/components/navigation/ComposableSingletons$TopAppBarKt {
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/components/navigation/ComposableSingletons$TopAppBarKt;
+	public fun <init> ()V
+	public final fun getLambda$-178437695$sample_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$153512163$sample_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class com/niyajali/compose/sign/sample/components/navigation/TopAppBarKt {
+	public static final fun GradientTopAppBar (Ljava/lang/String;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/graphics/Brush;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/screens/home/HomeScreenKt {
+	public static final fun HomeScreen (Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/niyajali/compose/sign/sample/theme/BorderWidth {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/theme/BorderWidth;
+	public final fun getMedium-D9Ej5fM ()F
+	public final fun getThick-D9Ej5fM ()F
+	public final fun getThin-D9Ej5fM ()F
+}
+
+public final class com/niyajali/compose/sign/sample/theme/ColorKt {
+	public static final fun getAccentBlue ()J
+	public static final fun getAccentCyan ()J
+	public static final fun getAccentGold ()J
+	public static final fun getAccentOrange ()J
+	public static final fun getAccentPink ()J
+	public static final fun getAccentRose ()J
+	public static final fun getBackground ()J
+	public static final fun getBackgroundDark ()J
+	public static final fun getError ()J
+	public static final fun getErrorContainer ()J
+	public static final fun getInfo ()J
+	public static final fun getInfoContainer ()J
+	public static final fun getNeutral100 ()J
+	public static final fun getNeutral200 ()J
+	public static final fun getNeutral300 ()J
+	public static final fun getNeutral400 ()J
+	public static final fun getNeutral50 ()J
+	public static final fun getNeutral500 ()J
+	public static final fun getNeutral600 ()J
+	public static final fun getNeutral700 ()J
+	public static final fun getNeutral800 ()J
+	public static final fun getNeutral900 ()J
+	public static final fun getOnBackground ()J
+	public static final fun getOnBackgroundDark ()J
+	public static final fun getOnError ()J
+	public static final fun getOnErrorContainer ()J
+	public static final fun getOnInfo ()J
+	public static final fun getOnInfoContainer ()J
+	public static final fun getOnPrimary ()J
+	public static final fun getOnPrimaryContainer ()J
+	public static final fun getOnSecondary ()J
+	public static final fun getOnSecondaryContainer ()J
+	public static final fun getOnSuccess ()J
+	public static final fun getOnSuccessContainer ()J
+	public static final fun getOnSurface ()J
+	public static final fun getOnSurfaceDark ()J
+	public static final fun getOnSurfaceVariant ()J
+	public static final fun getOnSurfaceVariantDark ()J
+	public static final fun getOnTertiary ()J
+	public static final fun getOnTertiaryContainer ()J
+	public static final fun getOnWarning ()J
+	public static final fun getOnWarningContainer ()J
+	public static final fun getOutline ()J
+	public static final fun getOutlineDark ()J
+	public static final fun getOutlineVariant ()J
+	public static final fun getOutlineVariantDark ()J
+	public static final fun getPrimary ()J
+	public static final fun getPrimaryContainer ()J
+	public static final fun getPrimaryContainerDark ()J
+	public static final fun getPrimaryDark ()J
+	public static final fun getPrimaryLight ()J
+	public static final fun getSecondary ()J
+	public static final fun getSecondaryContainer ()J
+	public static final fun getSecondaryContainerDark ()J
+	public static final fun getSecondaryDark ()J
+	public static final fun getSecondaryLight ()J
+	public static final fun getSuccess ()J
+	public static final fun getSuccessContainer ()J
+	public static final fun getSurface ()J
+	public static final fun getSurfaceBright ()J
+	public static final fun getSurfaceDark ()J
+	public static final fun getSurfaceDim ()J
+	public static final fun getSurfaceDimDark ()J
+	public static final fun getSurfaceVariant ()J
+	public static final fun getSurfaceVariantDark ()J
+	public static final fun getTertiary ()J
+	public static final fun getTertiaryContainer ()J
+	public static final fun getTertiaryContainerDark ()J
+	public static final fun getTertiaryDark ()J
+	public static final fun getTertiaryLight ()J
+	public static final fun getWarning ()J
+	public static final fun getWarningContainer ()J
+}
+
+public final class com/niyajali/compose/sign/sample/theme/CornerRadius {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/theme/CornerRadius;
+	public final fun getCircular-D9Ej5fM ()F
+	public final fun getLg-D9Ej5fM ()F
+	public final fun getMd-D9Ej5fM ()F
+	public final fun getSm-D9Ej5fM ()F
+	public final fun getXl-D9Ej5fM ()F
+	public final fun getXs-D9Ej5fM ()F
+	public final fun getXxl-D9Ej5fM ()F
+}
+
+public final class com/niyajali/compose/sign/sample/theme/Elevation {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/theme/Elevation;
+	public final fun getLg-D9Ej5fM ()F
+	public final fun getMd-D9Ej5fM ()F
+	public final fun getNone-D9Ej5fM ()F
+	public final fun getSm-D9Ej5fM ()F
+	public final fun getXl-D9Ej5fM ()F
+	public final fun getXs-D9Ej5fM ()F
+}
+
+public final class com/niyajali/compose/sign/sample/theme/GradientKt {
+	public static final fun diagonalGradient (Ljava/util/List;)Landroidx/compose/ui/graphics/Brush;
+	public static final fun subtleGradient (Ljava/util/List;F)Landroidx/compose/ui/graphics/Brush;
+	public static synthetic fun subtleGradient$default (Ljava/util/List;FILjava/lang/Object;)Landroidx/compose/ui/graphics/Brush;
+}
+
+public final class com/niyajali/compose/sign/sample/theme/Gradients {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/theme/Gradients;
+	public final fun getBackgroundMesh ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getBackgroundMeshDark ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getButtonPrimary ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getButtonSecondary ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getButtonTertiary ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getCardPrimary ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getCardSecondary ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getCardTertiary ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getError ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getInfo ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getPrimaryDiagonal ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getPrimaryHorizontal ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getPrimaryVertical ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getSecondaryDiagonal ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getSecondaryHorizontal ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getSecondaryVertical ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getSuccess ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getSurfaceGlow ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getTertiaryDiagonal ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getTertiaryHorizontal ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getTertiaryVertical ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getWarning ()Landroidx/compose/ui/graphics/Brush;
+}
+
+public final class com/niyajali/compose/sign/sample/theme/Gradients$Sample {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/theme/Gradients$Sample;
+	public final fun getActions ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getActionsSubtle ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getBasic ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getBasicSubtle ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getCustomStyle ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getCustomStyleSubtle ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getDarkTheme ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getDarkThemeSubtle ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getExport ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getExportSubtle ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getFullscreen ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getFullscreenSubtle ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getGrid ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getGridSubtle ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getValidation ()Landroidx/compose/ui/graphics/Brush;
+	public final fun getValidationSubtle ()Landroidx/compose/ui/graphics/Brush;
+}
+
+public final class com/niyajali/compose/sign/sample/theme/SampleColors {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/theme/SampleColors;
+	public final fun getActionsIndigo-0d7_KjU ()J
+	public final fun getActionsPurple-0d7_KjU ()J
+	public final fun getBasicBlue-0d7_KjU ()J
+	public final fun getBasicCyan-0d7_KjU ()J
+	public final fun getCustomStyleOrange-0d7_KjU ()J
+	public final fun getCustomStylePink-0d7_KjU ()J
+	public final fun getDarkIndigo-0d7_KjU ()J
+	public final fun getDarkPurple-0d7_KjU ()J
+	public final fun getExportGold-0d7_KjU ()J
+	public final fun getExportOrange-0d7_KjU ()J
+	public final fun getFullscreenPink-0d7_KjU ()J
+	public final fun getFullscreenRose-0d7_KjU ()J
+	public final fun getGridGreen-0d7_KjU ()J
+	public final fun getGridTeal-0d7_KjU ()J
+	public final fun getValidationCyan-0d7_KjU ()J
+	public final fun getValidationTeal-0d7_KjU ()J
+}
+
+public final class com/niyajali/compose/sign/sample/theme/ShapeKt {
+	public static final fun getAppShapes ()Landroidx/compose/material3/Shapes;
+}
+
+public final class com/niyajali/compose/sign/sample/theme/Size {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/theme/Size;
+	public final fun getButtonHeight-D9Ej5fM ()F
+	public final fun getButtonHeightSmall-D9Ej5fM ()F
+	public final fun getCardHeight-D9Ej5fM ()F
+	public final fun getIconLG-D9Ej5fM ()F
+	public final fun getIconMD-D9Ej5fM ()F
+	public final fun getIconSM-D9Ej5fM ()F
+	public final fun getIconXL-D9Ej5fM ()F
+	public final fun getIconXS-D9Ej5fM ()F
+	public final fun getIconXXL-D9Ej5fM ()F
+	public final fun getMinTouchTarget-D9Ej5fM ()F
+	public final fun getSignaturePadHeight-D9Ej5fM ()F
+	public final fun getTopBarHeight-D9Ej5fM ()F
+}
+
+public final class com/niyajali/compose/sign/sample/theme/Spacing {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/theme/Spacing;
+	public final fun getLg-D9Ej5fM ()F
+	public final fun getMd-D9Ej5fM ()F
+	public final fun getSm-D9Ej5fM ()F
+	public final fun getXl-D9Ej5fM ()F
+	public final fun getXs-D9Ej5fM ()F
+	public final fun getXxl-D9Ej5fM ()F
+	public final fun getXxs-D9Ej5fM ()F
+	public final fun getXxxl-D9Ej5fM ()F
+	public final fun getXxxs-D9Ej5fM ()F
+}
+
+public final class com/niyajali/compose/sign/sample/theme/ThemeKt {
+	public static final fun ComposeSignTheme (ZLkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun getColors (Landroidx/compose/material3/MaterialTheme;Landroidx/compose/runtime/Composer;I)Landroidx/compose/material3/ColorScheme;
+}
+
+public final class com/niyajali/compose/sign/sample/theme/TypographyKt {
+	public static final fun getAppTypography ()Landroidx/compose/material3/Typography;
+}
+
+public final class com/niyajali/compose/sign/sample/utils/Strings {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/niyajali/compose/sign/sample/utils/Strings;
+	public final fun actionClear (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun actionExport (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun actionRedo (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun actionSave (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun actionUndo (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun actionsDescription (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun actionsTitle (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun appName (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun appWelcomeSubtitle (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun appWelcomeTitle (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun area (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun availableActions (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun backgroundColor (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun basicDescription (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun basicTitle (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun bitmapSize (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun canRedo (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun canUndo (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun capturedSignature (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun cdAppLogo (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun cdBackButton (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun cdFeatureIcon (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun cdSampleIcon (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun cdSignaturePreview (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun center (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun colorBlack (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun colorBlue (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun colorCream (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun colorGray (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun colorGreen (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun colorLightBlue (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun colorLightGray (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun colorPurple (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun colorRed (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun colorTransparent (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun colorWhite (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun complexityProgress (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun complexityScore (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun coordinates (IILandroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun cornerRadius (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun cornerRadiusValue (ILandroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun darkConfig (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun darkDescription (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun darkTitle (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun description (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun destructiveAction (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun dimensions (IILandroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun exploreSamples (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun exportDescription (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun exportSettings (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun exportSize (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun exportTitle (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun exportedSignature (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun featureBackground (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun featureCrossPlatform (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun featureDarkTheme (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun featureExport (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun featureFullscreen (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun featureGrid (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun featurePersistence (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun featureStrokeColor (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun featureUndoRedo (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun featureValidation (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun gridColor (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun gridDescription (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun gridSettings (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun gridSpacing (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun gridSpacingValue (ILandroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun gridTitle (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun height (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun isEmpty (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun lastAction (Ljava/lang/String;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun libraryFeatures (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun maintainAspectRatio (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun navBack (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun navHome (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun noSignatureYet (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun pathCount (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun paths (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun pixels (ILandroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun preview (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun requirement (Ljava/lang/String;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleActions (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleActionsDesc (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleBasic (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleBasicDesc (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleCustomStyle (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleCustomStyleDesc (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleDark (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleDarkDesc (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleExport (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleExportDesc (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleFullscreen (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleFullscreenDesc (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleGrid (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleGridDesc (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleValidation (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sampleValidationDesc (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun showGrid (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun signatureBounds (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun signatureInfo (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun signatureMetrics (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun signaturePreview (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun signatureSize (IILandroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun signatureState (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sizeLarge (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sizeMedium (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sizeSmall (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun sizeSquare (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun squarePixels (ILandroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun statusInvalid (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun statusValid (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun strokeColor (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun strokeWidth (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun strokeWidthValue (ILandroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun styleDescription (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun styleTitle (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun totalLength (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun usage (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun usageCode (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun usageDescription (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun validationDescription (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun validationRequirements (IIILandroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun validationStatus (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun validationTitle (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun white30Opacity (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public final fun width (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+}
+

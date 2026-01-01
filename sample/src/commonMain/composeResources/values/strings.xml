@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright 2026 Sk Niyaj Ali
+
+     Permission is hereby granted, free of charge, to any person obtaining a copy
+     of this software and associated documentation files (the "Software"), to deal
+     in the Software without restriction, including without limitation the rights
+     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+     copies of the Software, and to permit persons to whom the Software is
+     furnished to do so, subject to the following conditions:
+
+     The above copyright notice and this permission notice shall be included in all
+     copies or substantial portions of the Software.
+
+     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+     SOFTWARE.
+-->
+<resources>
+    <!-- App -->
+    <string name="app_name">Compose Signature</string>
+    <string name="app_welcome_title">Welcome to Compose Signature</string>
+    <string name="app_welcome_subtitle">A powerful, cross-platform signature library for Jetpack Compose</string>
+    <string name="explore_samples">Explore Samples</string>
+    <string name="library_features">Library Features</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_back">Back</string>
+
+    <!-- Sample Screens -->
+    <string name="sample_basic">Basic Signature</string>
+    <string name="sample_basic_desc">Simple signature pad with default settings</string>
+    <string name="sample_custom_style">Custom Styling</string>
+    <string name="sample_custom_style_desc">Custom colors, stroke width, and shapes</string>
+    <string name="sample_grid">Grid Enabled</string>
+    <string name="sample_grid_desc">Signature pad with grid overlay</string>
+    <string name="sample_actions">Built-in Actions</string>
+    <string name="sample_actions_desc">Clear, Undo, Redo, Save buttons</string>
+    <string name="sample_export">Export &amp; Save</string>
+    <string name="sample_export_desc">Export signature with custom dimensions</string>
+    <string name="sample_validation">Validation</string>
+    <string name="sample_validation_desc">Validate signature complexity</string>
+    <string name="sample_dark">Dark Theme</string>
+    <string name="sample_dark_desc">Dark theme styling example</string>
+    <string name="sample_fullscreen">Fullscreen Mode</string>
+    <string name="sample_fullscreen_desc">Full screen signature mode</string>
+
+    <!-- Basic Signature -->
+    <string name="basic_title">Basic Signature Pad</string>
+    <string name="basic_description">Draw your signature below. This is the simplest implementation with default settings.</string>
+    <string name="signature_preview">Signature Preview</string>
+    <string name="captured_signature">Captured Signature</string>
+    <string name="no_signature_yet">No signature yet</string>
+    <string name="signature_size">Size: %1$d × %2$d px</string>
+
+    <!-- Signature State -->
+    <string name="signature_state">Signature State</string>
+    <string name="path_count">Path Count</string>
+    <string name="is_empty">Is Empty</string>
+    <string name="can_undo">Can Undo</string>
+    <string name="can_redo">Can Redo</string>
+
+    <!-- Actions -->
+    <string name="action_clear">Clear</string>
+    <string name="action_undo">Undo</string>
+    <string name="action_redo">Redo</string>
+    <string name="action_save">Save</string>
+    <string name="action_export">Export Signature</string>
+
+    <!-- Custom Style -->
+    <string name="style_title">Custom Styling</string>
+    <string name="style_description">Customize the appearance of your signature pad.</string>
+    <string name="stroke_color">Stroke Color</string>
+    <string name="stroke_width">Stroke Width</string>
+    <string name="stroke_width_value">Stroke Width: %1$d dp</string>
+    <string name="background_color">Background Color</string>
+    <string name="corner_radius">Corner Radius</string>
+    <string name="corner_radius_value">Corner Radius: %1$d dp</string>
+
+    <!-- Colors -->
+    <string name="color_black">Black</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_red">Red</string>
+    <string name="color_green">Green</string>
+    <string name="color_purple">Purple</string>
+    <string name="color_white">White</string>
+    <string name="color_cream">Cream</string>
+    <string name="color_light_gray">Light Gray</string>
+    <string name="color_light_blue">Light Blue</string>
+    <string name="color_gray">Gray</string>
+    <string name="color_transparent">Transparent</string>
+
+    <!-- Grid -->
+    <string name="grid_title">Grid Enabled Signature</string>
+    <string name="grid_description">Enable a grid overlay to help guide your signature.</string>
+    <string name="grid_settings">Grid Settings</string>
+    <string name="show_grid">Show Grid</string>
+    <string name="grid_color">Grid Color</string>
+    <string name="grid_spacing">Grid Spacing</string>
+    <string name="grid_spacing_value">Grid Spacing: %1$d dp</string>
+
+    <!-- Actions Sample -->
+    <string name="actions_title">Built-in Actions</string>
+    <string name="actions_description">The signature pad includes built-in action buttons for Clear, Undo, Redo, and Save operations.</string>
+    <string name="last_action">Last Action: %1$s</string>
+    <string name="available_actions">Available Actions</string>
+    <string name="destructive_action">Destructive action</string>
+
+    <!-- Export -->
+    <string name="export_title">Export Signature</string>
+    <string name="export_description">Export your signature with custom dimensions and background colors.</string>
+    <string name="export_settings">Export Settings</string>
+    <string name="export_size">Export Size</string>
+    <string name="size_small">Small (200×100)</string>
+    <string name="size_medium">Medium (400×200)</string>
+    <string name="size_large">Large (800×400)</string>
+    <string name="size_square">Square (300×300)</string>
+    <string name="maintain_aspect_ratio">Maintain Aspect Ratio</string>
+    <string name="exported_signature">Exported Signature</string>
+    <string name="dimensions">Dimensions: %1$d × %2$d px</string>
+
+    <!-- Validation -->
+    <string name="validation_title">Signature Validation</string>
+    <string name="validation_description">Validate signatures based on complexity, length, and path count requirements.</string>
+    <string name="validation_status">Validation Status</string>
+    <string name="status_valid">Valid</string>
+    <string name="status_invalid">Invalid</string>
+    <string name="validation_requirements">Requirements: min %1$d paths, min %2$dpx length, min %3$d complexity</string>
+    <string name="signature_metrics">Signature Metrics</string>
+    <string name="total_length">Total Length</string>
+    <string name="complexity_score">Complexity Score</string>
+    <string name="complexity_progress">Complexity Progress</string>
+    <string name="signature_bounds">Signature Bounds</string>
+    <string name="width">Width</string>
+    <string name="height">Height</string>
+    <string name="area">Area</string>
+    <string name="center">Center</string>
+    <string name="description">Description</string>
+    <string name="requirement">Requirement: %1$s</string>
+    <string name="pixels">%1$d px</string>
+    <string name="square_pixels">%1$d sq px</string>
+    <string name="coordinates">(%1$d, %2$d)</string>
+
+    <!-- Dark Theme -->
+    <string name="dark_title">Dark Theme</string>
+    <string name="dark_description">Signature pad styled for dark theme using the asDarkTheme() extension.</string>
+    <string name="dark_config">Dark Theme Configuration</string>
+    <string name="usage">Usage</string>
+    <string name="usage_code">val darkConfig = SignatureConfig().asDarkTheme()</string>
+    <string name="usage_description">The asDarkTheme() extension automatically applies dark-friendly colors to your signature configuration.</string>
+    <string name="signature_info">Signature Info</string>
+    <string name="paths">Paths</string>
+    <string name="bitmap_size">Bitmap Size</string>
+    <string name="white_30_opacity">White (30%% opacity)</string>
+
+    <!-- Features -->
+    <string name="feature_cross_platform">Cross-platform support (Android, iOS, Desktop, Web)</string>
+    <string name="feature_stroke_color">Customizable stroke color and width</string>
+    <string name="feature_background">Background customization</string>
+    <string name="feature_grid">Grid overlay support</string>
+    <string name="feature_undo_redo">Undo/Redo functionality</string>
+    <string name="feature_export">Export to ImageBitmap</string>
+    <string name="feature_validation">Signature validation</string>
+    <string name="feature_dark_theme">Dark theme support</string>
+    <string name="feature_fullscreen">Fullscreen mode</string>
+    <string name="feature_persistence">State persistence across configuration changes</string>
+
+    <!-- Preview -->
+    <string name="preview">Preview</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_signature_preview">Signature Preview</string>
+    <string name="cd_back_button">Navigate back</string>
+    <string name="cd_sample_icon">Sample icon</string>
+    <string name="cd_feature_icon">Feature icon</string>
+    <string name="cd_app_logo">App Logo</string>
+</resources>

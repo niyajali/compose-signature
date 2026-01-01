@@ -1,49 +1,62 @@
+/*
+ * Copyright 2024 Niyaj Ali.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.niyajali.compose.sign
 
+import androidx.compose.runtime.Immutable
+
 /**
- * Defines actions that can be performed on a signature
+ * Enumeration of available actions that can be performed on a signature pad.
  *
- * This enum represents the various operations that users can perform
- * on the signature pad to modify or finalize their signature.
+ * This enum defines the standard set of operations users can perform when interacting
+ * with a signature component, including clearing the canvas, saving the signature,
+ * and undo/redo functionality for editing support.
+ *
+ * Each action provides metadata methods to describe its behavior, display properties,
+ * and characteristics such as whether it requires user confirmation or is destructive.
  */
 public enum class SignatureAction {
     /**
-     * Clear all signature content from the pad
-     *
-     * This action removes all drawn paths and resets the signature
-     * to an empty state. The undo/redo history is also cleared.
+     * Clears all drawn content from the signature pad, resetting it to an empty state.
+     * This is a destructive action that removes all signature paths.
      */
     CLEAR,
 
     /**
-     * Save/complete the current signature
-     *
-     * This action indicates that the user is satisfied with their
-     * signature and wants to finalize it. The signature bitmap
-     * will be provided to the completion callback.
+     * Saves the current signature, typically triggering export or completion workflows.
+     * This action is only meaningful when the signature pad contains content.
      */
     SAVE,
 
     /**
-     * Undo the last drawing operation
-     *
-     * This action reverts the signature to its previous state,
-     * removing the most recent drawing operations. The undone
-     * operations can be restored using REDO.
+     * Reverts the most recent drawing operation, restoring the previous signature state.
+     * This action requires undo history to be available.
      */
     UNDO,
 
     /**
-     * Redo the last undone operation
-     *
-     * This action restores the most recently undone drawing
-     * operations. This is only available if UNDO has been
-     * performed previously.
+     * Reapplies a previously undone drawing operation.
+     * This action requires redo history to be available.
      */
     REDO;
 
     /**
-     * Get a human-readable description of the action
+     * Returns a human-readable description of the action's purpose and behavior.
+     *
+     * @return A descriptive string explaining what the action does when executed.
      */
     public fun getDescription(): String = when (this) {
         CLEAR -> "Clear signature and start over"
@@ -53,7 +66,9 @@ public enum class SignatureAction {
     }
 
     /**
-     * Get the display name for UI elements
+     * Returns the display name suitable for use in user interface elements such as buttons.
+     *
+     * @return A short, user-friendly label for the action.
      */
     public fun getDisplayName(): String = when (this) {
         CLEAR -> "Clear"
@@ -63,17 +78,28 @@ public enum class SignatureAction {
     }
 
     /**
-     * Check if this action requires confirmation before execution
+     * Indicates whether this action should prompt for user confirmation before execution.
+     *
+     * Destructive actions that cannot be easily reversed typically require confirmation
+     * to prevent accidental data loss.
+     *
+     * @return True if the action should display a confirmation dialog before executing.
      */
     public fun requiresConfirmation(): Boolean = when (this) {
-        CLEAR -> true // Destructive action
+        CLEAR -> true
         SAVE -> false
         UNDO -> false
         REDO -> false
     }
 
     /**
-     * Check if this action is destructive (cannot be easily reversed)
+     * Indicates whether this action is destructive and may result in data loss.
+     *
+     * Destructive actions permanently remove or modify data in ways that may not be
+     * fully recoverable. User interfaces may use this information to apply special
+     * styling or warnings.
+     *
+     * @return True if the action may cause irreversible data loss.
      */
     public fun isDestructive(): Boolean = when (this) {
         CLEAR -> true
@@ -84,20 +110,33 @@ public enum class SignatureAction {
 }
 
 /**
- * Result of executing a signature action
+ * Represents the result of executing a signature action.
  *
- * @property success Whether the action was executed successfully
- * @property message Optional message describing the result
- * @property action The action that was executed
+ * This immutable data class encapsulates the outcome of a [SignatureAction] execution,
+ * including success status, optional message, and the action that was attempted.
+ * It is used by [SignatureActionHandler] implementations to communicate action results.
+ *
+ * @property success Indicates whether the action was executed successfully.
+ * @property message Optional human-readable message providing additional context about
+ *                   the result, such as error details or confirmation text.
+ * @property action The [SignatureAction] that was attempted.
  */
+@Immutable
 public data class SignatureActionResult(
     val success: Boolean,
     val message: String? = null,
     val action: SignatureAction,
 ) {
+    /**
+     * Factory methods for creating [SignatureActionResult] instances.
+     */
     public companion object {
         /**
-         * Create a successful action result
+         * Creates a successful action result.
+         *
+         * @param action The action that was executed successfully.
+         * @param message Optional message describing the successful outcome.
+         * @return A [SignatureActionResult] indicating success.
          */
         public fun success(
             action: SignatureAction,
@@ -109,7 +148,11 @@ public data class SignatureActionResult(
         )
 
         /**
-         * Create a failed action result
+         * Creates a failed action result.
+         *
+         * @param action The action that failed to execute.
+         * @param message A message describing why the action failed.
+         * @return A [SignatureActionResult] indicating failure.
          */
         public fun failure(
             action: SignatureAction,
@@ -123,15 +166,25 @@ public data class SignatureActionResult(
 }
 
 /**
- * Interface for handling signature actions with validation
+ * Interface defining the contract for handling signature actions.
+ *
+ * Implementations of this interface are responsible for executing [SignatureAction] operations
+ * on a [SignatureState] and determining whether actions can be executed in the current state.
+ * This abstraction allows for custom action handling logic, such as adding confirmation dialogs,
+ * logging, or additional validation.
+ *
+ * @see DefaultSignatureActionHandler
  */
 public interface SignatureActionHandler {
     /**
-     * Execute a signature action with validation
+     * Executes the specified action on the given signature state.
      *
-     * @param action The action to execute
-     * @param state Current signature state
-     * @return Result of the action execution
+     * Implementations should perform the action and return a result indicating success or failure.
+     * The action should only be executed if [canExecuteAction] returns true for the same parameters.
+     *
+     * @param action The action to execute.
+     * @param state The signature state on which to perform the action.
+     * @return A [SignatureActionResult] indicating the outcome of the action execution.
      */
     public fun executeAction(
         action: SignatureAction,
@@ -139,11 +192,14 @@ public interface SignatureActionHandler {
     ): SignatureActionResult
 
     /**
-     * Check if an action can be executed in the current state
+     * Determines whether the specified action can be executed in the current state.
      *
-     * @param action The action to validate
-     * @param state Current signature state
-     * @return True if the action can be executed
+     * This method should be used to enable or disable action controls in the user interface.
+     * It checks preconditions such as undo/redo availability or signature presence.
+     *
+     * @param action The action to check.
+     * @param state The current signature state.
+     * @return True if the action can be executed, false otherwise.
      */
     public fun canExecuteAction(
         action: SignatureAction,
@@ -152,10 +208,30 @@ public interface SignatureActionHandler {
 }
 
 /**
- * Default implementation of SignatureActionHandler
+ * Default implementation of [SignatureActionHandler] providing standard action execution logic.
+ *
+ * This handler implements the expected behavior for all [SignatureAction] types:
+ * - [SignatureAction.CLEAR]: Clears all paths from the signature state
+ * - [SignatureAction.SAVE]: Marks the signature as ready for saving (no state modification)
+ * - [SignatureAction.UNDO]: Reverts the most recent stroke
+ * - [SignatureAction.REDO]: Reapplies the most recently undone stroke
+ *
+ * Action execution includes validation via [canExecuteAction] and proper error handling
+ * to ensure robust operation.
  */
 public class DefaultSignatureActionHandler : SignatureActionHandler {
 
+    /**
+     * Executes the specified action on the given signature state.
+     *
+     * This implementation first validates that the action can be executed using [canExecuteAction].
+     * If validation fails, a failure result is returned without modifying the state.
+     * Otherwise, the action is performed and an appropriate result is returned.
+     *
+     * @param action The action to execute.
+     * @param state The signature state on which to perform the action.
+     * @return A [SignatureActionResult] indicating success or failure with an appropriate message.
+     */
     override fun executeAction(
         action: SignatureAction,
         state: SignatureState,
@@ -178,7 +254,6 @@ public class DefaultSignatureActionHandler : SignatureActionHandler {
                 }
 
                 SignatureAction.SAVE -> {
-                    // Note: Actual save logic would be handled by the caller
                     SignatureActionResult.success(
                         action = action,
                         message = "Signature ready for saving",
@@ -209,27 +284,46 @@ public class DefaultSignatureActionHandler : SignatureActionHandler {
         }
     }
 
+    /**
+     * Determines whether the specified action can be executed in the current state.
+     *
+     * Validation rules:
+     * - [SignatureAction.CLEAR]: Requires at least one path in the signature
+     * - [SignatureAction.SAVE]: Requires at least one path in the signature
+     * - [SignatureAction.UNDO]: Requires undo history to be available
+     * - [SignatureAction.REDO]: Requires redo history to be available
+     *
+     * @param action The action to check.
+     * @param state The current signature state.
+     * @return True if the action can be executed, false otherwise.
+     */
     override fun canExecuteAction(
         action: SignatureAction,
         state: SignatureState,
     ): Boolean = when (action) {
-        SignatureAction.CLEAR -> !state.paths.isEmpty()
-        SignatureAction.SAVE -> !state.paths.isEmpty()
+        SignatureAction.CLEAR -> state.paths.isNotEmpty()
+        SignatureAction.SAVE -> state.paths.isNotEmpty()
         SignatureAction.UNDO -> state.canUndo
         SignatureAction.REDO -> state.canRedo
     }
 }
 
 /**
- * Action configuration for customizing action behavior
+ * Configuration for controlling which signature actions are available and how they are displayed.
  *
- * @property showClear Whether to show the clear action
- * @property showSave Whether to show the save action
- * @property showUndo Whether to show the undo action
- * @property showRedo Whether to show the redo action
- * @property confirmDestructive Whether to confirm destructive actions
- * @property customLabels Custom labels for actions
+ * This immutable data class allows fine-grained control over the visibility and behavior
+ * of action buttons in the signature component. It also supports custom labels for
+ * localization or branding purposes.
+ *
+ * @property showClear Whether the clear action button should be displayed.
+ * @property showSave Whether the save action button should be displayed.
+ * @property showUndo Whether the undo action button should be displayed.
+ * @property showRedo Whether the redo action button should be displayed.
+ * @property confirmDestructive Whether destructive actions should prompt for confirmation.
+ * @property customLabels Map of custom labels for action buttons, keyed by [SignatureAction].
+ *                        Actions not present in this map will use their default display names.
  */
+@Immutable
 public data class SignatureActionConfig(
     val showClear: Boolean = true,
     val showSave: Boolean = true,
@@ -239,14 +333,23 @@ public data class SignatureActionConfig(
     val customLabels: Map<SignatureAction, String> = emptyMap(),
 ) {
     /**
-     * Get the label for an action, using custom label if available
+     * Returns the label to display for the specified action.
+     *
+     * If a custom label has been configured for the action, it is returned.
+     * Otherwise, the action's default display name is used.
+     *
+     * @param action The action for which to retrieve the label.
+     * @return The configured custom label or the action's default display name.
      */
     public fun getLabelForAction(action: SignatureAction): String {
         return customLabels[action] ?: action.getDisplayName()
     }
 
     /**
-     * Check if an action should be shown
+     * Determines whether the specified action should be shown in the user interface.
+     *
+     * @param action The action to check.
+     * @return True if the action should be displayed, false if it should be hidden.
      */
     public fun shouldShowAction(action: SignatureAction): Boolean = when (action) {
         SignatureAction.CLEAR -> showClear
@@ -256,15 +359,23 @@ public data class SignatureActionConfig(
     }
 
     /**
-     * Get all actions that should be shown
+     * Returns a list of all actions that should be visible based on the current configuration.
+     *
+     * @return A filtered list of [SignatureAction] values that are configured to be shown.
      */
     public fun getVisibleActions(): List<SignatureAction> {
         return SignatureAction.entries.filter { shouldShowAction(it) }
     }
 
+    /**
+     * Predefined action configurations for common use cases.
+     */
     public companion object {
         /**
-         * Configuration showing only essential actions
+         * Configuration showing only essential actions: Clear and Save.
+         *
+         * This configuration is suitable for simple signature capture scenarios
+         * where undo/redo functionality is not needed.
          */
         public val Essential: SignatureActionConfig = SignatureActionConfig(
             showClear = true,
@@ -274,12 +385,18 @@ public data class SignatureActionConfig(
         )
 
         /**
-         * Configuration showing all actions
+         * Configuration showing all available actions.
+         *
+         * This is the default configuration providing full functionality including
+         * Clear, Save, Undo, and Redo actions.
          */
         public val Complete: SignatureActionConfig = SignatureActionConfig()
 
         /**
-         * Configuration for read-only mode (only save)
+         * Configuration for read-only or review scenarios.
+         *
+         * Shows only the Save button, preventing modification of the signature
+         * while still allowing the user to confirm and save.
          */
         public val ReadOnly: SignatureActionConfig = SignatureActionConfig(
             showClear = false,
@@ -289,7 +406,10 @@ public data class SignatureActionConfig(
         )
 
         /**
-         * Configuration for editing mode (no save)
+         * Configuration for editing scenarios without save functionality.
+         *
+         * Shows Clear, Undo, and Redo actions but hides Save, suitable for
+         * workflows where saving is handled separately.
          */
         public val EditOnly: SignatureActionConfig = SignatureActionConfig(
             showClear = true,

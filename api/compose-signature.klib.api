@@ -64,7 +64,7 @@ abstract interface com.niyajali.compose.sign/ISignatureState { // com.niyajali.c
     abstract fun clear() // com.niyajali.compose.sign/ISignatureState.clear|clear(){}[0]
     abstract fun redo() // com.niyajali.compose.sign/ISignatureState.redo|redo(){}[0]
     abstract fun undo() // com.niyajali.compose.sign/ISignatureState.undo|undo(){}[0]
-    abstract fun updateSignature(androidx.compose.ui.graphics/ImageBitmap) // com.niyajali.compose.sign/ISignatureState.updateSignature|updateSignature(androidx.compose.ui.graphics.ImageBitmap){}[0]
+    abstract fun updateSignature(androidx.compose.ui.graphics/ImageBitmap?) // com.niyajali.compose.sign/ISignatureState.updateSignature|updateSignature(androidx.compose.ui.graphics.ImageBitmap?){}[0]
 }
 
 abstract interface com.niyajali.compose.sign/SignatureActionHandler { // com.niyajali.compose.sign/SignatureActionHandler|null[0]
@@ -350,7 +350,7 @@ final class com.niyajali.compose.sign/SignatureState : com.niyajali.compose.sign
     final fun clear() // com.niyajali.compose.sign/SignatureState.clear|clear(){}[0]
     final fun redo() // com.niyajali.compose.sign/SignatureState.redo|redo(){}[0]
     final fun undo() // com.niyajali.compose.sign/SignatureState.undo|undo(){}[0]
-    final fun updateSignature(androidx.compose.ui.graphics/ImageBitmap) // com.niyajali.compose.sign/SignatureState.updateSignature|updateSignature(androidx.compose.ui.graphics.ImageBitmap){}[0]
+    final fun updateSignature(androidx.compose.ui.graphics/ImageBitmap?) // com.niyajali.compose.sign/SignatureState.updateSignature|updateSignature(androidx.compose.ui.graphics.ImageBitmap?){}[0]
 
     final object Companion { // com.niyajali.compose.sign/SignatureState.Companion|null[0]
         final val Saver // com.niyajali.compose.sign/SignatureState.Companion.Saver|{}Saver[0]

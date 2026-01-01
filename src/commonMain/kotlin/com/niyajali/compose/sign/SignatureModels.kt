@@ -1,3 +1,19 @@
+/*
+ * Copyright 2024 Niyaj Ali.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.niyajali.compose.sign
 
 import androidx.compose.runtime.Immutable
@@ -7,12 +23,16 @@ import kotlinx.datetime.Clock
 import kotlin.math.sqrt
 
 /**
- * Represents a single stroke line in the signature
+ * Represents a single line segment in a signature drawing.
  *
- * @property start Starting point of the line segment
- * @property end Ending point of the line segment
- * @property strokeWidth Width of this specific stroke
- * @property color Color of this specific stroke
+ * Each path is an immutable data structure containing the geometric information
+ * and visual properties needed to render one stroke segment. Multiple [SignaturePath]
+ * instances are combined to form a complete signature.
+ *
+ * @property start The starting point coordinates of the line segment.
+ * @property end The ending point coordinates of the line segment.
+ * @property strokeWidth The thickness of the stroke in pixels.
+ * @property color The color used to render this path segment.
  */
 @Immutable
 public data class SignaturePath(
@@ -22,7 +42,9 @@ public data class SignaturePath(
     val color: Color = Color.Black
 ) {
     /**
-     * Calculate the length of this path segment
+     * Calculates the Euclidean length of this path segment.
+     *
+     * @return The distance in pixels between the start and end points.
      */
     public fun length(): Float {
         val dx = end.x - start.x
@@ -31,7 +53,9 @@ public data class SignaturePath(
     }
 
     /**
-     * Get the midpoint of this path segment
+     * Calculates the center point of this path segment.
+     *
+     * @return An [Offset] representing the midpoint between start and end.
      */
     public fun midpoint(): Offset {
         return Offset(
@@ -41,10 +65,17 @@ public data class SignaturePath(
     }
 
     /**
-     * Check if this path intersects with another path
+     * Determines whether this path segment potentially intersects with another.
+     *
+     * This method uses a simplified proximity-based intersection test that checks
+     * if the midpoints of the two paths are close enough relative to their lengths.
+     * It is useful for detecting overlapping stroke areas but may produce false
+     * positives for paths that are near but do not actually cross.
+     *
+     * @param other The other [SignaturePath] to test for intersection.
+     * @return True if the paths are likely to intersect based on proximity.
      */
     public fun intersectsWith(other: SignaturePath): Boolean {
-        // Simplified intersection check for basic collision detection
         val thisLength = length()
         val otherLength = other.length()
         val distance = sqrt(
@@ -56,32 +87,39 @@ public data class SignaturePath(
 }
 
 /**
- * Represents the current state of signature input
+ * Enumeration of possible input states for signature drawing.
+ *
+ * This enum tracks the current interaction state of the signature pad,
+ * enabling appropriate UI feedback and state management throughout the signing process.
  */
 public enum class SignatureInputState {
     /**
-     * No signature activity - pad is empty and ready for input
+     * No drawing activity is occurring. The signature pad is waiting for user input.
      */
     IDLE,
 
     /**
-     * User is actively drawing on the signature pad
+     * The user is actively drawing on the signature pad.
      */
     DRAWING,
 
     /**
-     * Signature has been completed and is ready for use
+     * Drawing has completed and the signature is ready for processing or export.
      */
     COMPLETED
 }
 
 /**
- * Represents bounds information for a signature
+ * Represents the rectangular bounding area that contains a signature.
  *
- * @property left Leftmost x-coordinate of the signature
- * @property top Topmost y-coordinate of the signature
- * @property right Rightmost x-coordinate of the signature
- * @property bottom Bottommost y-coordinate of the signature
+ * This immutable data class defines the minimum axis-aligned rectangle that
+ * encompasses all signature paths. It is useful for cropping, scaling, and
+ * positioning signatures within other layouts.
+ *
+ * @property left The x-coordinate of the left edge.
+ * @property top The y-coordinate of the top edge.
+ * @property right The x-coordinate of the right edge.
+ * @property bottom The y-coordinate of the bottom edge.
  */
 @Immutable
 public data class SignatureBounds(
@@ -91,17 +129,21 @@ public data class SignatureBounds(
     val bottom: Float
 ) {
     /**
-     * Width of the signature bounds
+     * The horizontal extent of the bounds.
+     *
+     * Returns 0 if the bounds are inverted (right less than left).
      */
-    public val width: Float get() = right - left
+    public val width: Float get() = (right - left).coerceAtLeast(0f)
 
     /**
-     * Height of the signature bounds
+     * The vertical extent of the bounds.
+     *
+     * Returns 0 if the bounds are inverted (bottom less than top).
      */
-    public val height: Float get() = bottom - top
+    public val height: Float get() = (bottom - top).coerceAtLeast(0f)
 
     /**
-     * Center point of the signature bounds
+     * The geometric center point of the bounds.
      */
     public val center: Offset get() = Offset(
         x = left + width / 2f,
@@ -109,27 +151,39 @@ public data class SignatureBounds(
     )
 
     /**
-     * Top-left corner of the signature bounds
+     * The top-left corner coordinates.
      */
     public val topLeft: Offset get() = Offset(left, top)
 
     /**
-     * Bottom-right corner of the signature bounds
+     * The bottom-right corner coordinates.
      */
     public val bottomRight: Offset get() = Offset(right, bottom)
 
     /**
-     * Check if the signature bounds are valid (non-zero area)
+     * Validates whether the bounds represent a meaningful rectangular area.
+     *
+     * Bounds are considered valid if they have positive width and height,
+     * and the top-left corner has non-negative coordinates.
+     *
+     * @return True if the bounds define a valid rectangular region.
      */
-    public fun isValid(): Boolean = width > 0 && height > 0
+    public fun isValid(): Boolean = width > 0 && height > 0 && left >= 0 && top >= 0
 
     /**
-     * Calculate the area of the signature bounds
+     * Calculates the total area enclosed by the bounds.
+     *
+     * @return The area in square pixels.
      */
     public fun area(): Float = width * height
 
     /**
-     * Check if a point is within these bounds
+     * Determines whether a given point lies within the bounds.
+     *
+     * Points exactly on the boundary are considered inside.
+     *
+     * @param point The [Offset] to test.
+     * @return True if the point is within or on the bounds.
      */
     public fun contains(point: Offset): Boolean {
         return point.x >= left && point.x <= right &&
@@ -138,13 +192,18 @@ public data class SignatureBounds(
 }
 
 /**
- * Represents metadata about a signature
+ * Contains analytical data about a signature for validation and characterization.
  *
- * @property pathCount Total number of path segments in the signature
- * @property totalLength Total length of all path segments combined
- * @property bounds Bounding rectangle of the signature
- * @property complexity Calculated complexity score (0-100)
- * @property timestamp When the signature was created/last modified
+ * This immutable data class aggregates various metrics about a signature,
+ * including structural information, dimensional data, and complexity measures.
+ * It is generated from signature path data and can be used for signature
+ * verification, quality assessment, and user feedback.
+ *
+ * @property pathCount The total number of individual path segments in the signature.
+ * @property totalLength The cumulative length of all path segments in pixels.
+ * @property bounds The bounding rectangle containing the signature, or null if empty.
+ * @property complexity A normalized score from 0 to 100 indicating signature complexity.
+ * @property timestamp The epoch milliseconds when this metadata was generated.
  */
 @Immutable
 public data class SignatureMetadata(
@@ -155,17 +214,32 @@ public data class SignatureMetadata(
     val timestamp: Long = Clock.System.now().toEpochMilliseconds()
 ) {
     /**
-     * Check if the signature is considered simple (low complexity)
+     * Determines if the signature has low complexity.
+     *
+     * Simple signatures typically have few strokes or minimal detail,
+     * which may indicate an incomplete or invalid signature.
+     *
+     * @return True if the complexity score is below 30.
      */
     public fun isSimple(): Boolean = complexity < 30
 
     /**
-     * Check if the signature is considered complex (high complexity)
+     * Determines if the signature has high complexity.
+     *
+     * Complex signatures typically have many strokes and significant detail,
+     * indicating a more elaborate signing style.
+     *
+     * @return True if the complexity score is above 70.
      */
     public fun isComplex(): Boolean = complexity > 70
 
     /**
-     * Get a human-readable complexity description
+     * Returns a human-readable description of the signature complexity level.
+     *
+     * The description categorizes the complexity into five tiers based on
+     * the numerical score.
+     *
+     * @return A descriptive string such as "Simple", "Moderate", or "Complex".
      */
     public fun complexityDescription(): String = when {
         complexity < 20 -> "Very Simple"
@@ -177,40 +251,55 @@ public data class SignatureMetadata(
 }
 
 /**
- * Export format options for signature
+ * Enumeration of supported image formats for signature export.
+ *
+ * These formats represent the available output options when converting
+ * a signature to a file for storage or transmission.
  */
 public enum class SignatureExportFormat {
     /**
-     * Export as PNG image
+     * Portable Network Graphics format with lossless compression.
+     * Recommended for signatures requiring transparency or precise reproduction.
      */
     PNG,
 
     /**
-     * Export as JPEG image
+     * Joint Photographic Experts Group format with lossy compression.
+     * Suitable for signatures where file size is a priority over quality.
      */
     JPEG,
 
     /**
-     * Export as SVG vector format
+     * Scalable Vector Graphics format preserving path data.
+     * Ideal for signatures that need to be scaled without quality loss.
      */
     SVG,
 
     /**
-     * Export as PDF document
+     * Portable Document Format for document integration.
+     * Useful for embedding signatures directly into PDF documents.
      */
     PDF
 }
 
 /**
- * Export configuration for signature output
+ * Configuration options for exporting signatures to image files.
  *
- * @property format Export format
- * @property width Output width in pixels
- * @property height Output height in pixels
- * @property backgroundColor Background color for the export
- * @property quality Quality setting (0-100, applicable for JPEG)
- * @property includeBorder Whether to include border in export
- * @property cropToBounds Whether to crop the export to signature bounds
+ * This immutable data class specifies the parameters used when converting
+ * signature path data to an exportable image format, including dimensions,
+ * format, quality settings, and visual options.
+ *
+ * @property format The target image format for export.
+ * @property width The width of the exported image in pixels.
+ * @property height The height of the exported image in pixels.
+ * @property backgroundColor The background color to use in the exported image.
+ * @property quality The compression quality percentage for lossy formats (0-100).
+ * @property includeBorder Whether to render a border around the signature in the export.
+ * @property cropToBounds Whether to crop the export to the signature bounds,
+ *                        removing excess whitespace.
+ *
+ * @throws IllegalArgumentException If width or height is not positive, or if quality
+ *                                  is outside the valid range.
  */
 @Immutable
 public data class SignatureExportConfig(
